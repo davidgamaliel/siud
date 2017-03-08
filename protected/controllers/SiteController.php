@@ -78,6 +78,7 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
 		$model=new LoginForm;
+		$nModel = new User();
 
 		$this->layout = '//layouts/login-layout';
 		// if it is ajax validation request
@@ -105,6 +106,7 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
+		Yii::app()->user->clearStates();
 		$this->redirect(Yii::app()->homeUrl);
 	}
 }

@@ -12,8 +12,8 @@
 		<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/jquery-2.1.1.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
-<?php $logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/papua/logo83.png'); ?>
-<?php $logoimg80 = CHtml::image( Yii::app()->request->baseUrl.'/images/papua/logo80.png'); ?>
+<?php $logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/logo.png'); ?>
+<?php $logoimg80 = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/logo.png'); ?>
 <body>
 	<div id="wrapper">
 		<!--sidebar start-->
@@ -37,7 +37,21 @@
 						),
 						//main side-menu starts here
 						array('label'=>'<i class="fa fa-home"></i> <span class="nav-label">Beranda</span>', 'url'=>array('/site/index')),
-						array('label'=>'<i class="fa fa-black-tie"></i> <span class="nav-label">Peran</span> <span class="fa arrow"></span>', 'url'=>array('#'),
+						array('label'=>'<i class="fa fa-building"></i> <span class="nav-label">Ruangan</span> <span class="fa arrow"></span>', 'url'=>array('#'),
+							'items'=>array(
+								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('#')),
+								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('#')),
+							),
+							'visible'=>!Yii::app()->user->isGuest
+						),
+						array('label'=>'<i class="fa fa-car"></i> <span class="nav-label">Kendaraan</span> <span class="fa arrow"></span>', 'url'=>array('#'),
+							'items'=>array(
+								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('#')),
+								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('#')),
+							),
+							'visible'=>!Yii::app()->user->isGuest
+						),
+						/*array('label'=>'<i class="fa fa-black-tie"></i> <span class="nav-label">Peran</span> <span class="fa arrow"></span>', 'url'=>array('#'),
 							'items'=>array(
 								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Lihat Peran</span>', 'url'=>array('#')),
 								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Tambah Peran</span>', 'url'=>array('#')),
@@ -72,7 +86,7 @@
 								array('label'=>'<i class="fa fa-trash"></i> <span class="nav-label">Hapus Tipe Kartu</span>', 'url'=>array('#')),
 							),
 							'visible'=>!Yii::app()->user->isGuest
-						),
+						),*/
 					),
 					'submenuHtmlOptions'=>array('class'=>'nav nav-second-level collapse'),
 					'encodeLabel' => false,

@@ -8,11 +8,11 @@ $this->pageTitle=Yii::app()->name . ' - Login';
 		'validateOnSubmit'=>true,
 	),
 ));
-$logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/papua/logo80.png','logo', array('class'=>'img-responsive', 'style'=>'width:55%;margin:0 auto;'));
+$logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/logo.png','logo', array('class'=>'img-responsive', 'style'=>'width:55%;margin:0 auto;'));
 ?>
 <div style="margin-bottom: 10px;"><?php echo $logoimg; ?></div>
-<h2>Bank Papua</h2>
-<h3>Card Management System</h3>
+<h2>Proyek Kami</h2>
+<h3>Management Assets</h3>
 <p>Please fill out the following form with your login credentials;</p>
 <div class="m-t">
 	<div class="form-group">

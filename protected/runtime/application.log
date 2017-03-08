@@ -43,3 +43,23 @@ Stack trace:
 #17 {main}
 REQUEST_URI=/pusilkom/cms/index.php?r=site/login
 ---
+2017/03/08 10:37:58 [error] [php] include(BLAuthorization.php): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\framework\YiiBase.php:432)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\cms\protected\components\UserIdentity.php(33): spl_autoload_call()
+#1 D:\xampp\htdocs\pusilkom\cms\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#2 D:\xampp\htdocs\pusilkom\framework\validators\CInlineValidator.php(42): LoginForm->authenticate()
+#3 D:\xampp\htdocs\pusilkom\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute()
+#4 D:\xampp\htdocs\pusilkom\framework\base\CModel.php(159): CInlineValidator->validate()
+#5 D:\xampp\htdocs\pusilkom\cms\protected\controllers\SiteController.php(96): LoginForm->validate()
+#6 D:\xampp\htdocs\pusilkom\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#7 D:\xampp\htdocs\pusilkom\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 D:\xampp\htdocs\pusilkom\framework\web\CController.php(286): SiteController->runAction()
+#9 D:\xampp\htdocs\pusilkom\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#10 D:\xampp\htdocs\pusilkom\framework\web\CWebApplication.php(282): SiteController->run()
+#11 D:\xampp\htdocs\pusilkom\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 D:\xampp\htdocs\pusilkom\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#13 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=site/login
+in D:\xampp\htdocs\pusilkom\cms\protected\components\UserIdentity.php (33)
+in D:\xampp\htdocs\pusilkom\cms\protected\models\LoginForm.php (52)
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\SiteController.php (96)
