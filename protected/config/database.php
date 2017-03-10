@@ -5,7 +5,7 @@ return array(
 	// 'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 	// uncomment the following lines to use a MySQL database
 	
-	'connectionString' => 'pgsql:host=localhost;dbname=proj_db',
+	'connectionString' => 'pgsql:host=localhost;dbname=siud_db',
 	'emulatePrepare' => true,
 	'username' => 'postgres',
 	'password' => '12345',

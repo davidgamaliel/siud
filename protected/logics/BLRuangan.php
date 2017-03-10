@@ -8,7 +8,7 @@
  * @package model
  * @version 1.0
  */
-class BLAuthorization {
+class BLRuangan {
 
     private $password_iteration = 50;
     private $subtree = array();
@@ -18,16 +18,17 @@ class BLAuthorization {
      * @param string the username to be authorized
      * @param string the password to be authorized
      */
-    public function authorize($username, $password) {
-        $user = TmstUser::model()->findByAttributes(array('username'=>$username, 'password'=>$password));
-        if($user) {
-            Yii::app()->user->setState('user_name', $user->username);
-            Yii::app()->user->setState('user_id', $user->id);
-            return CUserIdentity::ERROR_NONE;
+    public function getRuanganDropdown() {
+        $returnValue = array();
+
+        $allRuangan = TmstRuangan::model()->findAll();
+        if($allRuangan) {
+            foreach ($allRuangan as $ruangan) {
+                $returnValue[$ruangan->id] = $ruangan->nama;
+            }
         }
-        else {
-            return CUserIdentity::ERROR_PASSWORD_INVALID;
-        }
+
+        return $returnValue;
     }
         
 }
