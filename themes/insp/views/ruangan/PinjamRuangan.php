@@ -1,3 +1,11 @@
+<?php
+Yii::app()->clientScript->registerScript('search', "
+$('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
+    format: 'dd/mm/yyyy',
+    parentEl: '#gofront'
+});
+");
+?>
 <div class="row  border-bottom white-bg dashboard-header">
 	<div class="col-sm-8">
 		<h2>Form Permohonan Peminjaman Ruangan</h2>
@@ -32,8 +40,6 @@
                                 <!-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="12/03/2017"> -->
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
-
                         <div class="form-group">
                         	<label class="col-sm-2 control-label"><?php echo $form->label($model, 'waktu_peminjaman'); ?></label>
                             <div class="col-sm-10">
@@ -41,28 +47,28 @@
                             	<?php echo $form->textField($model, 'waktu_peminjaman', array('class'=>'form-control')); ?>
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
-                        
-                        <div class="form-group"><label class="col-sm-2 control-label"><?php echo $form->label($model, 'id_ruangan'); ?></label>
 
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label"><?php echo $form->label($model, 'id_ruangan'); ?></label>
                             <div class="col-sm-10">
                                 <?php echo $form->dropDownList($model, 'id_ruangan', $dropdownRuangan, array('prompt'=>'Pilih Ruangan', 'class'=>'form-control m-b')); ?>
                             </div>
                         </div>
-                        <div class="hr-line-dashed"></div>
 
-                        <div class="form-group"><label class="col-sm-2 control-label">Kegiatan</label>
-
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Kegiatan</label>
                             <div class="col-sm-10"><input type="text" class="form-control"></div>
                         </div>
                         <!-- <div class="hr-line-dashed"></div> -->
-                        <div class="form-group"><label class="col-sm-2 control-label">Upload Nodin</label>
-
-                            <div class="col-sm-10"><input type="text" class="form-control"></div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Upload Nodin</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
                         </div>
                         <!-- <div class="hr-line-dashed"></div> -->
 
-                       
+
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-white" type="submit">Cancel</button>
@@ -76,13 +82,3 @@
         </div>
     </div>
 </div>
-
-
-<?php
-    Yii::app()->clientScript->registerScript('datepicker', "
-        $('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
-          format: 'mm-dd-yyyy'
-        });
-        alert('tes');
-    ");
-?>

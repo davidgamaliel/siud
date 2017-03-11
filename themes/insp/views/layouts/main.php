@@ -128,11 +128,6 @@
 	<!-- Custom and plugin javascript -->
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/inspinia.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/pace/pace.min.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datepicker/bootstrap-datepicker.js"></script>
-	<script>
-    $( function() {
-        $( "#TranPeminjamanRuangan_tanggal_peminjaman" ).datepicker();
-      } );
-</script>
+	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+        'application.models.custom.*',
 		'application.components.*',
 		'application.logics.*',
 	),
@@ -41,6 +42,8 @@ return array(
 			'packages'=>array(
 				'jquery'=>false
 			),
+            'coreScriptPosition' => CClientScript::POS_END,
+            'defaultScriptFilePosition' => CClientScript::POS_END,
 		),
 		'user'=>array(
 			// enable cookie-based authentication
@@ -75,11 +78,11 @@ return array(
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
-				/*
+
 				array(
 					'class'=>'CWebLogRoute',
 				),
-				*/
+
 			),
 		),
 

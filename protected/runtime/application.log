@@ -93,3 +93,250 @@ Stack trace:
 REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
 in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (20)
 in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/11 04:03:58 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: could not find driver in C:\xampp\htdocs\yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(459): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(637): CApplication->getDb()
+#5 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1433): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1522): CActiveRecord->getTableAlias(true)
+#7 C:\xampp\htdocs\siud\protected\logics\BLAuthorization.php(22): CActiveRecord->findByAttributes(Array)
+#8 C:\xampp\htdocs\siud\protected\components\UserIdentity.php(34): BLAuthorization->authorize('admin', 'admin')
+#9 C:\xampp\htdocs\siud\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#10 C:\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 C:\xampp\htdocs\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 C:\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), Array)
+#13 C:\xampp\htdocs\siud\protected\controllers\SiteController.php(95): CModel->validate()
+#14 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/siud/index.php?r=site/login
+HTTP_REFERER=http://localhost/siud/index.php?r=site/login
+---
+2017/03/11 04:05:01 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: could not find driver in C:\xampp\htdocs\yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 C:\xampp\htdocs\yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 C:\xampp\htdocs\yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 C:\xampp\htdocs\yii\framework\base\CApplication.php(459): CModule->getComponent('db')
+#4 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(637): CApplication->getDb()
+#5 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1433): CActiveRecord->getDbConnection()
+#6 C:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1522): CActiveRecord->getTableAlias(true)
+#7 C:\xampp\htdocs\siud\protected\logics\BLAuthorization.php(22): CActiveRecord->findByAttributes(Array)
+#8 C:\xampp\htdocs\siud\protected\components\UserIdentity.php(34): BLAuthorization->authorize('admin', 'admin')
+#9 C:\xampp\htdocs\siud\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#10 C:\xampp\htdocs\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 C:\xampp\htdocs\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 C:\xampp\htdocs\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), Array)
+#13 C:\xampp\htdocs\siud\protected\controllers\SiteController.php(95): CModel->validate()
+#14 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/siud/index.php?r=site/login
+HTTP_REFERER=http://localhost/siud/index.php?r=site/login
+---
+2017/03/11 05:45:32 [error] [exception.CException] CException: RuanganController cannot find the requested view "pinjamRuangan". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('pinjamRuangan', Array, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(20): CController->render('pinjamRuangan', Array)
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 05:48:53 [error] [exception.CException] CException: RuanganController cannot find the requested view "pinjamRuangan". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('pinjamRuangan', Array, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(21): CController->render('pinjamRuangan', Array)
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 05:52:38 [error] [exception.ParseError] ParseError: syntax error, unexpected '}', expecting end of file in C:\xampp\htdocs\siud\themes\insp\views\ruangan\PinjamRuangan.php:8
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('C:\\xampp\\htdocs...', Array, true)
+#1 C:\xampp\htdocs\yii\framework\web\CController.php(869): CBaseController->renderFile('C:\\xampp\\htdocs...', Array, true)
+#2 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('pinjamRuangan', Array, true)
+#3 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(21): CController->render('pinjamRuangan', Array)
+#4 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#6 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#7 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#9 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#10 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#11 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:07:31 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:07:38 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:07:40 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:07:44 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:09:41 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:11:40 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:11:42 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:11:42 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/11 06:11:45 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in C:\xampp\htdocs\yii\framework\web\CController.php:878
+Stack trace:
+#0 C:\xampp\htdocs\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 C:\xampp\htdocs\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 C:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 C:\xampp\htdocs\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 C:\xampp\htdocs\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 C:\xampp\htdocs\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 C:\xampp\htdocs\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 C:\xampp\htdocs\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 C:\xampp\htdocs\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
+---

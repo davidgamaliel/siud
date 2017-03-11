@@ -5,10 +5,10 @@ return array(
 	// 'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
 	// uncomment the following lines to use a MySQL database
 	
-	'connectionString' => 'pgsql:host=localhost;dbname=siud_db',
+	'connectionString' => 'pgsql:host=localhost;port=5432;dbname=siud_db',
 	'emulatePrepare' => true,
 	'username' => 'postgres',
-	'password' => '12345',
+	'password' => 'postgres',
 	'charset' => 'utf8',
 	
 );
