@@ -17,6 +17,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
         'application.models.custom.*',
+        'application.models.constant.*',
 		'application.components.*',
 		'application.logics.*',
 	),
