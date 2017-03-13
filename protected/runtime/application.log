@@ -340,3 +340,47 @@ Stack trace:
 REQUEST_URI=/siud/index.php?r=ruangan/
 HTTP_REFERER=http://localhost/siud/index.php?r=ruangan/pinjamRuangan
 ---
+2017/03/11 08:55:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  password authentication failed for user "postgres"' in F:\xampp\htdocs\portfolio\yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 F:\xampp\htdocs\portfolio\yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 F:\xampp\htdocs\portfolio\yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 F:\xampp\htdocs\portfolio\yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 F:\xampp\htdocs\portfolio\yii\framework\base\CApplication.php(459): CModule->getComponent('db')
+#4 F:\xampp\htdocs\portfolio\yii\framework\db\ar\CActiveRecord.php(637): CApplication->getDb()
+#5 F:\xampp\htdocs\portfolio\yii\framework\db\ar\CActiveRecord.php(1433): CActiveRecord->getDbConnection()
+#6 F:\xampp\htdocs\portfolio\yii\framework\db\ar\CActiveRecord.php(1522): CActiveRecord->getTableAlias(true)
+#7 F:\xampp\htdocs\portfolio\siud\protected\logics\BLAuthorization.php(22): CActiveRecord->findByAttributes(Array)
+#8 F:\xampp\htdocs\portfolio\siud\protected\components\UserIdentity.php(34): BLAuthorization->authorize('admin', 'admin')
+#9 F:\xampp\htdocs\portfolio\siud\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#10 F:\xampp\htdocs\portfolio\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 F:\xampp\htdocs\portfolio\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 F:\xampp\htdocs\portfolio\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
+#13 F:\xampp\htdocs\portfolio\siud\protected\controllers\SiteController.php(95): CModel->validate()
+#14 F:\xampp\htdocs\portfolio\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 F:\xampp\htdocs\portfolio\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 F:\xampp\htdocs\portfolio\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 F:\xampp\htdocs\portfolio\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 F:\xampp\htdocs\portfolio\siud\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/portfolio/siud/index.php?r=site/login
+HTTP_REFERER=http://localhost/portfolio/siud/index.php?r=site/login
+---
+2017/03/11 09:00:39 [error] [exception.CException] exception 'CException' with message 'RuanganController cannot find the requested view "index".' in F:\xampp\htdocs\portfolio\yii\framework\web\CController.php:878
+Stack trace:
+#0 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 F:\xampp\htdocs\portfolio\siud\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 F:\xampp\htdocs\portfolio\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 F:\xampp\htdocs\portfolio\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 F:\xampp\htdocs\portfolio\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 F:\xampp\htdocs\portfolio\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 F:\xampp\htdocs\portfolio\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 F:\xampp\htdocs\portfolio\siud\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/portfolio/siud/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/portfolio/siud/index.php?r=ruangan/pinjamRuangan
+---
