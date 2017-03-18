@@ -13,12 +13,49 @@ class RuanganController extends Controller
 		$logic = new BLRuangan();
 		$model = new TranPeminjamanRuangan();
 
-
 		$dropdownRuangan = $logic->getRuanganDropdown();
+
+		if(isset($_POST["TranPeminjamanRuangan"])) {
+			/*var_dump($_POST["TranPeminjamanRuangan"]);
+			die();*/
+			$model->attributes = $_POST['TranPeminjamanRuangan'];
+			$thisDate = $model->tanggal_peminjaman;
+			$model->tanggal_peminjaman = date('Y-m-d', strtotime($thisDate));
+			$berkas = CUploadedFile::getInstance($model, 'nodin');
+			$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).''.$model->waktu_peminjaman.'.jpg';
+
+			if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
+				$model->nodin = $berkas;
+				$model->nodin->saveAs(Yii::app()->params['nodinRuangan'].$filename);
+				$model->nodin = $filename;
+			}
+
+			if($model->validate()) {
+				$model->save();
+				$this->redirect(array('ruangan/listPermohonan'));
+			}
+			else {
+				var_dump($model->getErrors());
+				die();
+			}
+		}
 
 		$data['dropdownRuangan'] = $dropdownRuangan;
 		$data['model'] = $model;
 		$this->render('pinjamRuangan', $data);
+	}
+
+	public function actionListPermohonan() {
+		$data = array();
+		$model = new TranPeminjamanRuangan();
+		$provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
+			'sort'=>array(
+				'defaultOrder'=>'tanggal_peminjaman DESC'
+			)
+		));
+
+		$data['provider'] = $provider;
+		$this->render('listPermohonan', $data);
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -4,6 +4,11 @@ $('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
     format: 'dd/mm/yyyy',
     parentEl: '#gofront'
 });
+
+$('#TranPeminjamanRuangan_waktu_peminjaman').clockpicker({
+    autoclose: true,
+    parentEl: '#gofront'
+});
 ");
 ?>
 <div class="row  border-bottom white-bg dashboard-header">
@@ -29,17 +34,22 @@ $('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
                 </div>
                 <div class="ibox-content">
                 <?php
-                    $form = $this->beginWidget('CActiveForm');
+                    $form = $this->beginWidget('CActiveForm',array(
+                            'htmlOptions'=>array('enctype'=>'multipart/form-data'),
+                    ));
                 ?>
-                    <!-- <form class="form-horizontal"> -->
+                    <div class="form-horizontal">
                         <div class="form-group">
                             <label class="col-sm-2 control-label"><?php echo $form->label($model, 'tanggal_peminjaman'); ?></label>
-                            <div class="input-group date col-sm-10" data-provide="datepicker" >
+                            <div class="input-group date col-sm-10" >
                             	<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            	 <?php echo $form->textField($model, 'tanggal_peminjaman', array('class'=>'form-control datepicker')); ?>
+                            	 <?php echo $form->textField($model, 'tanggal_peminjaman', array('class'=>'form-control')); ?>
                                 <!-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="12/03/2017"> -->
                             </div>
                         </div>
+
+                        <div class="hr-line-dashed"></div>
+
                         <div class="form-group">
                         	<label class="col-sm-2 control-label"><?php echo $form->label($model, 'waktu_peminjaman'); ?></label>
                             <div class="col-sm-10">
@@ -48,6 +58,8 @@ $('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
                             </div>
                         </div>
 
+                        <div class="hr-line-dashed"></div>
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label"><?php echo $form->label($model, 'id_ruangan'); ?></label>
                             <div class="col-sm-10">
@@ -55,27 +67,33 @@ $('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
                             </div>
                         </div>
 
+                        <div class="hr-line-dashed"></div>
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Kegiatan</label>
-                            <div class="col-sm-10"><input type="text" class="form-control"></div>
+                            <div class="col-sm-10"><?php echo $form->textField($model, 'kegiatan', array('class'=>'form-control')); ?></div>
                         </div>
-                        <!-- <div class="hr-line-dashed"></div> -->
+
+                        <div class="hr-line-dashed"></div>
+
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Upload Nodin</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control">
+                                <?php echo $form->fileField($model, 'nodin', array('size'=>20, 'class'=>'form-control'));?>&nbsp;<i>Upload file dalam format JPG</i>
                             </div>
                         </div>
-                        <!-- <div class="hr-line-dashed"></div> -->
+
+                        <div class="hr-line-dashed"></div>
 
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <button class="btn btn-white" type="submit">Cancel</button>
-                                <button class="btn btn-primary" type="submit">Kirim</button>
+                                <?php echo CHtml::submitButton('Kirim', array('class'=>'btn btn-primary')); ?> 
+                                <!-- <button class="btn btn-primary" type="submit">Kirim</button> -->
                             </div>
                         </div>
-                    <!-- </form> -->
+                    </div>
                     <?php $this->endWidget(); ?>
                 </div>
             </div>

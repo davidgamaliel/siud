@@ -94,5 +94,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'nodinRuangan'=>dirname(__FILE__).'/../../images/nodinruangan/',
+		'nodinKendaraan'=>dirname(__FILE__).'/../../images/nodinkendaraan/',
 	),
 );

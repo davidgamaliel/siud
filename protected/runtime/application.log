@@ -481,3 +481,576 @@ REQUEST_URI=/siud/index.php?r=peminjamankendaraan/listPermohonan&TrxPeminjamanKe
 in C:\xampp\htdocs\siud\themes\insp\views\peminjamanKendaraan\listPermohonan.php (60)
 in C:\xampp\htdocs\siud\protected\controllers\PeminjamanKendaraanController.php (37)
 in C:\xampp\htdocs\siud\index.php (13)
+2017/03/13 03:27:33 [error] [exception.CDbException] CDbException: CDbConnection failed to open the DB connection: SQLSTATE[08006] [7] FATAL:  password authentication failed for user "postgres" in D:\xampp\htdocs\pusilkom\yii\framework\db\CDbConnection.php:399
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\CDbConnection.php(347): CDbConnection->open()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\CDbConnection.php(325): CDbConnection->setActive(true)
+#2 D:\xampp\htdocs\pusilkom\yii\framework\base\CModule.php(394): CDbConnection->init()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(459): CModule->getComponent('db')
+#4 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(637): CApplication->getDb()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(1433): CActiveRecord->getDbConnection()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(1522): CActiveRecord->getTableAlias(true)
+#7 D:\xampp\htdocs\pusilkom\cms\protected\logics\BLAuthorization.php(22): CActiveRecord->findByAttributes(Array)
+#8 D:\xampp\htdocs\pusilkom\cms\protected\components\UserIdentity.php(34): BLAuthorization->authorize('admin', 'admin')
+#9 D:\xampp\htdocs\pusilkom\cms\protected\models\LoginForm.php(52): UserIdentity->authenticate()
+#10 D:\xampp\htdocs\pusilkom\yii\framework\validators\CInlineValidator.php(42): LoginForm->authenticate('password', Array)
+#11 D:\xampp\htdocs\pusilkom\yii\framework\validators\CValidator.php(201): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
+#12 D:\xampp\htdocs\pusilkom\yii\framework\base\CModel.php(159): CValidator->validate(Object(LoginForm), Array)
+#13 D:\xampp\htdocs\pusilkom\cms\protected\controllers\SiteController.php(95): CModel->validate()
+#14 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionLogin()
+#15 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('login')
+#19 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('site/login')
+#20 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#21 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=site/login
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=site/login
+---
+2017/03/13 03:28:19 [error] [exception.CDbException] CDbException: The table "trx_peminjaman_kendaraan" for active record class "TrxPeminjamanKendaraanCustom" cannot be found in the database. in D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php:2387
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(TrxPeminjamanKendaraanCustom))
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 D:\xampp\htdocs\pusilkom\cms\protected\controllers\PeminjamanKendaraanController.php(31): CActiveRecord->__construct()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): PeminjamanKendaraanController->actionlistPeminjaman()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('listPeminjaman')
+#8 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('peminjamanKenda...')
+#9 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=peminjamanKendaraan/listPeminjaman
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/13 03:28:31 [error] [exception.CDbException] CDbException: The table "trx_peminjaman_kendaraan" for active record class "TrxPeminjamanKendaraanCustom" cannot be found in the database. in D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php:2387
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(TrxPeminjamanKendaraanCustom))
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 D:\xampp\htdocs\pusilkom\cms\protected\controllers\PeminjamanKendaraanController.php(19): CActiveRecord->__construct()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): PeminjamanKendaraanController->actionPinjamKendaraan()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamKendaraan')
+#8 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('peminjamanKenda...')
+#9 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=peminjamanKendaraan/pinjamKendaraan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/13 03:45:50 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...) FROM "trx_peminjaman_kendaraan" "t" WHERE status IN (0, 1)
+                                                              ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "trx_peminjaman_kendaraan" "t" WHERE status IN (:ycp0, :ycp1).
+in D:\xampp\htdocs\pusilkom\cms\themes\insp\views\peminjamanKendaraan\listPeminjaman.php (60)
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\PeminjamanKendaraanController.php (33)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/13 03:45:50 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: character varying = integer
+LINE 1: ...) FROM "trx_peminjaman_kendaraan" "t" WHERE status IN (0, 1)
+                                                              ^
+HINT:  No operator matches the given name and argument type(s). You might need to add explicit type casts.. The SQL statement executed was: SELECT COUNT(*) FROM "trx_peminjaman_kendaraan" "t" WHERE status IN (:ycp0, :ycp1) in D:\xampp\htdocs\pusilkom\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\CDbCommand.php(433): CDbCommand->queryInternal('fetchColumn', 0, Array)
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(1606): CDbCommand->queryScalar()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CDataProvider.php(168): CActiveDataProvider->fetchData()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\zii\widgets\CBaseListView.php(125): CDataProvider->getData()
+#7 D:\xampp\htdocs\pusilkom\yii\framework\zii\widgets\grid\CGridView.php(339): CBaseListView->init()
+#8 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(147): CGridView->init()
+#9 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(180): CBaseController->createWidget('zii.widgets.gri...', Array)
+#10 D:\xampp\htdocs\pusilkom\cms\themes\insp\views\peminjamanKendaraan\listPeminjaman.php(60): CBaseController->widget('zii.widgets.gri...', Array)
+#11 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#12 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#13 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#14 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(782): CController->renderPartial('listPeminjaman', Array, true)
+#15 D:\xampp\htdocs\pusilkom\cms\protected\controllers\PeminjamanKendaraanController.php(33): CController->render('listPeminjaman', Array)
+#16 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): PeminjamanKendaraanController->actionlistPeminjaman()
+#17 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('listPeminjaman')
+#21 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('peminjamanKenda...')
+#22 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#23 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=peminjamanKendaraan/listPeminjaman
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=peminjamanKendaraan/pinjamKendaraan
+---
+2017/03/17 18:33:08 [error] [php] Undefined index: TranPeminjamanRuangan (D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:18)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (18)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:33:15 [error] [php] Undefined index: TranPeminjamanRuangan (D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:18)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (18)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:34:06 [error] [php] Undefined index: TranPeminjamanRuangan (D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:18)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (18)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:35:01 [error] [php] Undefined index: TranPeminjamanRuangan (D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:18)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#5 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (18)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:38:16 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type date: ""
+LINE 1: ...aman", "id_ruangan", "kegiatan", "nodin") VALUES ('', '', NU...
+                                                             ^. The SQL statement executed was: INSERT INTO "tran_peminjaman_ruangan" ("tanggal_peminjaman", "waktu_peminjaman", "id_ruangan", "kegiatan", "nodin") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4).
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (34)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:38:16 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[22007]: Invalid datetime format: 7 ERROR:  invalid input syntax for type date: ""
+LINE 1: ...aman", "id_ruangan", "kegiatan", "nodin") VALUES ('', '', NU...
+                                                             ^. The SQL statement executed was: INSERT INTO "tran_peminjaman_ruangan" ("tanggal_peminjaman", "waktu_peminjaman", "id_ruangan", "kegiatan", "nodin") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4) in D:\xampp\htdocs\pusilkom\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(34): CActiveRecord->save()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#8 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#9 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 18:50:22 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:50:43 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:52:03 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:52:03 [error] [exception.Error] Error: Call to a member function saveAs() on null in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:32
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 18:53:09 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:55:26 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:55:26 [error] [exception.Error] Error: Call to a member function saveAs() on null in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:33
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 18:56:24 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:57:59 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 18:57:59 [error] [exception.Error] Error: Call to a member function saveAs() on null in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:33
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#8 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 18:58:52 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:06:48 [error] [exception.ParseError] ParseError: syntax error, unexpected '{' in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:18
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('pinjamRuangan/')
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#2 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#3 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#4 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:07:37 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:08:20 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:08:58 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:08:58 [error] [php] move_uploaded_file(D:\xampp\htdocs\pusilkom\cms\protected\config/../../images/nodinruangan/pinjam-ruangan_29/03/2017_19:31.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (27)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:12:15 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:12:15 [error] [php] move_uploaded_file(D:\xampp\htdocs\pusilkom\cms\protected\configpinjam-ruangan_20/03/2017_19:30.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (27)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:13:10 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:13:10 [error] [php] move_uploaded_file(D:\xampp\htdocs\pusilkom\cms\protected\config\pinjam-ruangan_02/04/2017_18:30.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (27)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:20:01 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:20:01 [error] [php] move_uploaded_file(D:\xampp\htdocs\pusilkom\cms\protected\config/../../images/nodinruangan/pinjam-ruangan_07/03/2017_.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (27)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:21:09 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:21:09 [error] [php] move_uploaded_file(D:\xampp\htdocs\pusilkom\cms\protected\config/../../images/nodinruangan/pinjam-ruangan_03/04/2017_.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (27)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:27:25 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:27:25 [error] [php] move_uploaded_file(D:\xampp\htdocs\pusilkom\cms\protected\config/../../images/nodinruangan/pinjam-ruangan_06/03/2017_.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (27)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:34:42 [error] [exception.CException] CException: CWebApplication and its behaviors do not have a method or closure named "getPathOfAlias". in D:\xampp\htdocs\pusilkom\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(12): CComponent->__call('getPathOfAlias', Array)
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#7 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#9 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:39:10 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (23)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:39:10 [error] [php] move_uploaded_file(D:/xampp/htdocs/pusilkom/cms/images/nodinruangan/pinjam-ruangan_08/03/2017_.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (29)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:39:59 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (23)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:39:59 [error] [php] move_uploaded_file(D:/xampp/htdocs/pusilkom/cms/images/nodinruangan/pinjam-ruangan_30/03/2017_18:00.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\web\CUploadedFile.php:201)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (29)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:44:00 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:44:00 [error] [php] date_format() expects parameter 1 to be DateTimeInterface, string given (D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:23)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (23)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:45:55 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:45:55 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22008]: Datetime field overflow: 7 ERROR:  date/time field value out of range: "27/03/2017"
+LINE 1: ...aman", "id_ruangan", "kegiatan", "nodin") VALUES ('27/03/201...
+                                                             ^
+HINT:  Perhaps you need a different "datestyle" setting.. The SQL statement executed was: INSERT INTO "tran_peminjaman_ruangan" ("tanggal_peminjaman", "waktu_peminjaman", "id_ruangan", "kegiatan", "nodin") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4).
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (32)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:45:55 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[22008]: Datetime field overflow: 7 ERROR:  date/time field value out of range: "27/03/2017"
+LINE 1: ...aman", "id_ruangan", "kegiatan", "nodin") VALUES ('27/03/201...
+                                                             ^
+HINT:  Perhaps you need a different "datestyle" setting.. The SQL statement executed was: INSERT INTO "tran_peminjaman_ruangan" ("tanggal_peminjaman", "waktu_peminjaman", "id_ruangan", "kegiatan", "nodin") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4) in D:\xampp\htdocs\pusilkom\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(32): CActiveRecord->save()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#8 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#9 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:48:51 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:48:51 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[22008]: Datetime field overflow: 7 ERROR:  date/time field value out of range: "19/03/2017"
+LINE 1: ...aman", "id_ruangan", "kegiatan", "nodin") VALUES ('19/03/201...
+                                                             ^
+HINT:  Perhaps you need a different "datestyle" setting.. The SQL statement executed was: INSERT INTO "tran_peminjaman_ruangan" ("tanggal_peminjaman", "waktu_peminjaman", "id_ruangan", "kegiatan", "nodin") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4).
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (32)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:48:51 [error] [exception.CDbException] CDbException: CDbCommand failed to execute the SQL statement: SQLSTATE[22008]: Datetime field overflow: 7 ERROR:  date/time field value out of range: "19/03/2017"
+LINE 1: ...aman", "id_ruangan", "kegiatan", "nodin") VALUES ('19/03/201...
+                                                             ^
+HINT:  Perhaps you need a different "datestyle" setting.. The SQL statement executed was: INSERT INTO "tran_peminjaman_ruangan" ("tanggal_peminjaman", "waktu_peminjaman", "id_ruangan", "kegiatan", "nodin") VALUES (:yp0, :yp1, :yp2, :yp3, :yp4) in D:\xampp\htdocs\pusilkom\yii\framework\db\CDbCommand.php:358
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(1080): CDbCommand->execute()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\db\ar\CActiveRecord.php(809): CActiveRecord->insert(NULL)
+#2 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(32): CActiveRecord->save()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('pinjamRuangan')
+#8 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#9 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#11 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:51:21 [error] [exception.ParseError] ParseError: syntax error, unexpected '$model' (T_VARIABLE) in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:23
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('pinjamRuangan/')
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#2 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#3 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#4 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:51:36 [error] [exception.ParseError] ParseError: syntax error, unexpected '$berkas' (T_VARIABLE) in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:24
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('pinjamRuangan/')
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#2 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#3 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#4 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:51:41 [error] [exception.ParseError] ParseError: syntax error, unexpected '$berkas' (T_VARIABLE) in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:24
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('pinjamRuangan/')
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/pinjamR...')
+#2 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#3 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#4 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 19:52:19 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:52:19 [error] [php] include(date.php): failed to open stream: No such file or directory (D:\xampp\htdocs\pusilkom\yii\framework\YiiBase.php:432)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(23): spl_autoload_call()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionPinjamRuangan()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#7 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (23)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:53:15 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:53:15 [error] [php] A non well formed numeric value encountered (D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php:23)
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): RuanganController->runAction()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): RuanganController->runActionWithFilters()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): RuanganController->run()
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#5 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\pusilkom\cms\index.php(13): CWebApplication->run()
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (23)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 19:57:13 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 20:04:34 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)
+2017/03/17 20:07:29 [error] [exception.CException] CException: RuanganController cannot find the requested view "index". in D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php:878
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#1 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(8): CController->render('index')
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionIndex()
+#3 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('')
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/')
+#8 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=ruangan/pinjamRuangan
+---
+2017/03/17 20:16:45 [error] [exception.Error] Error: Call to a member function getData() on array in D:\xampp\htdocs\pusilkom\yii\framework\zii\widgets\CBaseListView.php:125
+Stack trace:
+#0 D:\xampp\htdocs\pusilkom\yii\framework\zii\widgets\grid\CGridView.php(339): CBaseListView->init()
+#1 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(147): CGridView->init()
+#2 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(180): CBaseController->createWidget('zii.widgets.gri...', Array)
+#3 D:\xampp\htdocs\pusilkom\cms\themes\insp\views\ruangan\ListPermohonan.php(56): CBaseController->widget('zii.widgets.gri...', Array)
+#4 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(126): require('D:\\xampp\\htdocs...')
+#5 D:\xampp\htdocs\pusilkom\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('D:\\xampp\\htdocs...', Array, true)
+#6 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(869): CBaseController->renderFile('D:\\xampp\\htdocs...', Array, true)
+#7 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(782): CController->renderPartial('listPermohonan', Array, true)
+#8 D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php(53): CController->render('listPermohonan', Array)
+#9 D:\xampp\htdocs\pusilkom\yii\framework\web\actions\CInlineAction.php(49): RuanganController->actionListPermohonan()
+#10 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 D:\xampp\htdocs\pusilkom\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(282): CController->run('listPermohonan')
+#14 D:\xampp\htdocs\pusilkom\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('ruangan/listPer...')
+#15 D:\xampp\htdocs\pusilkom\yii\framework\base\CApplication.php(185): CWebApplication->processRequest()
+#16 D:\xampp\htdocs\pusilkom\cms\index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/pusilkom/cms/index.php?r=ruangan/listPermohonan
+HTTP_REFERER=http://localhost/pusilkom/cms/index.php?r=peminjamankendaraan/listPermohonan
+---
+2017/03/17 20:24:35 [warning] [application] Failed to set unsafe attribute "nodin" of "TranPeminjamanRuangan".
+in D:\xampp\htdocs\pusilkom\cms\protected\controllers\RuanganController.php (21)
+in D:\xampp\htdocs\pusilkom\cms\index.php (13)

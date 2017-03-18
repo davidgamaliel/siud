@@ -36,7 +36,8 @@ class TranPeminjamanRuangan extends CActiveRecord
 		return array(
 			array('id_ruangan, id_user_peminjam', 'numerical', 'integerOnly'=>true),
 			array('waktu_peminjaman', 'length', 'max'=>20),
-			array('kegiatan, nodin', 'length', 'max'=>100),
+			array('kegiatan', 'length', 'max'=>100),
+			array('nodin', 'file', 'types'=>'jpg, png', 'safe'=>false),
 			array('tanggal_peminjaman', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

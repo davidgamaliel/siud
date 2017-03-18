@@ -40,7 +40,7 @@
 						array('label'=>'<i class="fa fa-building"></i> <span class="nav-label">Ruangan</span> <span class="fa arrow"></span>', 'url'=>array('#'),
 							'items'=>array(
 								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/ruangan/pinjamRuangan')),
-								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('#')),
+								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/ruangan/listPermohonan')),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),
@@ -130,5 +130,6 @@
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/inspinia.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/pace/pace.min.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/clockpicker/clockpicker.js"></script>
 </body>
 </html>
