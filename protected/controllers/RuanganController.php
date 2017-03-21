@@ -22,7 +22,7 @@ class RuanganController extends Controller
 			$thisDate = $model->tanggal_peminjaman;
 			$model->tanggal_peminjaman = date('Y-m-d', strtotime($thisDate));
 			$berkas = CUploadedFile::getInstance($model, 'nodin');
-			$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).''.$model->waktu_peminjaman.'.jpg';
+			$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).'.jpg';
 
 			if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
 				$model->nodin = $berkas;

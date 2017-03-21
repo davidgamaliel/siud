@@ -30,9 +30,17 @@
                                 'value'=>'$data->id_ruangan != null ? $data->idRuangan->nama : ""',
                             ),
                             'tanggal_peminjaman',
-                            'waktu_peminjaman',
+                            array(
+                                'header'=>'Waktu Peminjaman',
+                                'name'=>'waktu_peminjaman',
+                                'value'=>'$data->waktu_awal_peminjaman . " - " . $data->waktu_akhir_peminjaman',
+                            ),
                             'kegiatan',
-                            'nodin'
+                            array(
+                                'header'=>'Nodin',
+                                'name'=>'nodin',
+                                'value'=>'$data->nodin == null || $data->nodin == "" ? "Belum Upload" : "Sudah Upload"',
+                            ),
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'
