@@ -8,6 +8,8 @@
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/animate.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/style.css">
+	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/datapicker/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/clockpicker/clockpicker.css">
 		<!--JQUERY-->
 		<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/jquery-2.1.1.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>

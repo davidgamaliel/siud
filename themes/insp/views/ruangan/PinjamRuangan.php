@@ -2,7 +2,8 @@
 Yii::app()->clientScript->registerScript('search', "
 $('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
     format: 'dd/mm/yyyy',
-    parentEl: '#gofront'
+    parentEl: '#gofront',
+    showOn: 'button'
 });
 
 $('#TranPeminjamanRuangan_waktu_peminjaman').clockpicker({

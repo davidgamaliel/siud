@@ -27,7 +27,7 @@
                             ),
                             array(
                                 'name'=>'Ruangan',
-                                'value'=>'$data->idRuangan->nama',
+                                'value'=>'$data->id_ruangan != null ? $data->idRuangan->nama : ""',
                             ),
                             'tanggal_peminjaman',
                             'waktu_peminjaman',
