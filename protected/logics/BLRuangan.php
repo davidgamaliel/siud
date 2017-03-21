@@ -30,6 +30,23 @@ class BLRuangan {
 
         return $returnValue;
     }
+
+    public function insertRuangan($data, $model) {
+
+    }
+
+    public function getStatusPermohonanDropdown() {
+        $returnValue = array();
+
+        $allStatus = TrefStatusPermohonan::model()->findAll();
+        if($allStatus) {
+            foreach ($allStatus as $status) {
+                $returnValue[$status->id] = $status->nama;
+            }
+        }
+
+        return $returnValue;
+    }
         
 }
 

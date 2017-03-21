@@ -18,11 +18,15 @@ class RuanganController extends Controller
 		if(isset($_POST["TranPeminjamanRuangan"])) {
 			/*var_dump($_POST["TranPeminjamanRuangan"]);
 			die();*/
+			$logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
 			$model->attributes = $_POST['TranPeminjamanRuangan'];
+			$model->id_user_peminjam = Yii::app()->user->getState('user_id');
+			$model->status_id = 3;
 			$thisDate = $model->tanggal_peminjaman;
 			$model->tanggal_peminjaman = date('Y-m-d', strtotime($thisDate));
 			$berkas = CUploadedFile::getInstance($model, 'nodin');
 			$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).'.jpg';
+
 
 			if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
 				$model->nodin = $berkas;
@@ -48,12 +52,16 @@ class RuanganController extends Controller
 	public function actionListPermohonan() {
 		$data = array();
 		$model = new TranPeminjamanRuangan();
+		$logic = new BLRuangan();
+		$dropdownStatus = $logic->getStatusPermohonanDropdown();
 		$provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
 			'sort'=>array(
 				'defaultOrder'=>'tanggal_peminjaman DESC'
 			)
 		));
 
+		$data['status'] = '';
+		$data['dropdownStatus'] = $dropdownStatus;
 		$data['provider'] = $provider;
 		$this->render('listPermohonan', $data);
 	}

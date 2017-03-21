@@ -12,10 +12,12 @@
  * @property string $kegiatan
  * @property string $nodin
  * @property string $waktu_akhir_peminjaman
+ * @property integer $status_id
  *
  * The followings are the available model relations:
- * @property TmstUser $idUserPeminjam
  * @property TmstRuangan $idRuangan
+ * @property TmstUser $idUserPeminjam
+ * @property TrefStatusPermohonan $status
  */
 class TranPeminjamanRuangan extends CActiveRecord
 {
@@ -35,7 +37,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_ruangan, waktu_awal_peminjaman, waktu_akhir_peminjaman, kegiatan, tanggal_peminjaman', 'required'),
+			array('id_ruangan, waktu_awal_peminjaman, waktu_akhir_peminjaman, kegiatan, tanggal_peminjaman, status_id', 'required'),
 			array('id_ruangan, id_user_peminjam', 'numerical', 'integerOnly'=>true),
 			array('waktu_awal_peminjaman, waktu_akhir_peminjaman', 'length', 'max'=>20),
 			array('kegiatan', 'length', 'max'=>100),
@@ -43,7 +45,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 			array('tanggal_peminjaman', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_ruangan, id_user_peminjam, tanggal_peminjaman, waktu_awal_peminjaman, kegiatan, nodin, waktu_akhir_peminjaman', 'safe', 'on'=>'search'),
+			array('id, id_ruangan, id_user_peminjam, tanggal_peminjaman, waktu_awal_peminjaman, kegiatan, nodin, waktu_akhir_peminjaman, status_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,8 +57,9 @@ class TranPeminjamanRuangan extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUserPeminjam' => array(self::BELONGS_TO, 'TmstUser', 'id_user_peminjam'),
 			'idRuangan' => array(self::BELONGS_TO, 'TmstRuangan', 'id_ruangan'),
+			'idUserPeminjam' => array(self::BELONGS_TO, 'TmstUser', 'id_user_peminjam'),
+			'status' => array(self::BELONGS_TO, 'TrefStatusPermohonan', 'status_id'),
 		);
 	}
 
@@ -67,13 +70,14 @@ class TranPeminjamanRuangan extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_ruangan' => 'Ruangan',
-			'id_user_peminjam' => 'User Peminjam',
+			'id_ruangan' => 'Id Ruangan',
+			'id_user_peminjam' => 'Id User Peminjam',
 			'tanggal_peminjaman' => 'Tanggal Peminjaman',
-			'waktu_awal_peminjaman' => 'Waktu Awal',
+			'waktu_awal_peminjaman' => 'Waktu Awal Peminjaman',
 			'kegiatan' => 'Kegiatan',
 			'nodin' => 'Nodin',
-			'waktu_akhir_peminjaman' => 'Waktu Akhir',
+			'waktu_akhir_peminjaman' => 'Waktu Akhir Peminjaman',
+			'status_id' => 'Status',
 		);
 	}
 
@@ -103,6 +107,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 		$criteria->compare('kegiatan',$this->kegiatan,true);
 		$criteria->compare('nodin',$this->nodin,true);
 		$criteria->compare('waktu_akhir_peminjaman',$this->waktu_akhir_peminjaman,true);
+		$criteria->compare('status_id',$this->status_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
