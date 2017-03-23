@@ -71,12 +71,12 @@ $('#myModal').on('show.bs.modal', function (event) {
                                     'setuju'=>array(
                                         'label'=>'Disetujui',
                                         'visible'=>'$data->status_id == 1',
-                                        'url'=>"CHtml::normalizeUrl('#')",
+                                        'url'=>'CHtml::normalizeUrl(array("/ruangan/ubahStatus", "id"=>$data->id))',
                                         'options'=>array(
                                             'class'=>'btn btn-primary btn-sm',
                                             'data-toggle'=>'modal',
                                             'data-target'=>'#myModal',
-                                            'data-value'=>'1',
+                                            'data-value'=>"1",
                                         ),
                                     ),
                                     'tolak'=>array(
@@ -164,7 +164,7 @@ $('#myModal').on('show.bs.modal', function (event) {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <?php echo CHtml::submitButton('Simpan', array('class'=>'btn btn-primary')); ?> 
                 </div>
             </div>
         </div>

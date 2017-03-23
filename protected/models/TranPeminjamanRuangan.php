@@ -45,7 +45,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 			array('tanggal_peminjaman', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_ruangan, id_user_peminjam, tanggal_peminjaman, waktu_awal_peminjaman, kegiatan, nodin, waktu_akhir_peminjaman, status_id', 'safe', 'on'=>'search'),
+			array('id, id_ruangan, id_user_peminjam, tanggal_peminjaman, waktu_awal_peminjaman, kegiatan, nodin, waktu_akhir_peminjaman, status_id, keterangan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +78,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 			'nodin' => 'Nodin',
 			'waktu_akhir_peminjaman' => 'Waktu Akhir Peminjaman',
 			'status_id' => 'Status',
+			'keterangan' => 'Keterangan',
 		);
 	}
 
@@ -108,6 +109,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 		$criteria->compare('nodin',$this->nodin,true);
 		$criteria->compare('waktu_akhir_peminjaman',$this->waktu_akhir_peminjaman,true);
 		$criteria->compare('status_id',$this->status_id);
+		$criteria->compare('keterangan',$this->keterangan);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

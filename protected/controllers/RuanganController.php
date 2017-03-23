@@ -66,6 +66,20 @@ class RuanganController extends Controller
 		$this->render('listPermohonan', $data);
 	}
 
+	public function actionUbahStatus() {
+		$data = array();
+		$idPinjam = $_GET['id'];
+		$ruanganPinjam = TranPeminjamanRuangan::model()->findByPk($idPinjam);
+
+		$dropdownStatus = $logic->getStatusPermohonanDropdown();
+
+		$pesan['pesan'] = $ruanganPinjam->keterangan;
+		$data['status'] = $ruanganPinjam->status_id;
+		$data['dropdownStatus'] = $dropdownStatus;
+		echo $this->renderPartial('_ubahStatus', $data);
+		// $this->render('_ubahStatus', $data);
+	}
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
