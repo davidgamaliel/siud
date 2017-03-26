@@ -19,7 +19,7 @@ class PeminjamanKendaraanController extends Controller
         $model = new TrxPeminjamanKendaraanCustom();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
-
+            $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
         }
         $this->render('pinjamKendaraan', array(
             'model' => $model,

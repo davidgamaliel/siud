@@ -29,4 +29,13 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             )
         ));
     }
+
+    public function simpan($param) {
+        $this->attributes = $param;
+        $this->waktu_mulai = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$this->waktu_mulai));
+        $this->waktu_selesai = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$this->waktu_selesai));
+        $this->status = StatusPeminjaman::MENUNGGU_PERSETUJUAN;
+        $this->kendaraan_id = intval($this->kendaraan_id);
+        $this->save();
+    }
 }

@@ -67,7 +67,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                             <div class="col-sm-10">
                                 <?php
                                 $list = CHtml::listData($model_kendaraan,'id', function ($model_kendaraan) { return CHtml::encode($model_kendaraan->nama);});
-                                echo CHtml::dropDownList('TrxPeminjamanKendaraanCustom_kendaraan_id','',$list,array('class'=>'form-control m-b'));
+                                echo CHtml::dropDownList('TrxPeminjamanKendaraanCustom[kendaraan_id]','',$list,array('class'=>'form-control m-b'));
                                 ?>
                             </div>
                         </div>
