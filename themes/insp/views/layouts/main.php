@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/datapicker/bootstrap-datepicker.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/clockpicker/clockpicker.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/datetimepicker/bootstrap-material-datetimepicker.css">
+	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/datetimepicker/datetimepicker.css">
 		<!--JQUERY-->
 		<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/jquery-2.1.1.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -126,8 +126,9 @@
 		</div><!--page ends-->
 	</div><!--wrapper ends-->
 	<!-- Mainly scripts -->
+    <script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/moment/moment.min.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/jquery-2.1.1.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/bootstrap.min.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/bootstrap.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/metisMenu/jquery.metisMenu.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 	<!-- Custom and plugin javascript -->
@@ -136,6 +137,6 @@
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datapicker/bootstrap-datepicker.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/clockpicker/clockpicker.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/daterangepicker/daterangepicker.js"></script>
-	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datetimepicker/bootstrap-material-datetimepicker.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datetimepicker/datetimepicker.js"></script>
 </body>
 </html>
