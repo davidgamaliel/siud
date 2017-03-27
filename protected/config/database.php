@@ -10,5 +10,11 @@ return array(
 	'username' => 'postgres',
 	'password' => 'postgres',
 	'charset' => 'utf8',
+
+	/*'connectionString' => 'mysql:host=localhost;dbname=dumm',
+	'emulatePrepare' => true,
+	'username' => 'root',
+	'password' => '',
+	'charset' => 'utf8',*/
 	
 );

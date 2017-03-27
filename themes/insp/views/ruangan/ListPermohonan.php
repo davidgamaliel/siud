@@ -64,6 +64,11 @@ $('#myModal').on('show.bs.modal', function (event) {
                                 'value'=>'$data->nodin == null || $data->nodin == "" ? "Belum Upload" : "Sudah Upload"',
                             ),
                             array(
+                                'name'=>'keterangan',
+                                'value'=>'$data->keterangan == null ? "" : $data->keterangan',
+                                'visible'=>false,
+                            ),
+                            array(
                                 'header'=>'Status',
                                 'class' => 'CButtonColumn',
                                 'template'=>'{setuju}{tolak}{proses}',
@@ -71,13 +76,16 @@ $('#myModal').on('show.bs.modal', function (event) {
                                     'setuju'=>array(
                                         'label'=>'Disetujui',
                                         'visible'=>'$data->status_id == 1',
-                                        'url'=>'CHtml::normalizeUrl(array("/ruangan/ubahStatus", "id"=>$data->id))',
                                         'options'=>array(
                                             'class'=>'btn btn-primary btn-sm',
                                             'data-toggle'=>'modal',
                                             'data-target'=>'#myModal',
                                             'data-value'=>"1",
                                         ),
+                                        'click'=>'function(id) {
+                                                        var ket = $.fn.yiiGridView.getColumn("trx-card-order-custom-grid-instant", id);
+                                                        alert(ket);
+                                                    }',
                                     ),
                                     'tolak'=>array(
                                         'label'=>'Ditolak',
