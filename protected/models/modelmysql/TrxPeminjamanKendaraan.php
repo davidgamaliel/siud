@@ -6,14 +6,18 @@
  * The followings are the available columns in table 'trx_peminjaman_kendaraan':
  * @property integer $id
  * @property integer $kendaraan_id
- * @property integer $ketersediaan
+ * @property boolean $ketersediaan
  * @property string $peminjam
  * @property string $kegiatan
  * @property string $supir
- * @property string $tanggal_peminjaman
- * @property string $waktu_peminjaman
- * @property integer $nodin
  * @property integer $status
+ * @property string $waktu_mulai
+ * @property string $waktu_selesai
+ * @property string $no_polisi
+ * @property string $nodin
+ *
+ * The followings are the available model relations:
+ * @property MstKendaraan $kendaraan
  */
 class TrxPeminjamanKendaraan extends CActiveRecord
 {
@@ -33,12 +37,13 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('kendaraan_id, ketersediaan, nodin, status', 'numerical', 'integerOnly'=>true),
-			array('peminjam, supir, waktu_peminjaman', 'length', 'max'=>250),
-			array('kegiatan, tanggal_peminjaman', 'safe'),
+			array('kendaraan_id, status', 'numerical', 'integerOnly'=>true),
+			array('peminjam, supir', 'length', 'max'=>250),
+			array('no_polisi', 'length', 'max'=>15),
+			array('ketersediaan, kegiatan, waktu_mulai, waktu_selesai, nodin', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kendaraan_id, ketersediaan, peminjam, kegiatan, supir, tanggal_peminjaman, waktu_peminjaman, nodin, status', 'safe', 'on'=>'search'),
+			array('id, kendaraan_id, ketersediaan, peminjam, kegiatan, supir, status, waktu_mulai, waktu_selesai, no_polisi, nodin', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,6 +55,7 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'kendaraan' => array(self::BELONGS_TO, 'MstKendaraan', 'kendaraan_id'),
 		);
 	}
 
@@ -65,10 +71,11 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 			'peminjam' => 'Peminjam',
 			'kegiatan' => 'Kegiatan',
 			'supir' => 'Supir',
-			'tanggal_peminjaman' => 'Tanggal Peminjaman',
-			'waktu_peminjaman' => 'Waktu Peminjaman',
-			'nodin' => 'Nodin',
 			'status' => 'Status',
+			'waktu_mulai' => 'Waktu Mulai',
+			'waktu_selesai' => 'Waktu Selesai',
+			'no_polisi' => 'No Polisi',
+			'nodin' => 'Nodin',
 		);
 	}
 
@@ -96,10 +103,11 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 		$criteria->compare('peminjam',$this->peminjam,true);
 		$criteria->compare('kegiatan',$this->kegiatan,true);
 		$criteria->compare('supir',$this->supir,true);
-		$criteria->compare('tanggal_peminjaman',$this->tanggal_peminjaman,true);
-		$criteria->compare('waktu_peminjaman',$this->waktu_peminjaman,true);
-		$criteria->compare('nodin',$this->nodin);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('waktu_mulai',$this->waktu_mulai,true);
+		$criteria->compare('waktu_selesai',$this->waktu_selesai,true);
+		$criteria->compare('no_polisi',$this->no_polisi,true);
+		$criteria->compare('nodin',$this->nodin,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

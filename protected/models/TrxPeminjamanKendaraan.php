@@ -41,6 +41,7 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 			array('peminjam, supir', 'length', 'max'=>250),
 			array('no_polisi', 'length', 'max'=>15),
 			array('ketersediaan, kegiatan, nodin, waktu_mulai, waktu_selesai', 'safe'),
+            array('nodin', 'file', 'types'=>'jpg, gif, png', 'safe' => true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, kendaraan_id, ketersediaan, peminjam, kegiatan, supir, nodin, status, waktu_mulai, waktu_selesai, no_polisi', 'safe', 'on'=>'search'),

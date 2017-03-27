@@ -36,7 +36,11 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                 </div>
                 <div class="ibox-content">
                     <?php
-                    $form = $this->beginWidget('CActiveForm');
+                    $form = $this->beginWidget('CActiveForm',array(
+                        'id' => 'upload-form',
+                        'enableAjaxValidation' => false,
+                        'htmlOptions' => array('enctype' => 'multipart/form-data'),
+                    ));
                     ?>
                     <div class="form-horizontal">
                         <div class="form-group">
@@ -92,7 +96,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Upload Nodin</label>
                             <div class="col-sm-10">
-                                <?php echo $form->textField($model,'nodin',array('class'=>'form-control')); ?>
+                                <?php echo $form->fileField($model,'nodin',array('class'=>'form-control')); ?>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>

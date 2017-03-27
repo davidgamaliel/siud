@@ -19,12 +19,15 @@ class PeminjamanKendaraanController extends Controller
         $model = new TrxPeminjamanKendaraanCustom();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
+//            $file = CUploadedFile::getInstance($model,'nodin');
+//            echo "<pre>";var_dump($file);die;
             $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
         }
         $this->render('pinjamKendaraan', array(
             'model' => $model,
             'model_kendaraan'=>$model_kendaraan
         ));
+
     }
 
     public function actionlistPeminjaman() {
