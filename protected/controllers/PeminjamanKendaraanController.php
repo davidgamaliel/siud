@@ -43,4 +43,11 @@ class PeminjamanKendaraanController extends Controller
            'model'=>$model
         ));
     }
+
+    public function actionDetailPermohonan($id) {
+        //tambahin logic mau load file apa
+        $this->render('detailPermohonan', array(
+
+        ));
+    }
 }

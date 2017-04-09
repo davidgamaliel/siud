@@ -47,11 +47,13 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                             <label class="col-sm-2 control-label">Waktu Mulai Peminjaman</label>
                             <div class="col-sm-3" id="datetimepicker1">
                                 <?php echo $form->textField($model,'waktu_mulai',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'waktu_mulai', array('class' => 'text-danger')); ?>
                             </div>
                             <label class="col-sm-1 control-label">s/d</label>
                             <label class="col-sm-2 control-label">Waktu Selesai Peminjaman</label>
                             <div class="col-sm-3" id="datetimepicker2">
                                 <?php echo $form->textField($model,'waktu_selesai',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'waktu_selesai', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
 
@@ -61,6 +63,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                             <label class="col-sm-2 control-label">Nomor Polisi</label>
                             <div class="col-sm-10">
                                 <?php echo $form->textField($model,'no_polisi',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'no_polisi', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
 
@@ -73,6 +76,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                                 $list = CHtml::listData($model_kendaraan,'id', function ($model_kendaraan) { return CHtml::encode($model_kendaraan->nama);});
                                 echo CHtml::dropDownList('TrxPeminjamanKendaraanCustom[kendaraan_id]','',$list,array('class'=>'form-control m-b'));
                                 ?>
+                                <?php echo $form->error($model, 'kendaraan_id', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
@@ -97,6 +101,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                             <label class="col-sm-2 control-label">Upload Nodin</label>
                             <div class="col-sm-10">
                                 <?php echo $form->fileField($model,'nodin',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'nodin', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
                         <div class="hr-line-dashed"></div>
