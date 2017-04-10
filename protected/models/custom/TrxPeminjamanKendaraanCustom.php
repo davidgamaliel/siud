@@ -16,7 +16,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         // will receive user inputs.
         $defaultRule = parent::rules();
         $newRule = array(
-            array('kendaraan_id, peminjam, nodin, waktu_mulai, waktu_selesai, no_polisi', 'required')  ,
+            array('kendaraan_id, peminjam, waktu_mulai, waktu_selesai, no_polisi', 'required')  ,
 //            array('MIN_REQUEST','numerical','integerOnly'=>true,'min'=>1,'max'=>9999999),
             //array('MAX_REQUEST','notLessThanMin')
         );
@@ -52,19 +52,14 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $this->waktu_selesai = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$this->waktu_selesai));
         $this->status = StatusPeminjaman::MENUNGGU_PERSETUJUAN;
         $this->kendaraan_id = intval($this->kendaraan_id);
-        if($this->nodin != '') {
-            $file = CUploadedFile::getInstance($this,'nodin');
+        $this->peminjam = Yii::app()->user->getState('user_name');
+        $file = CUploadedFile::getInstance($this,'nodin');
+        if(!is_null($file)) {
+//            echo '<pre>';var_dump($file->name);die;
             $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$file->name);
             $this->nodin = $file->name;
         }
         if($this->validate())
             $this->save();
-//            if ($model->save()) {
-//                if($save_file){
-//                    $model->file->saveAs($model->logo);
-//                }
-//                return $this->redirect([‘view’, ‘id’ => $model->id]);
-//            }
-//        }
     }
 }
