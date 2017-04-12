@@ -43,16 +43,16 @@
 						array('label'=>'<i class="fa fa-home"></i> <span class="nav-label">Beranda</span>', 'url'=>array('/site/index')),
 						array('label'=>'<i class="fa fa-building"></i> <span class="nav-label">Ruangan</span> <span class="fa arrow"></span>', 'url'=>array('#'),
 							'items'=>array(
-								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/ruangan/pinjamRuangan')),
-								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/ruangan/listPermohonan')),
+								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/ruangan/pinjamRuangan'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
+								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/ruangan/listPermohonan'), 'visible'=> BLAuthorization::isAdmin()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),
 						array('label'=>'<i class="fa fa-car"></i> <span class="nav-label">Kendaraan</span> <span class="fa arrow"></span>', 'url'=>array('#'),
 							'items'=>array(
-                                array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Kendaraan Dipinjam</span>', 'url'=>array('/peminjamanKendaraan/listPeminjaman')),
-								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/peminjamanKendaraan/pinjamKendaraan')),
-								array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamankendaraan/listPermohonan')),
+                                //array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Kendaraan Dipinjam</span>', 'url'=>array('/peminjamanKendaraan/listPeminjaman')),
+								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/peminjamanKendaraan/pinjamKendaraan'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
+								array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamankendaraan/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),

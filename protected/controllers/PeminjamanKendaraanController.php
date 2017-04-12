@@ -46,8 +46,9 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionDetailPermohonan($id) {
         //tambahin logic mau load file apa
+        $model = TrxPeminjamanKendaraan::model()->findByPk($id);
         $this->render('detailPermohonan', array(
-
+            'model'=>$model
         ));
     }
 }
