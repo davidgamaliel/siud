@@ -47,6 +47,31 @@ class BLRuangan {
 
         return $returnValue;
     }
+
+    public function getListPeminjaman($id) {
+        $today = new DateTime();
+        $format = $today->format('d-m-y');
+        $provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
+            'criteria'=>array(
+                'condition'=>"status_id=1 AND waktu_awal_peminjaman >= to_timestamp('" . $format . "' , 'DD-MM-YY') AND id_ruangan = " . $id ."",
+                'order'=>'waktu_awal_peminjaman DESC',
+            ),
+        ));
+
+        return $provider;
+    }
+
+    public function getAllRuangan() {
+        $today = new DateTime();
+        $format = $today->format('d-m-y');
+        $provider = new CActiveDataProvider('TmstRuangan', array(
+            'sort'=>array(
+                'defaultOrder'=>'nama'
+            )
+        ));
+
+        return $provider;
+    }
         
 }
 

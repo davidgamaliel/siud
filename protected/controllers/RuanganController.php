@@ -37,7 +37,7 @@ class RuanganController extends Controller
 
 			if($model->validate()) {
 				$model->save();
-				$this->redirect(array('ruangan/listPermohonan'));
+				$this->redirect(array('site/index'));
 			}
 			else {
 				var_dump($model->getErrors());
@@ -79,6 +79,54 @@ class RuanganController extends Controller
 		$data['dropdownStatus'] = $dropdownStatus;
 		echo $this->renderPartial('_ubahStatus', $data);
 		// $this->render('_ubahStatus', $data);
+	}
+
+	public function actionSetujuiPeminjaman() {
+        $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
+        $model->status_id = 1;
+        if($model->save()) {
+            $result = array('status'=>'berhasil','id'=>$model->id);
+            echo CJSON::encode($result);
+        }
+        else {
+            $result = array('status'=>'gagal');
+            echo CJSON::encode($result);
+        }
+    }
+
+    public function actionTolakPeminjaman() {
+        $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
+        $model->status_id = 2;
+        if($model->save()) {
+            $result = array('status'=>'berhasil','id'=>$_POST['id']);
+            echo CJSON::encode($result);
+        }
+        else {
+            $result = array('status'=>'gagal','id'=>$_POST['id']);
+            echo CJSON::encode($result);
+        }
+    }
+
+    public function actionListPeminjaman() {
+		$data = array();
+		$model = new TranPeminjamanRuangan();
+		$logic = new BLRuangan();
+		$provider = $logic->getAllRuangan();
+
+		$data['status'] = '';
+		$data['provider'] = $provider;
+		$this->render('listPeminjaman', $data);
+	}
+
+	public function actionDetailRuanganPeminjaman() {
+		$data = array();
+		$model = new TranPeminjamanRuangan();
+		$logic = new BLRuangan();
+		$provider = $logic->getListPeminjaman($_GET['id']);
+
+		$data['status'] = '';
+		$data['provider'] = $provider;
+		$this->render('detailRuanganPeminjaman', $data);
 	}
 
 	// Uncomment the following methods and override them if needed

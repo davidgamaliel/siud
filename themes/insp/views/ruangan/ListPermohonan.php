@@ -1,24 +1,20 @@
-<?php
-Yii::app()->clientScript->registerScript('search', "
-$('#myModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('value') // Extract info from data-* attributes
-  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
-  modal.find('.modal-title').text('New message to ' + recipient)
-  modal.find('.modal-body textarea').val(recipient)
-
-  var element = document.getElementById('listStatus');
-  listStatus.value = recipient;
-})
-");
-?>
-
-
+<div class="row">
+    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan1" style="display: none;">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <b>Perhatian! </b>
+        <p id="pesan_peringatan"></p>
+    </div>
+</div>
+<div class="row">
+    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <b>Perhatian! </b>
+        <p id="pesan_peringatan"></p>
+    </div>
+</div>
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>Daftar Permohonan Peminjaman Kendaraan</h2>
+        <h2>Daftar Permohonan Peminjaman Ruangan</h2>
     </div>
     <?php
     $this->breadcrumbs=array(
@@ -42,6 +38,12 @@ $('#myModal').on('show.bs.modal', function (event) {
                             array(
                                 'header'=>'No',
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
+                            ),
+                            array(
+                                'name'=>'ID permohonan',
+                                'value'=>'$data->id',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
                                 'name'=>'Peminjam',
@@ -68,53 +70,110 @@ $('#myModal').on('show.bs.modal', function (event) {
                                 'value'=>'$data->nodin == null || $data->nodin == "" ? "Belum Upload" : "Sudah Upload"',
                             ),
                             array(
-                                'name'=>'keterangan',
-                                'value'=>'$data->keterangan == null ? "" : $data->keterangan',
-                                'visible'=>false,
+                                'name'=>'status',
+                                'value'=>'$data->status->nama',
                             ),
                             array(
-                                'header'=>'Status',
-                                'class' => 'CButtonColumn',
-                                'template'=>'{setuju}{tolak}{proses}',
+                                'header'=>'aksi',
+                                'class'=>'CButtonColumn',
+                                'template'=>'{detail} {setujui} {tolak}',
                                 'buttons'=>array(
-                                    'setuju'=>array(
-                                        'label'=>'Disetujui',
-                                        'visible'=>'$data->status_id == 1',
+                                    'detail'=>array(
+                                        'label'=>'<i class="fa fa-file-text-o"></i>',
                                         'options'=>array(
-                                            'class'=>'btn btn-primary btn-sm',
-                                            'data-toggle'=>'modal',
-                                            'data-target'=>'#myModal',
-                                            'data-value'=>"1",
+                                            'title'=>'Detail',
+                                            'class'=>'btn btn-sm btn-primary',
+                                            'data-toggle' => 'tooltip',
                                         ),
-                                        'click'=>'function(id) {
-                                                        var ket = $.fn.yiiGridView.getColumn("trx-card-order-custom-grid-instant", id);
-                                                        alert(ket);
-                                                    }',
+                                        'url'=>'Yii::app()->createUrl("ruangan/detailPermohonan", array("id"=>$data->id))',
+                                        'visible'=>'true'
+                                    ),
+                                    'setujui'=>array(
+                                        'label'=>'<i class="fa fa-check-square"></i>',
+                                        'options'=>array(
+                                            'title'=>'Setujui',
+                                            'class'=>'btn btn-sm btn-success setujui',
+                                            'data-toggle' => 'tooltip',
+                                        ),
+                                        //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
+                                        'visible'=>'true',
+                                        'click' => "js:function(event){  
+                                                event.preventDefault();
+                                                var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
+                                                $('#modalCardNominative').modal('show');
+                                                ".CHtml::ajax(array(
+                                                'url'=>Yii::app()->createUrl('ruangan/setujuiPeminjaman'),
+                                                'type'=>'POST',
+                                                'data'=>'js:{id: id_permintaan}',
+                                                'dataType'=>'JSON',
+                                                'success'=>"function(data){
+                                                                    console.log('data terkirim');
+                                                                    if(data['status']=='berhasil'){
+                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
+                                                                        $('#peringatan1').show();
+                                                                        $('#peringatan2').hide();
+                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }else{
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui'
+                                                                        $('#peringatan1').show();
+                                                                        $('#peringatan2').hide();
+                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }
+                                                                }"
+                                            ))
+                                            ."
+                                        }"
                                     ),
                                     'tolak'=>array(
-                                        'label'=>'Ditolak',
-                                        'visible'=>'$data->status_id == 2',
-                                        'url'=>"CHtml::normalizeUrl('#')",
+                                        'label'=>'<i class="fa fa-minus-square"></i>',
                                         'options'=>array(
-                                            'class'=>'btn btn-danger btn-sm',
-                                            'data-toggle'=>'modal',
-                                            'data-target'=>'#myModal',
-                                            'data-value'=>'2',
+                                            'title'=>'Tolak',
+                                            'class'=>'btn btn-sm btn-danger tolak',
+                                            'data-toggle' => 'tooltip',
                                         ),
+                                        //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
+                                        'visible'=>'true',
+                                        'click' => "js:function(event){  
+                                                event.preventDefault();
+                                                var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
+                                                console.log('id yang mau dirubah', id_permintaan)
+                                                $('#modalCardNominative').modal('show');
+                                            
+                                                ".CHtml::ajax(array(
+                                                                'url'=>Yii::app()->createUrl('ruangan/tolakPeminjaman'),
+                                                                'type'=>'POST',
+                                                                'data'=>'js:{id: id_permintaan}',
+                                                                'dataType'=>'JSON',
+                                                                'success'=>"function(data){
+                                                                    console.log('data terkirim');
+                                                                    if(data['status']=='berhasil'){
+                                                             
+                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil ditolak'
+                                                                        $('#peringatan1').show();
+                                                                        $('#peringatan2').hide();
+                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }else{
+                                                                      
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal ditolak'
+                                                                         $('#peringatan2').show();
+                                                                         $('#peringatan1').hide();
+                                                                         $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }
+                                                                }"
+                                            ))
+                                            ."
+                                        }"
                                     ),
-                                    'proses'=>array(
-                                        'label'=>'Diproses',
-                                        'visible'=>'$data->status_id == 3',
-                                        'url'=>"CHtml::normalizeUrl('#')",
-                                        'options'=>array(
-                                            'class'=>'btn btn-warning btn-sm',
-                                            'data-toggle'=>'modal',
-                                            'data-target'=>'#myModal',
-                                            'data-value'=>'3',
-                                        ),
-                                    ),
-                                ),
-                            ),
+                                )
+                            )
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'

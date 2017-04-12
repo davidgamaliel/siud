@@ -125,4 +125,18 @@ class TranPeminjamanRuangan extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getFormatedWaktuMulai() {
+		$thisDate = new DateTime($this->waktu_awal_peminjaman);
+		$result = $thisDate->format('d-m-Y H:i');
+
+		return $result;
+	}
+
+	public function getFormatedWaktuAkhir() {
+		$thisDate = new DateTime($this->waktu_akhir_peminjaman);
+		$result = $thisDate->format('d-m-Y H:i');
+
+		return $result;
+	}
 }

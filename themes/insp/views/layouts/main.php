@@ -45,6 +45,7 @@
 							'items'=>array(
 								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/ruangan/pinjamRuangan'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
 								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/ruangan/listPermohonan'), 'visible'=> BLAuthorization::isAdmin()),
+								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Daftar Peminjaman</span>', 'url'=>array('/ruangan/listPeminjaman'), 'visible'=> BLAuthorization::isPegawai()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),
