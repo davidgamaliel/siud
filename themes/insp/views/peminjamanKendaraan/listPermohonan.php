@@ -8,6 +8,20 @@
     );
     ?>
 </div>
+<div class="row">
+    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan1" style="display: none;">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <b>Perhatian! </b>
+        <p id="pesan_peringatan"></p>
+    </div>
+</div>
+<div class="row">
+    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <b>Perhatian! </b>
+        <p id="pesan_peringatan"></p>
+    </div>
+</div>
 <div class="wrapper wrapper-content animate fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -17,9 +31,9 @@
                 </div>
                 <div class="ibox-content">
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
-                        'id'=>'trx-card-order-custom-grid-instant',
+                        'id'=>'list-peminjaman',
                         'dataProvider'=>$model->listPermohonan(),
-                        'ajaxUpdate'=>false,
+                        'ajaxUpdate'=>true,
                         'columns'=>array(
                             array(
                                 'header'=>'No',
@@ -28,15 +42,15 @@
                             array(
                                 'name'=>'ID permohonan',
                                 'value'=>'$data->id',
-                                'headerHtmlOptions'=>array('style'=>'display:none'),
-                                'htmlOptions'=>array('style'=>'display:none'),
+                                //'headerHtmlOptions'=>array('style'=>'display:none'),
+                                //'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
                                 'name'=>'kendaraan_id',
                                 'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
                             ),
-                            'tanggal_peminjaman',
-                            'waktu_peminjaman',
+                            'waktu_mulai',
+                            'waktu_selesai',
                             'supir',
                             'nodin',
                             array(
@@ -52,7 +66,7 @@
                                         'label'=>'<i class="fa fa-file-text-o"></i>',
                                         'options'=>array(
                                             'title'=>'Detail',
-                                            'class'=>'btn btn-sm btn-success',
+                                            'class'=>'btn btn-sm btn-primary',
                                             'data-toggle' => 'tooltip',
                                         ),
                                         'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
@@ -70,14 +84,39 @@
                                         'click' => "js:function(event){  
 												event.preventDefault();
 												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
-												alert('Setujui Permohonan dengan ID = ' + id_permintaan);
+												$('#modalCardNominative').modal('show');
+												".CHtml::ajax(array(
+                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
+                                                'type'=>'POST',
+                                                'data'=>'js:{id: id_permintaan}',
+                                                'dataType'=>'JSON',
+                                                'success'=>"function(data){
+                                                                    console.log('data terkirim');
+                                                                    if(data['status']=='berhasil'){
+                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
+                                                                        $('#peringatan1').show();
+                                                                        $('#peringatan2').hide();
+                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }else{
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui'
+                                                                        $('#peringatan1').show();
+                                                                        $('#peringatan2').hide();
+                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }
+                                                                }"
+                                            ))
+                                            ."
 										}"
                                     ),
                                     'tolak'=>array(
                                         'label'=>'<i class="fa fa-minus-square"></i>',
                                         'options'=>array(
                                             'title'=>'Tolak',
-                                            'class'=>'btn btn-sm btn-success tolak',
+                                            'class'=>'btn btn-sm btn-danger tolak',
                                             'data-toggle' => 'tooltip',
                                         ),
                                         //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
@@ -85,7 +124,36 @@
                                         'click' => "js:function(event){  
 												event.preventDefault();
 												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
-												alert('Tolak Permohonan dengan ID = '+ id_permintaan);
+												console.log('id yang mau dirubah', id_permintaan)
+												$('#modalCardNominative').modal('show');
+											
+												".CHtml::ajax(array(
+                                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
+                                                                'type'=>'POST',
+                                                                'data'=>'js:{id: id_permintaan}',
+                                                                'dataType'=>'JSON',
+                                                                'success'=>"function(data){
+                                                                    console.log('data terkirim');
+                                                                    if(data['status']=='berhasil'){
+                                                             
+                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil ditolak'
+                                                                        $('#peringatan1').show();
+                                                                        $('#peringatan2').hide();
+                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }else{
+                                                                      
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal ditolak'
+                                                                         $('#peringatan2').show();
+                                                                         $('#peringatan1').hide();
+                                                                         $('#list-peminjaman').yiiGridView('update', {
+                                                                            data: $(this).serialize()
+                                                                        });
+                                                                    }
+                                                                }"
+                                            ))
+                                            ."
 										}"
                                     ),
                                 )

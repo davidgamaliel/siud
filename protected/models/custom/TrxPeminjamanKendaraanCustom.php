@@ -62,4 +62,28 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         if($this->validate())
             $this->save();
     }
+
+    public function setujuiPeminjaman() {
+        $this->status = StatusPeminjaman::DISETUJUI;
+        if($this->save()) {
+            $result = array('status'=>'berhasil','id'=>$this->id);
+            echo CJSON::encode($result);
+        }
+        else {
+            $result = array('status'=>'gagal');
+            echo CJSON::encode($result);
+        }
+    }
+
+    public function tolakPeminjaman() {
+        $this->status = StatusPeminjaman::DITOLAK;
+        if($this->save()) {
+            $result = array('status'=>'berhasil','id'=>$this->id);
+            echo CJSON::encode($result);
+        }
+        else {
+            $result = array('status'=>'gagal');
+            echo CJSON::encode($result);
+        }
+    }
 }
