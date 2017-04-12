@@ -20,10 +20,11 @@ class RuanganController extends Controller
 			die();*/
 			$logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
 			$model->attributes = $_POST['TranPeminjamanRuangan'];
+			$thisDate = $model->waktu_awal_peminjaman;
+			$model->waktu_awal_peminjaman = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
+	        $model->waktu_akhir_peminjaman = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
 			$model->id_user_peminjam = Yii::app()->user->getState('user_id');
 			$model->status_id = 3;
-			$thisDate = $model->tanggal_peminjaman;
-			$model->tanggal_peminjaman = date('Y-m-d', strtotime($thisDate));
 			$berkas = CUploadedFile::getInstance($model, 'nodin');
 			$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).'.jpg';
 

@@ -51,11 +51,15 @@ $('#myModal').on('show.bs.modal', function (event) {
                                 'name'=>'Ruangan',
                                 'value'=>'$data->id_ruangan != null ? $data->idRuangan->nama : ""',
                             ),
-                            'tanggal_peminjaman',
                             array(
-                                'header'=>'Waktu Peminjaman',
-                                'name'=>'waktu_peminjaman',
-                                'value'=>'$data->waktu_awal_peminjaman . " - " . $data->waktu_akhir_peminjaman',
+                                'header'=>'Waktu Awal Peminjaman',
+                                'name'=>'waktu_awal_peminjaman',
+                                'value'=>'$data->waktu_awal_peminjaman',
+                            ),
+                            array(
+                                'header'=>'Waktu Akhir Peminjaman',
+                                'name'=>'waktu_akhir_peminjaman',
+                                'value'=>'$data->waktu_akhir_peminjaman',
                             ),
                             'kegiatan',
                             array(

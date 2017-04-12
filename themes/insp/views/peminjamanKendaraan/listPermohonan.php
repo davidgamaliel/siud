@@ -51,7 +51,7 @@
                                     'detail'=>array(
                                         'label'=>'<i class="fa fa-file-text-o"></i>',
                                         'options'=>array(
-                                            'title'=>'Alokasi Stok Kartu',
+                                            'title'=>'Detail',
                                             'class'=>'btn btn-sm btn-success',
                                             'data-toggle' => 'tooltip',
                                         ),
@@ -61,7 +61,7 @@
                                     'setujui'=>array(
                                         'label'=>'<i class="fa fa-check-square"></i>',
                                         'options'=>array(
-                                            'title'=>'Alokasi Stok Kartu',
+                                            'title'=>'Setujui',
                                             'class'=>'btn btn-sm btn-success setujui',
                                             'data-toggle' => 'tooltip',
                                         ),
@@ -76,7 +76,7 @@
                                     'tolak'=>array(
                                         'label'=>'<i class="fa fa-minus-square"></i>',
                                         'options'=>array(
-                                            'title'=>'Alokasi Stok Kartu',
+                                            'title'=>'Tolak',
                                             'class'=>'btn btn-sm btn-success tolak',
                                             'data-toggle' => 'tooltip',
                                         ),

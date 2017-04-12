@@ -1,20 +1,17 @@
 <?php
 Yii::app()->clientScript->registerScript('search', "
-$('#TranPeminjamanRuangan_tanggal_peminjaman').datepicker({
-    format: 'dd/mm/yyyy',
-    parentEl: '#gofront',
-    showOn: 'button',
-    autoclose: true
+$('#TranPeminjamanRuangan_waktu_awal_peminjaman').datetimepicker({
+    format: 'DD/MM/YYYY H:mm'
 });
-
-$('#TranPeminjamanRuangan_waktu_awal_peminjaman').clockpicker({
-    autoclose: true,
-    parentEl: '#gofront'
+$('#TranPeminjamanRuangan_waktu_akhir_peminjaman').datetimepicker({
+    useCurrent: false,
+    format: 'DD/MM/YYYY H:mm'
 });
-
-$('#TranPeminjamanRuangan_waktu_akhir_peminjaman').clockpicker({
-    autoclose: true,
-    parentEl: '#gofront'
+$('#TranPeminjamanRuangan_waktu_awal_peminjaman').on(\"dp.change\",function (e) {
+    $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').data(\"DateTimePicker\").minDate(e.date);
+});
+$('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e) {
+    $('#TranPeminjamanRuangan_waktu_awal_peminjaman').data(\"DateTimePicker\").maxDate(e.date);
 });
 ");
 ?>
@@ -47,31 +44,16 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').clockpicker({
                 ?>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label"><?php echo $form->label($model, 'tanggal_peminjaman'); ?></label>
-                            <div class="input-group date col-sm-10" >
-                            	<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            	 <?php echo $form->textField($model, 'tanggal_peminjaman', array('class'=>'form-control')); ?>
-                                <!-- <span class="input-group-addon"><i class="fa fa-calendar"></i></span><input type="text" class="form-control" value="12/03/2017"> -->
+                            <label class="col-sm-2 control-label">Waktu Mulai Peminjaman</label>
+                            <div class="col-sm-3" id="datetimepicker1">
+                                <?php echo $form->textField($model,'waktu_awal_peminjaman',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'waktu_awal_peminjaman', array('class' => 'text-danger')); ?>
                             </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-
-                        <div class="form-group">
-                        	<label class="col-sm-2 control-label"><?php echo $form->label($model, 'waktu_awal_peminjaman'); ?></label>
-                            <div class="col-sm-10">
-                            	<!-- <input type="text" class="form-control"> -->
-                            	<?php echo $form->textField($model, 'waktu_awal_peminjaman', array('class'=>'form-control')); ?>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label"><?php echo $form->label($model, 'waktu_akhir_peminjaman'); ?></label>
-                            <div class="col-sm-10">
-                                <!-- <input type="text" class="form-control"> -->
-                                <?php echo $form->textField($model, 'waktu_akhir_peminjaman', array('class'=>'form-control')); ?>
+                            <label class="col-sm-1 control-label">s/d</label>
+                            <label class="col-sm-2 control-label">Waktu Selesai Peminjaman</label>
+                            <div class="col-sm-3" id="datetimepicker2">
+                                <?php echo $form->textField($model,'waktu_akhir_peminjaman',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'waktu_akhir_peminjaman', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
 
