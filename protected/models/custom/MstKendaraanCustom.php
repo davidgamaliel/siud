@@ -8,7 +8,7 @@
  */
 class MstKendaraanCustom extends MstKendaraan
 {
-    public function getNamakendaraan($id) {
+    public static function getNamakendaraan($id) {
         $model = MstKendaraan::model()->findByPk($id);
         return $model->nama;
     }
