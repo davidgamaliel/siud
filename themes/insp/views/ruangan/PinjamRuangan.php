@@ -63,14 +63,18 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e)
                             <label class="col-sm-2 control-label"><?php echo $form->label($model, 'id_ruangan'); ?></label>
                             <div class="col-sm-10">
                                 <?php echo $form->dropDownList($model, 'id_ruangan', $dropdownRuangan, array('prompt'=>'Pilih Ruangan', 'class'=>'form-control m-b')); ?>
+                                <?php echo $form->error($model, 'id_ruangan', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Kegiatan</label>
-                            <div class="col-sm-10"><?php echo $form->textField($model, 'kegiatan', array('class'=>'form-control')); ?></div>
+                            <label class="col-sm-2 control-label"><?php echo $form->label($model, 'kegiatan'); ?></label>
+                            <div class="col-sm-10">
+                                <?php echo $form->textField($model, 'kegiatan', array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'kegiatan', array('class' => 'text-danger')); ?>
+                            </div>
                         </div>
 
                         <div class="hr-line-dashed"></div>

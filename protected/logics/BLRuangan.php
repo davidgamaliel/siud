@@ -72,6 +72,18 @@ class BLRuangan {
 
         return $provider;
     }
+
+    public function istimeClashed($begin, $end, $idRuangan) {
+        $result = false;
+        $criteria = new CDbCriteria();
+        $criteria->condition = "id_ruangan = :ruangan AND waktu_akhir_peminjaman > to_timestamp(:begin, 'DD-MM-YYYY hh24:mi') AND waktu_awal_peminjaman < to_timestamp(:end, 'DD-MM-YYYY hh24:mi')";
+        $criteria->params = array(':begin'=>$begin, ':end'=>$end, ':ruangan'=>$idRuangan);
+        $clashed = TranPeminjamanRuangan::model()->findAll($criteria);
+        if($clashed && count($clashed) > 0) {
+            $result = true;
+        }
+        return $result;
+    }
         
 }
 

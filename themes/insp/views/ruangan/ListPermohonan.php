@@ -33,7 +33,7 @@
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
                         'id'=>'trx-card-order-custom-grid-instant',
                         'dataProvider'=>$provider,
-                        'ajaxUpdate'=>false,
+                        'ajaxUpdate'=>true,
                         'columns'=>array(
                             array(
                                 'header'=>'No',
@@ -46,22 +46,24 @@
                                 'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
-                                'name'=>'Peminjam',
+                                'header'=>'Peminjam',
+                                'name'=>'id_user_peminjam',
                                 'value'=>'$data->id_user_peminjam != null ? $data->idUserPeminjam->username : ""',
                             ),
                             array(
-                                'name'=>'Ruangan',
+                                'header'=>'Ruangan',
+                                'name'=>'id_ruangan',
                                 'value'=>'$data->id_ruangan != null ? $data->idRuangan->nama : ""',
                             ),
                             array(
                                 'header'=>'Waktu Awal Peminjaman',
                                 'name'=>'waktu_awal_peminjaman',
-                                'value'=>'$data->waktu_awal_peminjaman',
+                                'value'=>'$data->formatedWaktuMulai',
                             ),
                             array(
                                 'header'=>'Waktu Akhir Peminjaman',
                                 'name'=>'waktu_akhir_peminjaman',
-                                'value'=>'$data->waktu_akhir_peminjaman',
+                                'value'=>'$data->formatedWaktuAkhir',
                             ),
                             'kegiatan',
                             array(
@@ -70,7 +72,8 @@
                                 'value'=>'$data->nodin == null || $data->nodin == "" ? "Belum Upload" : "Sudah Upload"',
                             ),
                             array(
-                                'name'=>'status',
+                                'header'=>'Status',
+                                'name'=>'status_id',
                                 'value'=>'$data->status->nama',
                             ),
                             array(

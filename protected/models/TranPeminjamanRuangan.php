@@ -37,7 +37,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_ruangan, waktu_awal_peminjaman, waktu_akhir_peminjaman, kegiatan, status_id', 'required'),
+			array('id_ruangan, waktu_awal_peminjaman, waktu_akhir_peminjaman, kegiatan, status_id', 'required', 'message'=>'{attribute} tidak boleh kosong'),
 			array('id_ruangan, id_user_peminjam', 'numerical', 'integerOnly'=>true),
 			array('kegiatan', 'length', 'max'=>100),
 			array('nodin', 'file', 'types'=>'jpg, png', 'safe'=>false, 'allowEmpty'=>true),
@@ -69,7 +69,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'id_ruangan' => 'Id Ruangan',
+			'id_ruangan' => 'Ruangan',
 			'id_user_peminjam' => 'Id User Peminjam',
 			'tanggal_peminjaman' => 'Tanggal Peminjaman',
 			'waktu_awal_peminjaman' => 'Waktu Awal Peminjaman',

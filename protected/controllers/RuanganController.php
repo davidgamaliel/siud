@@ -18,30 +18,37 @@ class RuanganController extends Controller
 		if(isset($_POST["TranPeminjamanRuangan"])) {
 			/*var_dump($_POST["TranPeminjamanRuangan"]);
 			die();*/
-			$logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
+			// $logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
 			$model->attributes = $_POST['TranPeminjamanRuangan'];
 			$thisDate = $model->waktu_awal_peminjaman;
-			$model->waktu_awal_peminjaman = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
-	        $model->waktu_akhir_peminjaman = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
-			$model->id_user_peminjam = Yii::app()->user->getState('user_id');
-			$model->status_id = 3;
-			$berkas = CUploadedFile::getInstance($model, 'nodin');
-			$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).'.jpg';
-
-
-			if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
-				$model->nodin = $berkas;
-				$model->nodin->saveAs(Yii::app()->params['nodinRuangan'].$filename);
-				$model->nodin = $filename;
-			}
-
-			if($model->validate()) {
-				$model->save();
-				$this->redirect(array('site/index'));
+			$isClashed = $logic->istimeClashed($model->waktu_awal_peminjaman, $model->waktu_akhir_peminjaman, $model->id_ruangan);
+			if($isClashed) {
+				var_dump('Ruangan bentrok');
+				die;
 			}
 			else {
-				var_dump($model->getErrors());
-				die();
+				$model->waktu_awal_peminjaman = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
+		        $model->waktu_akhir_peminjaman = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
+				$model->id_user_peminjam = Yii::app()->user->getState('user_id');
+				$model->status_id = 3;
+				$berkas = CUploadedFile::getInstance($model, 'nodin');
+				$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).'.jpg';
+
+
+				if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
+					$model->nodin = $berkas;
+					$model->nodin->saveAs(Yii::app()->params['nodinRuangan'].$filename);
+					$model->nodin = $filename;
+				}
+
+				if($model->validate()) {
+					$model->save();
+					$this->redirect(array('site/index'));
+				}
+				else {
+					// var_dump($model->getErrors());
+					// die();
+				}
 			}
 		}
 
@@ -57,7 +64,7 @@ class RuanganController extends Controller
 		$dropdownStatus = $logic->getStatusPermohonanDropdown();
 		$provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
 			'sort'=>array(
-				'defaultOrder'=>'tanggal_peminjaman DESC'
+				'defaultOrder'=>'waktu_awal_peminjaman'
 			)
 		));
 
@@ -123,7 +130,10 @@ class RuanganController extends Controller
 		$model = new TranPeminjamanRuangan();
 		$logic = new BLRuangan();
 		$provider = $logic->getListPeminjaman($_GET['id']);
-
+		$isEmpty = count($provider->getData()) <= 0 ? true : false;
+		var_dump($isEmpty);
+		var_dump(count($provider->getData()));
+		$data['isEmpty'] = $isEmpty;
 		$data['status'] = '';
 		$data['provider'] = $provider;
 		$this->render('detailRuanganPeminjaman', $data);

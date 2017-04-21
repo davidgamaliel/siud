@@ -22,6 +22,11 @@
         <p id="pesan_peringatan"></p>
     </div>
 </div>
+<?php if($isEmpty): ?>
+<div class="alert alert-success alert-dismissable col-lg-12" >
+    <p>Ruangan kosong dan dapat dipinjam</p>
+</div>
+<?php endif; ?>
 <div class="wrapper wrapper-content animate fadeInRight">
     <div class="row">
         <div class="col-lg-12">
