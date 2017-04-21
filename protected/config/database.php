@@ -8,7 +8,7 @@ return array(
 	'connectionString' => 'pgsql:host=localhost;port=5432;dbname=siud_db',
 	'emulatePrepare' => true,
 	'username' => 'postgres',
-	'password' => '12345',
+	'password' => 'postgres',
 	'charset' => 'utf8',
 
 	/*'connectionString' => 'mysql:host=localhost;dbname=dumm',
