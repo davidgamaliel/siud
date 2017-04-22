@@ -33,10 +33,24 @@
                                 'header'=>'No',
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
+                            array(
+                                'header'=>'Pemohon',
+                                'name'=>'id_pemohon',
+                                'value'=>'$data->id_pemohon == null ? "" : $data->idPemohon->username',
+                            ),
                             'unit_kerja',
                             'keperluan',
                             'jumlah_bensin',
-                            'file_struk',
+                            array(
+                                'header'=>'File Struk',
+                                'name'=>'file_struk',
+                                'value'=>'CHtml::link(
+                                            $data->file_struk,
+                                            Yii::app()->createUrl(\'/penggunaanBensin/viewStrukBensin\', array(\'id\' => $data->id)) ,
+                                            array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
+                                'type'=>'raw',
+
+                            ),
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'

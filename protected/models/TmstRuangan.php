@@ -31,6 +31,7 @@ class TmstRuangan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('nama, lokasi', 'required', 'message'=>'{attribute} tidak boleh kosong'),
 			array('kapasitas', 'numerical', 'integerOnly'=>true),
 			array('nama, lokasi', 'length', 'max'=>50),
 			array('fasilitas', 'safe'),

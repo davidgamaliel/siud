@@ -35,7 +35,7 @@ class BLAuthorization {
 
     public function isAdmin() {
         $role = TrefRole::model()->findByAttributes(array('nama'=>'admin'));
-        if(Yii::app()->user->getState('role_id') == $role->id)
+        if(Yii::app()->user->hasState('role_id') && Yii::app()->user->getState('role_id') == $role->id)
             return true;
         else
             return false;
@@ -43,7 +43,7 @@ class BLAuthorization {
 
     public function isPegawai() {
         $role = TrefRole::model()->findByAttributes(array('nama'=>'pegawai'));
-        if(Yii::app()->user->getState('role_id') == $role->id)
+        if(Yii::app()->user->hasState('role_id') && Yii::app()->user->getState('role_id') == $role->id)
             return true;
         else
             return false;

@@ -20,6 +20,7 @@ class RuanganController extends Controller
 			die();*/
 			// $logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
 			$model->attributes = $_POST['TranPeminjamanRuangan'];
+			$today = new DateTime();
 			$thisDate = $model->waktu_awal_peminjaman;
 			$isClashed = $logic->istimeClashed($model->waktu_awal_peminjaman, $model->waktu_akhir_peminjaman, $model->id_ruangan);
 			if($isClashed) {
@@ -32,7 +33,7 @@ class RuanganController extends Controller
 				$model->id_user_peminjam = Yii::app()->user->getState('user_id');
 				$model->status_id = 3;
 				$berkas = CUploadedFile::getInstance($model, 'nodin');
-				$filename = 'pinjamruangan'.str_replace('/', '', $thisDate).'.jpg';
+				$filename = 'pinjamruangan'.$today->format('THis').'.'.$berkas->getExtensionName();
 
 
 				if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
@@ -131,12 +132,68 @@ class RuanganController extends Controller
 		$logic = new BLRuangan();
 		$provider = $logic->getListPeminjaman($_GET['id']);
 		$isEmpty = count($provider->getData()) <= 0 ? true : false;
-		var_dump($isEmpty);
-		var_dump(count($provider->getData()));
+		
 		$data['isEmpty'] = $isEmpty;
 		$data['status'] = '';
 		$data['provider'] = $provider;
 		$this->render('detailRuanganPeminjaman', $data);
+	}
+
+
+	public function actionTambahRuangan() {
+		$data = array();
+		$model = new TmstRuangan();
+		$logic = new BLRuangan();
+
+		if(isset($_POST['TmstRuangan'])) {
+			$result = $logic->insertRuangan($_POST['TmstRuangan'], $model);
+		}
+
+		$data['model'] = $model;
+		$this->render('tambahRuangan', $data);
+	}
+
+	public function actionDaftarRuangan()
+	{
+		$data = array();
+		$logic = new BLRuangan();
+		$provider = $logic->getAllRuangan();
+
+		$data['provider'] = $provider;
+		$this->render('daftarRuangan', $data);
+	}
+
+	public function actionViewNodinRuangan($id)
+    {
+        $peminjaman = TranPeminjamanRuangan::model()->findByPk($id);
+        if($peminjaman) {
+            $imgName = $peminjaman->nodin;
+            $split = explode('.', $imgName);
+            $filepath = Yii::app()->params['nodinRuangan'] . $imgName;
+            if(file_exists($filepath)) {
+                if($split[count($split) - 1] == 'pdf') {
+                	header("Content-type: application/pdf");
+	                header('Content-Disposition: inline; filename="'.$imgName.'"');
+					$file = readfile($filepath);
+                }
+                else {
+                	Yii::app()->getRequest()->sendFile($imgName, @file_get_contents($filepath), $split[count($split) - 1]);
+                }
+            }
+        }
+
+    }
+
+    public function actionKelolaPermohonan() {
+		$data = array();
+		$model = new TranPeminjamanRuangan();
+		$logic = new BLRuangan();
+		$userId = Yii::app()->user->getState('user_id');
+		$provider = $logic->getAllPeminjamanByUserId($userId);
+
+		$data['status'] = '';
+		$data['provider'] = $provider;
+		$this->render('kelolaPermohonan', $data);
 	}
 
 	// Uncomment the following methods and override them if needed

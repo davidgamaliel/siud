@@ -43,6 +43,7 @@ class TrxPenggunaanBensin extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'idPemohon' => array(self::BELONGS_TO, 'TmstUser', 'id_pemohon'),
 		);
 	}
 
@@ -57,6 +58,7 @@ class TrxPenggunaanBensin extends CActiveRecord
 			'keperluan' => 'Keperluan',
 			'file_struk' => 'File Struk',
 			'jumlah_bensin' => 'Jumlah Bensin',
+			'id_pemohon' => 'Pemohon',
 		);
 	}
 
@@ -83,6 +85,7 @@ class TrxPenggunaanBensin extends CActiveRecord
 		$criteria->compare('keperluan',$this->keperluan,true);
 		$criteria->compare('file_struk',$this->file_struk,true);
 		$criteria->compare('jumlah_bensin',$this->jumlah_bensin,true);
+		$criteria->compare('id_pemohon',$this->id_pemohon,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

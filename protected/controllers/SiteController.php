@@ -27,9 +27,21 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$data = array();
+		$isPegawai = BLAuthorization::isPegawai();
+		$isAdmin = BLAuthorization::isAdmin();
+		if($isPegawai) {
+			$provider = BLRuangan::getAllRuangan();
+			$data['provider'] = $provider;
+		}
+		if($isAdmin) {
+			$allApprovedRuangan = BLRuangan::getAllApprovedRuangan();
+			$data['allApprovedRuangan'] = $allApprovedRuangan;
+			var_dump($allApprovedRuangan);
+		}
+		$data['isPegawai'] = $isPegawai;
+		$data['isAdmin'] = $isAdmin;
+		$this->render('index', $data);
 	}
 
 	/**

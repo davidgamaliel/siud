@@ -69,7 +69,11 @@
                             array(
                                 'header'=>'Nodin',
                                 'name'=>'nodin',
-                                'value'=>'$data->nodin == null || $data->nodin == "" ? "Belum Upload" : "Sudah Upload"',
+                                'value'=>'CHtml::link(
+                                            \'nodin\',
+                                            Yii::app()->createUrl(\'/ruangan/viewNodinRuangan\', array(\'id\' => $data->id)) ,
+                                            array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
+                                'type'=>'raw',
                             ),
                             array(
                                 'header'=>'Status',

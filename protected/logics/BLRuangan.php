@@ -32,7 +32,11 @@ class BLRuangan {
     }
 
     public function insertRuangan($data, $model) {
-
+        $model->attributes = $data;
+        if($model->validate()) {
+            $model->save();
+        }
+        return $model;
     }
 
     public function getStatusPermohonanDropdown() {
@@ -81,6 +85,77 @@ class BLRuangan {
         $clashed = TranPeminjamanRuangan::model()->findAll($criteria);
         if($clashed && count($clashed) > 0) {
             $result = true;
+        }
+        return $result;
+    }
+
+    public function viewNodinRuangan($id)
+    {
+        $peminjaman = TranPeminjamanRuangan::model()->findByPk($id);
+        var_dump($peminjaman);
+
+        if($peminjaman) {
+            $imgName = $peminjaman->nodin;
+            $filepath = Yii::app()->params['nodinRuangan'] . $imgName;
+            if(file_exists($filepath)) {
+                var_dump($filepath);
+                /*header('Content-type: application/pdf');
+                header('Content-Disposition: inline; filename="' . $filepath . '"');
+                header('Content-Transfer-Encoding: binary');
+                header('Content-Length: ' . filesize($filepath));
+                header('Accept-Ranges: bytes');*/
+                header('Content-Disposition: attachment; charset=UTF-8; filename="'.$filepath.'"');
+                $utf8_content = mb_convert_encoding($content, "SJIS", "UTF-8");
+                echo $utf8_content;
+                Yii::app()->end();
+
+                //readfile($filepath);
+            }
+        }
+
+    }
+
+    public function getAllApprovedRuangan()
+    {
+        $sql = 'select tr.nama, count(tpr.id_ruangan)
+                from tran_peminjaman_ruangan tpr 
+                     left join tmst_ruangan tr on tr.id = tpr.id_ruangan
+                     left join tref_status_permohonan tsp on tsp.id = tpr.status_id
+                where tsp.nama = \'Disetujui\'
+                group by tr.nama';
+        $command = Yii::app()->db->createCommand($sql);
+
+        $result = $command->queryAll();
+        return $result;
+    }
+
+    public function getAllProcessedRuangan()
+    {
+        $sql = 'select tr.nama, count(tpr.id_ruangan)
+                from tran_peminjaman_ruangan tpr 
+                     left join tmst_ruangan tr on tr.id = tpr.id_ruangan
+                     left join tref_status_permohonan tsp on tsp.id = tpr.status_id
+                where tsp.nama = \'Diproses\'
+                group by tr.nama';
+        $command = Yii::app()->db->createCommand($sql);
+
+        $result = $command->queryAll();
+        return $result;
+    }
+
+    public function getAllPeminjamanByUserId($id)
+    {
+        $result = false;
+        $statusProses = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Diproses'));
+        $criteria = new CDbCriteria();
+        $criteria->condition = 'status_id = :status AND id_user_peminjam = :idUser';
+        $criteria->params = array(':status'=>$statusProses->id, ':idUser'=>$id);
+
+        $provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
+            'criteria'=>$criteria,
+        ));
+        if(count($provider->getData()) > 0) {
+            $result = $provider;
         }
         return $result;
     }
