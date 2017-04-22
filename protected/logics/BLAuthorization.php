@@ -20,8 +20,9 @@ class BLAuthorization {
      */
     public function authorize($username, $password) {
         $user = TmstUser::model()->findByAttributes(array('username'=>$username, 'password'=>$password));
-        $roleUser = TrefRole::model()->findByPk($user->id_role);
+        //$roleUser = TrefRole::model()->findByPk($user->id_role);
         if($user) {
+            $roleUser = TrefRole::model()->findByPk($user->id_role);
             Yii::app()->user->setState('user_name', $user->username);
             Yii::app()->user->setState('user_id', $user->id);
             Yii::app()->user->setState('role_id', $roleUser->id);

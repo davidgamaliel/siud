@@ -147,9 +147,10 @@ class BLRuangan {
     {
         $result = false;
         $statusProses = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Diproses'));
+        $today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
         $criteria = new CDbCriteria();
-        $criteria->condition = 'status_id = :status AND id_user_peminjam = :idUser';
-        $criteria->params = array(':status'=>$statusProses->id, ':idUser'=>$id);
+        $criteria->condition = 'status_id = :status AND id_user_peminjam = :idUser AND waktu_awal_peminjaman > :waktuAwal';
+        $criteria->params = array(':status'=>$statusProses->id, ':idUser'=>$id, ':waktuAwal'=>$today->format('Y-m-d H:i'));
 
         $provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
             'criteria'=>$criteria,

@@ -19,6 +19,7 @@ class RuanganController extends Controller
 			/*var_dump($_POST["TranPeminjamanRuangan"]);
 			die();*/
 			// $logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
+
 			$model->attributes = $_POST['TranPeminjamanRuangan'];
 			$today = new DateTime();
 			$thisDate = $model->waktu_awal_peminjaman;
@@ -28,8 +29,10 @@ class RuanganController extends Controller
 				die;
 			}
 			else {
-				$model->waktu_awal_peminjaman = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
-		        $model->waktu_akhir_peminjaman = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
+				$mulai = DateTime::createFromFormat('d/m/Y G:i', $model->waktu_awal_peminjaman)->setTimeZone(new DateTimeZone('Asia/Jakarta'));
+				$akhir = DateTime::createFromFormat('d/m/Y G:i', $model->waktu_akhir_peminjaman)->setTimeZone(new DateTimeZone('Asia/Jakarta'));
+				$model->waktu_awal_peminjaman = $mulai->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
+		        $model->waktu_akhir_peminjaman = $akhir->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
 				$model->id_user_peminjam = Yii::app()->user->getState('user_id');
 				$model->status_id = 3;
 				$berkas = CUploadedFile::getInstance($model, 'nodin');
@@ -62,11 +65,18 @@ class RuanganController extends Controller
 		$data = array();
 		$model = new TranPeminjamanRuangan();
 		$logic = new BLRuangan();
+		$today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
 		$dropdownStatus = $logic->getStatusPermohonanDropdown();
 		$provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
+			'criteria'=>array(
+		        'condition'=>'waktu_awal_peminjaman > '. '\'' . $today->format('Y-m-d H:i') . '\'',
+		    ),
 			'sort'=>array(
 				'defaultOrder'=>'waktu_awal_peminjaman'
-			)
+			),
+			'pagination'=>array(
+		        'pageSize'=>20,
+		    ),
 		));
 
 		$data['status'] = '';
