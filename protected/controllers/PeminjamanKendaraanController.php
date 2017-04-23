@@ -96,15 +96,52 @@ class PeminjamanKendaraanController extends Controller
     public function actionEditkendaraan($id) {
         $model = MstKendaraanCustom::model()->findByPk($id);
 
-        if(isset($_POST['MstKendaraanCustom'])) {
-
-        }
         $this->render('editKendaraan', array(
            'model'=>$model
         ));
     }
 
     public function actionTambahKendaraan() {
+        $model = new MstKendaraanCustom;
 
+        if(isset($_POST['MstKendaraanCustom'])) {
+            $berhasil = $model->simpanKendaraan($_POST['MstKendaraanCustom']);
+            if($berhasil) {
+                Yii::app()->user->setFlash('success','Kendaraan berhasil ditambahkan');
+                $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/kelolaKendaraan'));
+            }
+            else {
+                Yii::app()->user->setFlash('errors','Gagal menambahkan kendaraan');
+            }
+        }
+        $this->render('tambahKendaraan', array(
+           'model' => $model
+        ));
+    }
+
+    public function actionStatusKendaraanTersedia() {
+        $model = MstKendaraanCustom::model()->findByPk(intval($_POST['id']));
+        $model->ketersediaan = true;
+        if($model->save()) {
+            $result = array('status'=>'berhasil','id'=>$_POST['id']);
+            echo CJSON::encode($result);
+        }
+        else {
+            $result = array('status'=>'gagal','id'=>$_POST['id']);
+            echo CJSON::encode($result);
+        }
+    }
+
+    public function actionStatusKendaraanTidakTersedia() {
+        $model = MstKendaraanCustom::model()->findByPk(intval($_POST['id']));
+        $model->ketersediaan = false;
+        if($model->save()) {
+            $result = array('status'=>'berhasil','id'=>$_POST['id']);
+            echo CJSON::encode($result);
+        }
+        else {
+            $result = array('status'=>'gagal','id'=>$_POST['id']);
+            echo CJSON::encode($result);
+        }
     }
 }
