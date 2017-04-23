@@ -9,6 +9,7 @@
 class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
 {
     public function simpan($param) {
+        $today = new DateTime();
         $this->attributes = $param;
         $file = CUploadedFile::getInstance($this,'file_struk');
         if(!is_null($file)) {
