@@ -54,8 +54,9 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $this->kendaraan_id = intval($this->kendaraan_id);
         $this->peminjam = Yii::app()->user->getState('user_name');
         $file = CUploadedFile::getInstance($this,'nodin');
+        $this->id_peminjam = Yii::app()->user->getState('user_id');
         if(!is_null($file)) {
-//            echo '<pre>';var_dump($file->name);die;
+            //echo '<pre>';var_dump($file->name);die;
             $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$file->name);
             $this->nodin = $file->name;
         }
@@ -90,5 +91,29 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             $result = array('status'=>'gagal');
             echo CJSON::encode($result);
         }
+    }
+
+    public function listPinjamKendaraan() {
+        $criteria = new CDbCriteria;
+        $criteria->compare('status',array(0,1));
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'sort'=>array(
+                'defaultOrder'=>'id asc'
+            )
+        ));
+    }
+
+    public function listPermohonanUser()
+    {
+        $criteria = new CDbCriteria;
+        $criteria -> compare('"t".id_peminjam',Yii::app()->user->getState('user_id'));
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'sort'=>array(
+                'defaultOrder'=>'id asc'
+            )
+        ));
     }
 }

@@ -107,4 +107,32 @@ class PeminjamanKendaraanController extends Controller
     public function actionTambahKendaraan() {
 
     }
+
+     public function actionListPinjamKendaraan() {
+        $model = new TrxPeminjamanKendaraanCustom();
+        $this->render('listPinjamKendaraan', array(
+            'model'=>$model
+        ));
+    }
+
+    public function actionViewNodin($id)
+    {
+        $penggunaNodin = TrxPeminjamanKendaraan::model()->findByPk($id);
+        if($penggunaNodin) {
+            $imgName = $penggunaNodin->nodin;
+            $split = explode('.', $imgName);
+            $filepath = Yii::app()->basePath . '/data/nodin_kendaraan/' . $imgName;
+            if(file_exists($filepath)) {
+                if($split[count($split) - 1] == 'pdf') {
+                    header("Content-type: application/pdf");
+                    header('Content-Disposition: inline; filename="'.$imgName.'"');
+                    $file = readfile($filepath);
+                }
+                else {
+                    Yii::app()->getRequest()->sendFile($imgName, @file_get_contents($filepath), $split[count($split) - 1]);
+                }
+            }
+        }
+
+    }
 }
