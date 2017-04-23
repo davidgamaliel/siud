@@ -53,4 +53,11 @@ class PenggunaanBensinController extends Controller
         }
 
     }
+
+    public function actionRiwayatPenggunaan() {
+        $model = new TrxPenggunaanBensinCustom;
+        $this->render('riwayatPenggunaan', array(
+            'model'=>$model
+        ));
+    }
 }

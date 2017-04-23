@@ -45,7 +45,6 @@ class PeminjamanKendaraanController extends Controller
     }
 
     public function actionListPermohonan() {
-        Yii::app()->user->setFlash('success','Perubahan status kartu berhasil disimpan');
         $model = new TrxPeminjamanKendaraanCustom();
         $this->render('listPermohonan', array(
            'model'=>$model
