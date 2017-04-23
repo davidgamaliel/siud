@@ -47,6 +47,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
     }
 
     public function simpan($param) {
+        $today = new DateTime();
         $this->attributes = $param;
         $this->waktu_mulai = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$this->waktu_mulai));
         $this->waktu_selesai = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$this->waktu_selesai));
@@ -54,11 +55,12 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $this->kendaraan_id = intval($this->kendaraan_id);
         $this->peminjam = Yii::app()->user->getState('user_name');
         $file = CUploadedFile::getInstance($this,'nodin');
+        $filename = 'pinjamkendaraan'.$today->format('THis').'.'.$file->getExtensionName();
         $this->id_peminjam = Yii::app()->user->getState('user_id');
         if(!is_null($file)) {
             //echo '<pre>';var_dump($file->name);die;
-            $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$file->name);
-            $this->nodin = $file->name;
+            $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$filename);
+            $this->nodin = $filename;
         }
         if($this->validate()) {
             $this->save();
@@ -115,5 +117,5 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
                 'defaultOrder'=>'id asc'
             )
         ));
-    }
+    }  
 }
