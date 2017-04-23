@@ -211,7 +211,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionEditPermohonan($id) {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
+        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
             $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
             if($berhasil) {

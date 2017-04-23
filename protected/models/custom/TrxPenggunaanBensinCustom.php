@@ -12,8 +12,9 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
         $this->attributes = $param;
         $file = CUploadedFile::getInstance($this,'file_struk');
         if(!is_null($file)) {
-            $file->saveAs(Yii::app()->basePath . '/data/struk_bensin/'.$file->name);
-            $this->file_struk = $file->name;
+            $filename = 'strukbensin'.$today->format('THis').'.'.$file->getExtensionName();
+            $file->saveAs(Yii::app()->basePath . '/data/struk_bensin/'.$filename);
+            $this->file_struk = $filename;
         }
         if($this->validate())
             $this->save();
