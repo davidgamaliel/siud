@@ -9,6 +9,11 @@
  * @property string $keperluan
  * @property string $file_struk
  * @property string $jumlah_bensin
+ * @property integer $id_pemohon
+ * @property string $tanggal
+ *
+ * The followings are the available model relations:
+ * @property TmstUser $idPemohon
  */
 class TrxPenggunaanBensin extends CActiveRecord
 {
@@ -28,10 +33,11 @@ class TrxPenggunaanBensin extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('unit_kerja, keperluan, file_struk, jumlah_bensin', 'safe'),
+			array('id_pemohon', 'numerical', 'integerOnly'=>true),
+			array('unit_kerja, keperluan, file_struk, jumlah_bensin, tanggal', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, unit_kerja, keperluan, file_struk, jumlah_bensin', 'safe', 'on'=>'search'),
+			array('id, unit_kerja, keperluan, file_struk, jumlah_bensin, id_pemohon, tanggal', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +64,8 @@ class TrxPenggunaanBensin extends CActiveRecord
 			'keperluan' => 'Keperluan',
 			'file_struk' => 'File Struk',
 			'jumlah_bensin' => 'Jumlah Bensin',
-			'id_pemohon' => 'Pemohon',
+			'id_pemohon' => 'Id Pemohon',
+			'tanggal' => 'Tanggal',
 		);
 	}
 
@@ -85,7 +92,8 @@ class TrxPenggunaanBensin extends CActiveRecord
 		$criteria->compare('keperluan',$this->keperluan,true);
 		$criteria->compare('file_struk',$this->file_struk,true);
 		$criteria->compare('jumlah_bensin',$this->jumlah_bensin,true);
-		$criteria->compare('id_pemohon',$this->id_pemohon,true);
+		$criteria->compare('id_pemohon',$this->id_pemohon);
+		$criteria->compare('tanggal',$this->tanggal,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

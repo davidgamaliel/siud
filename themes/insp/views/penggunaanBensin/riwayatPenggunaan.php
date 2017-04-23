@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: reals
- * Date: 4/21/2017
- * Time: 10:05 AM
+ * Date: 4/23/2017
+ * Time: 12:19 PM
  */
 ?>
 <div class="row  border-bottom white-bg dashboard-header">
@@ -12,7 +12,7 @@
     </div>
     <?php
     $this->breadcrumbs=array(
-        'daftar laporan penggunaan bensin',
+        'Riwayat Laporan Penggunaan Bensin',
     );
     ?>
 </div>
@@ -26,7 +26,7 @@
                 <div class="ibox-content">
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
                         'id'=>'trx-card-order-custom-grid-instant',
-                        'dataProvider'=>$model->listLaporan(),
+                        'dataProvider'=>$model->riwayatPenggunaan(),
                         'ajaxUpdate'=>false,
                         'columns'=>array(
                             array(
@@ -86,3 +86,4 @@
         </div>
     </div>
 </div>
+
