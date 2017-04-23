@@ -155,7 +155,7 @@ class BLRuangan {
         $provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
             'criteria'=>$criteria,
         ));
-        if(count($provider->getData()) > 0) {
+        if($provider) {
             $result = $provider;
         }
         return $result;
