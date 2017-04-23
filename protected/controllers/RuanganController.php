@@ -58,7 +58,7 @@ class RuanganController extends Controller
 
 		$data['dropdownRuangan'] = $dropdownRuangan;
 		$data['model'] = $model;
-		$this->render('pinjamRuangan', $data);
+		$this->render('PinjamRuangan', $data);
 	}
 
 	public function actionListPermohonan() {
@@ -82,7 +82,7 @@ class RuanganController extends Controller
 		$data['status'] = '';
 		$data['dropdownStatus'] = $dropdownStatus;
 		$data['provider'] = $provider;
-		$this->render('listPermohonan', $data);
+		$this->render('ListPermohonan', $data);
 	}
 
 	public function actionUbahStatus() {
@@ -133,7 +133,7 @@ class RuanganController extends Controller
 
 		$data['status'] = '';
 		$data['provider'] = $provider;
-		$this->render('listPeminjaman', $data);
+		$this->render('ListPeminjaman', $data);
 	}
 
 	public function actionDetailRuanganPeminjaman() {
@@ -146,7 +146,7 @@ class RuanganController extends Controller
 		$data['isEmpty'] = $isEmpty;
 		$data['status'] = '';
 		$data['provider'] = $provider;
-		$this->render('detailRuanganPeminjaman', $data);
+		$this->render('DetailRuanganPeminjaman', $data);
 	}
 
 
@@ -160,7 +160,7 @@ class RuanganController extends Controller
 		}
 
 		$data['model'] = $model;
-		$this->render('tambahRuangan', $data);
+		$this->render('TambahRuangan', $data);
 	}
 
 	public function actionDaftarRuangan()
@@ -170,7 +170,7 @@ class RuanganController extends Controller
 		$provider = $logic->getAllRuangan();
 
 		$data['provider'] = $provider;
-		$this->render('daftarRuangan', $data);
+		$this->render('DaftarRuangan', $data);
 	}
 
 	public function actionViewNodinRuangan($id)
@@ -203,7 +203,7 @@ class RuanganController extends Controller
 
 		$data['status'] = '';
 		$data['provider'] = $provider;
-		$this->render('kelolaPermohonan', $data);
+		$this->render('KelolaPermohonan', $data);
 	}
 
 	// Uncomment the following methods and override them if needed
