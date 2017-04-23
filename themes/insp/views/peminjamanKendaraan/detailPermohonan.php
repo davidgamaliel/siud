@@ -78,7 +78,10 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Nodin yang Diunggah</label>
                             <div class="col-sm-10">
-                                <label class="form-control"><?php echo $model->nodin ; ?></label>
+                                <label class="form-control"><?php echo CHtml::link(
+                                            $model->nodin,
+                                            Yii::app()->createUrl('peminjamankendaraan/viewNodin', array('id' => $model->id)) ,
+                                            array('class'=>'button','target'=>'_blank')) ; ?></label>
                                 <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
                             </div>
                         </div>

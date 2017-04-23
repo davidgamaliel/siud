@@ -52,7 +52,17 @@
                             'waktu_mulai',
                             'waktu_selesai',
                             'supir',
-                            'nodin',
+                             array(
+                                'header'=>'File Nodin',
+                                'name'=>'nodin',
+                                'value'=>'CHtml::link(
+                                            $data->nodin,
+                                            Yii::app()->createUrl(\'/peminjamankendaraan/viewNodin\', array(\'id\' => $data->id)) ,
+                                            array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
+                                'type'=>'raw',
+
+                            ),
+                            //'nodin',
                             array(
                                 'name'=>'status',
                                 'value'=>'StatusPeminjaman::getStatusPeminjaman($data->status)'
