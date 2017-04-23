@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'mst_kendaraan':
  * @property integer $id
  * @property string $nama
+ * @property string $no_polisi
+ * @property string $keterangan
  *
  * The followings are the available model relations:
  * @property TrxPeminjamanKendaraan[] $trxPeminjamanKendaraans
@@ -28,10 +30,11 @@ class MstKendaraan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('nama', 'length', 'max'=>250),
+			array('nama', 'length', 'max'=>50),
+			array('no_polisi, keterangan', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, nama', 'safe', 'on'=>'search'),
+			array('id, nama, no_polisi, keterangan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,6 +58,8 @@ class MstKendaraan extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'nama' => 'Nama',
+			'no_polisi' => 'No Polisi',
+			'keterangan' => 'Keterangan',
 		);
 	}
 
@@ -78,6 +83,8 @@ class MstKendaraan extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('nama',$this->nama,true);
+		$criteria->compare('no_polisi',$this->no_polisi,true);
+		$criteria->compare('keterangan',$this->keterangan,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

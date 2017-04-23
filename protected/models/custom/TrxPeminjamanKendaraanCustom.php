@@ -59,8 +59,13 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$file->name);
             $this->nodin = $file->name;
         }
-        if($this->validate())
+        if($this->validate()) {
             $this->save();
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function setujuiPeminjaman() {

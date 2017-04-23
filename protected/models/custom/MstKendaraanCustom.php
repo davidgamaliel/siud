@@ -12,4 +12,19 @@ class MstKendaraanCustom extends MstKendaraan
         $model = MstKendaraan::model()->findByPk($id);
         return $model->nama;
     }
+
+    public function getAllKendaraan() {
+        $criteria = new CDbCriteria;
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'sort'=> array(
+                'defaultOrder'=>'nama asc'
+            )
+        ));
+    }
+
+    public function simpanKendaraan($param) {
+        $this->attributues = $param;
+        $this->save();
+    }
 }

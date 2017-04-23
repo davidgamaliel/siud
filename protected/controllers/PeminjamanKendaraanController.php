@@ -21,7 +21,14 @@ class PeminjamanKendaraanController extends Controller
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
 //            echo "<pre>";var_dump($file);die;
-            $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
+            $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
+            if($berhasil) {
+                Yii::app()->user->setFlash('success','Permohonan peminjaman berhasil dibuat');
+                $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
+            }
+            else {
+                Yii::app()->user->setFlash('errors','Permohonan peminjaman berhasil dibuat');
+            }
         }
         $this->render('pinjamKendaraan', array(
             'model' => $model,
@@ -77,5 +84,27 @@ class PeminjamanKendaraanController extends Controller
             $result = array('status'=>'gagal','id'=>$_POST['id']);
             echo CJSON::encode($result);
         }
+    }
+
+    public function actionKelolaKendaraan() {
+        $model = new MstKendaraanCustom;
+        $this->render('kelolaKendaraan', array(
+            'model'=>$model
+        ));
+    }
+
+    public function actionEditkendaraan($id) {
+        $model = MstKendaraanCustom::model()->findByPk($id);
+
+        if(isset($_POST['MstKendaraanCustom'])) {
+
+        }
+        $this->render('editKendaraan', array(
+           'model'=>$model
+        ));
+    }
+
+    public function actionTambahKendaraan() {
+
     }
 }

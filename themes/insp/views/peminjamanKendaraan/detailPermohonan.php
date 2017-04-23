@@ -10,6 +10,22 @@
 </div>
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
+        <?php if (Yii::app()->user->hasFlash('success')) : ?>
+            <div class="form-group">
+                <div class="alert alert-success alert-dismissable col-md-12">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <b>Success! </b><?php echo Yii::app()->user->getFlash('success'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (Yii::app()->user->hasFlash('errors')) : ?>
+            <div class="form-group">
+                <div class="alert alert-danger alert-dismissable col-md-12">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <b>Error! </b><?php echo Yii::app()->user->getFlash('errors'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">

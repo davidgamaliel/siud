@@ -56,6 +56,7 @@
                                 //array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Kendaraan Dipinjam</span>', 'url'=>array('/peminjamanKendaraan/listPeminjaman')),
 								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/peminjamanKendaraan/pinjamKendaraan'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
 								array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamankendaraan/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Kelola Kendaraan</span>', 'url'=>array('/peminjamanKendaraan/kelolaKendaraan'), 'visible'=> BLAuthorization::isAdmin()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),
