@@ -49,8 +49,14 @@
                                 'name'=>'kendaraan_id',
                                 'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
                             ),
-                            'waktu_mulai',
-                            'waktu_selesai',
+                            array(
+                                'header'=>'Waktu Awal Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_mulai)'
+                            ),
+                            array(
+                                'header'=>'Waktu Akhir Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
+                            ),
                             'supir',
                              array(
                                 'header'=>'File Nodin',

@@ -15,7 +15,6 @@
  * @property integer $status
  * @property string $waktu_mulai
  * @property string $waktu_selesai
- * @property string $no_polisi
  * @property integer $id_peminjam
  *
  * The followings are the available model relations:
@@ -42,11 +41,10 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 			array('kendaraan_id, status, id_peminjam', 'numerical', 'integerOnly'=>true),
 			array('peminjam, kegiatan, supir', 'length', 'max'=>50),
 			array('waktu_peminjaman', 'length', 'max'=>20),
-			array('no_polisi', 'length', 'max'=>15),
 			array('tanggal_peminjaman, nodin, waktu_mulai, waktu_selesai', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kendaraan_id, peminjam, kegiatan, supir, tanggal_peminjaman, waktu_peminjaman, nodin, status, waktu_mulai, waktu_selesai, no_polisi, id_peminjam', 'safe', 'on'=>'search'),
+			array('id, kendaraan_id, peminjam, kegiatan, supir, tanggal_peminjaman, waktu_peminjaman, nodin, status, waktu_mulai, waktu_selesai, id_peminjam', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,7 +77,6 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 			'status' => 'Status',
 			'waktu_mulai' => 'Waktu Mulai',
 			'waktu_selesai' => 'Waktu Selesai',
-			'no_polisi' => 'No Polisi',
 			'id_peminjam' => 'Id Peminjam',
 		);
 	}
@@ -113,7 +110,6 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('waktu_mulai',$this->waktu_mulai,true);
 		$criteria->compare('waktu_selesai',$this->waktu_selesai,true);
-		$criteria->compare('no_polisi',$this->no_polisi,true);
 		$criteria->compare('id_peminjam',$this->id_peminjam);
 
 		return new CActiveDataProvider($this, array(
