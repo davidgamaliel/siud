@@ -127,16 +127,52 @@ class TranPeminjamanRuangan extends CActiveRecord
 	}
 
 	public function getFormatedWaktuMulai() {
-		$thisDate = new DateTime($this->waktu_awal_peminjaman);
-		$result = $thisDate->format('d-m-Y H:i');
-
-		return $result;
+		$arrayBulan = array(
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4=> 'April',
+            5 => 'Mei',
+            6=> 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember',
+        );
+        if(!is_null($this->waktu_awal_peminjaman) & !empty($this->waktu_awal_peminjaman)) {
+            $temp = explode(' ',$this->waktu_awal_peminjaman);
+            $tempTanggal = explode('-',$temp[0]);
+            return ''. $tempTanggal[2] . ' ' . $arrayBulan[intval($tempTanggal[1])]  . ' ' . $tempTanggal[0]. ' '.$temp[1];
+        }
+        else {
+            return '';
+        }
 	}
 
 	public function getFormatedWaktuAkhir() {
-		$thisDate = new DateTime($this->waktu_akhir_peminjaman);
-		$result = $thisDate->format('d-m-Y H:i');
-
-		return $result;
+		$arrayBulan = array(
+            1 => 'Januari',
+            2 => 'Februari',
+            3 => 'Maret',
+            4=> 'April',
+            5 => 'Mei',
+            6=> 'Juni',
+            7 => 'Juli',
+            8 => 'Agustus',
+            9 => 'September',
+            10 => 'Oktober',
+            11 => 'November',
+            12 => 'Desember',
+        );
+        if(!is_null($this->waktu_akhir_peminjaman) & !empty($this->waktu_akhir_peminjaman)) {
+            $temp = explode(' ',$this->waktu_akhir_peminjaman);
+            $tempTanggal = explode('-',$temp[0]);
+            return ''. $tempTanggal[2] . ' ' . $arrayBulan[intval($tempTanggal[1])]  . ' ' . $tempTanggal[0]. ' '.$temp[1];
+        }
+        else {
+            return '';
+        }
 	}
 }

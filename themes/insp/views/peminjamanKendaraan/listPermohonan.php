@@ -211,8 +211,8 @@
             'bInfo': false,
             dom: '<"html5buttons"B>lTfgitp',
             buttons: [
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
+                {extend: 'excel', title: 'Permohonan Peminjaman Kendaraan'},
+                {extend: 'pdf', title: 'Permohonan Peminjaman Kendaraan'},
 
                 {extend: 'print',
                  customize: function (win){

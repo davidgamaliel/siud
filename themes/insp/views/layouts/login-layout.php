@@ -19,7 +19,7 @@
 		</div>
         <hr/>
         <div class="text-center row small">
-			PT. Artajasa Pembayaran Elektronis © 2016
+			LEMSANEG © 2017
 		</div>
         </div>
     </div>

@@ -201,11 +201,11 @@
 <script>
     $(document).ready(function(){
         $('.data_table_ruangan').DataTable({
-            'bInfo': false,
-            dom: '<"html5buttons"B>lTfgitp',
+            'info': false,
+            dom: '<"html5buttons"Br>lTfgitp',
             buttons: [
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
+                {extend: 'excel', title: 'Permohonan Peminjaman Ruangan'},
+                {extend: 'pdf', title: 'Permohonan Peminjaman Ruangan'},
 
                 {extend: 'print',
                  customize: function (win){
