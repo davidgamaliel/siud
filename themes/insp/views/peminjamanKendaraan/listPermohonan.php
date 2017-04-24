@@ -40,8 +40,8 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
-                                'name'=>'ID permohonan',
-                                'value'=>'$data->id',
+                                'name'=>'Nama Pemohon',
+                                'value'=>'TmstUserCustom::namaPeminjamKendaraan($data->id)',
                                 //'headerHtmlOptions'=>array('style'=>'display:none'),
                                 //'htmlOptions'=>array('style'=>'display:none'),
                             ),

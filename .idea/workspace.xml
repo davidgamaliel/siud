@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4128b96-d725-436d-930d-eff9d475e1d2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/custom/TrxPenggunaanBensinCustom.php" afterPath="$PROJECT_DIR$/protected/models/custom/TrxPenggunaanBensinCustom.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" afterPath="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/SiteController.php" afterPath="$PROJECT_DIR$/protected/controllers/SiteController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php" afterPath="$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php" afterPath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" afterPath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php" afterPath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/insp/views/ruangan/ListPeminjaman.php" afterPath="$PROJECT_DIR$/themes/insp/views/ruangan/ListPeminjaman.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/insp/views/site/index.php" afterPath="$PROJECT_DIR$/themes/insp/views/site/index.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,108 +28,145 @@
     <favorites_list name="siud" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PeminjamanKendaraanController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-17">
-              <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrxPenggunaanBensinCustom.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPenggunaanBensinCustom.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="63" lean-forward="false" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editKendaraan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editKendaraan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="640">
-              <caret line="85" column="30" lean-forward="true" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrxPeminjamanKendaraanCustom.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="detailPermohonan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/detailPermohonan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="48" column="30" lean-forward="false" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pinjamKendaraanPegawai.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="75" column="58" lean-forward="false" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PenggunaanBensinController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/protected/controllers/PenggunaanBensinController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pinjamKendaraan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="852">
-              <caret line="120" column="30" lean-forward="true" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="editPermohonan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editPermohonan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="597">
-              <caret line="117" column="139" lean-forward="false" selection-start-line="117" selection-start-column="139" selection-end-line="117" selection-end-column="139" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="listPermohonan.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="87" column="114" lean-forward="false" selection-start-line="87" selection-start-column="114" selection-end-line="87" selection-end-column="114" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="PeminjamanKendaraanController.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="697">
+                  <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pinjamKendaraan.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="51">
+                  <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TrxPeminjamanKendaraanCustom.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="294">
+                  <caret line="63" column="9" lean-forward="false" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+                  <folding>
+                    <marker date="1493025703798" expanded="true" signature="1320:1665" ph="select count... trx_peminjaman_kendaraan" />
+                    <marker date="1493025703798" expanded="true" signature="2508:2853" ph="select count... trx_peminjaman_kendaraan" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pinjamKendaraanPegawai.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="493">
+                  <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/site/index.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="170">
+                  <caret line="10" column="107" lean-forward="false" selection-start-line="10" selection-start-column="107" selection-end-line="10" selection-end-column="107" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ListPeminjaman.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/ruangan/ListPeminjaman.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1583">
+                  <caret line="98" column="42" lean-forward="false" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="kelolaKendaraan.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/kelolaKendaraan.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="393">
+                  <caret line="40" column="18" lean-forward="false" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SiteController.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="493">
+                  <caret line="44" column="32" lean-forward="false" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="TmstUserCustom.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/protected/models/custom/TmstUserCustom.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="listPermohonan.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="215">
+                  <caret line="43" column="89" lean-forward="false" selection-start-line="43" selection-start-column="89" selection-end-line="43" selection-end-column="89" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="MstKendaraanCustom.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/protected/models/custom/MstKendaraanCustom.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="24" column="5" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="24" selection-end-column="5" />
+                  <folding>
+                    <marker date="1492932979880" expanded="true" signature="977:993" ph="Select count... mst" />
+                    <marker date="1492932979880" expanded="true" signature="977:1054" ph="Select count... mst_kendaraan" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="BLRuangan.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/protected/logics/BLRuangan.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="298">
+                  <caret line="59" column="46" lean-forward="false" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+                  <folding>
+                    <marker date="1492951232317" expanded="true" signature="3788:4112" ph="select tr.na... tran_peminjaman_ruangan" />
+                    <marker date="1492951232317" expanded="true" signature="4310:4633" ph="select tr.na... tran_peminjaman_ruangan" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -184,15 +229,19 @@
         <option value="$PROJECT_DIR$/themes/insp/views/penggunaanBensin/listPenggunaan.php" />
         <option value="$PROJECT_DIR$/protected/models/custom/MstKendaraanCustom.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listpinjamKendaraan.php" />
-        <option value="$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/detailPermohonanPegawai.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/detailPermohonan.php" />
-        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editPermohonan.php" />
-        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" />
-        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php" />
         <option value="$PROJECT_DIR$/protected/models/custom/TrxPenggunaanBensinCustom.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/SiteController.php" />
+        <option value="$PROJECT_DIR$/themes/insp/views/site/index.php" />
+        <option value="$PROJECT_DIR$/themes/insp/views/ruangan/ListPeminjaman.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" />
+        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" />
+        <option value="$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php" />
+        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php" />
+        <option value="$PROJECT_DIR$/protected/models/custom/TmstUserCustom.php" />
+        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php" />
       </list>
     </option>
   </component>
@@ -285,6 +334,7 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,6 +366,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="site" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -605,12 +659,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cms" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -705,18 +758,19 @@
       <workItem from="1492741536526" duration="3016000" />
       <workItem from="1492852592439" duration="626000" />
       <workItem from="1492909082477" duration="14625000" />
-      <workItem from="1492950313746" duration="1988000" />
+      <workItem from="1492950313746" duration="2062000" />
+      <workItem from="1493020803262" duration="5426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65403000" />
+    <option name="totallyTimeSpent" value="70903000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1748401" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17643923" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -754,20 +808,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/protected/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="58" lean-forward="false" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/layouts/main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2210">
-          <caret line="130" column="123" lean-forward="false" selection-start-line="130" selection-start-column="123" selection-end-line="130" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/insp/sources/js/inspinia.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -821,24 +861,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="31" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/site/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -950,17 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/logics/BLRuangan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="108" column="20" lean-forward="false" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="20" />
-          <folding>
-            <marker date="1492951232317" expanded="true" signature="3788:4112" ph="select tr.na... tran_peminjaman_ruangan" />
-            <marker date="1492951232317" expanded="true" signature="4310:4633" ph="select tr.na... tran_peminjaman_ruangan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/protected/config/main.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="670">
@@ -984,16 +999,6 @@
         <state relative-caret-position="-270">
           <caret line="5" column="19" lean-forward="false" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/kelolaKendaraan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="195" column="47" lean-forward="true" selection-start-line="195" selection-start-column="47" selection-end-line="195" selection-end-column="47" />
-          <folding>
-            <element signature="e#6#88#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1036,17 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/custom/MstKendaraanCustom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="0" lean-forward="false" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <marker date="1492932979880" expanded="true" signature="977:993" ph="Select count... mst" />
-            <marker date="1492932979880" expanded="true" signature="977:1054" ph="Select count... mst_kendaraan" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listpinjamKendaraan.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="986">
@@ -1073,16 +1067,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/detailPermohonan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
+        <state relative-caret-position="816">
           <caret line="48" column="30" lean-forward="false" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php">
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editKendaraan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="87" column="114" lean-forward="false" selection-start-line="87" selection-start-column="114" selection-end-line="87" selection-end-column="114" />
+        <state relative-caret-position="1360">
+          <caret line="85" column="30" lean-forward="true" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/PenggunaanBensinController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
           <folding />
         </state>
       </provider>
@@ -1090,63 +1092,120 @@
     <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editPermohonan.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="597">
-          <caret line="117" column="139" lean-forward="false" selection-start-line="117" selection-start-column="139" selection-end-line="117" selection-end-column="139" />
+          <caret line="117" column="139" lean-forward="false" selection-start-line="117" selection-start-column="32" selection-end-line="117" selection-end-column="139" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editKendaraan.php">
+    <entry file="file://$PROJECT_DIR$/protected/controllers/SiteController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="85" column="30" lean-forward="true" selection-start-line="85" selection-start-column="30" selection-end-line="85" selection-end-column="30" />
+        <state relative-caret-position="493">
+          <caret line="44" column="32" lean-forward="false" selection-start-line="44" selection-start-column="32" selection-end-line="44" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/kelolaKendaraan.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="120" column="30" lean-forward="true" selection-start-line="120" selection-start-column="30" selection-end-line="120" selection-end-column="30" />
+        <state relative-caret-position="393">
+          <caret line="40" column="18" lean-forward="false" selection-start-line="40" selection-start-column="18" selection-end-line="40" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php">
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/site/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="75" column="58" lean-forward="false" selection-start-line="75" selection-start-column="58" selection-end-line="75" selection-end-column="58" />
+        <state relative-caret-position="170">
+          <caret line="10" column="107" lean-forward="false" selection-start-line="10" selection-start-column="107" selection-end-line="10" selection-end-column="107" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/PenggunaanBensinController.php">
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/ruangan/ListPeminjaman.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="24" lean-forward="true" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
-          <caret line="23" column="34" lean-forward="false" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="32" />
+        <state relative-caret-position="1583">
+          <caret line="98" column="42" lean-forward="false" selection-start-line="98" selection-start-column="42" selection-end-line="98" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPenggunaanBensinCustom.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="36">
           <caret line="16" column="63" lean-forward="false" selection-start-line="16" selection-start-column="63" selection-end-line="16" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/logics/BLRuangan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="59" column="46" lean-forward="false" selection-start-line="59" selection-start-column="46" selection-end-line="59" selection-end-column="46" />
+          <folding>
+            <marker date="1492951232317" expanded="true" signature="3788:4112" ph="select tr.na... tran_peminjaman_ruangan" />
+            <marker date="1492951232317" expanded="true" signature="4310:4633" ph="select tr.na... tran_peminjaman_ruangan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="63" column="9" lean-forward="false" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
+          <folding>
+            <marker date="1493025703798" expanded="true" signature="1320:1665" ph="select count... trx_peminjaman_kendaraan" />
+            <marker date="1493025703798" expanded="true" signature="2508:2853" ph="select count... trx_peminjaman_kendaraan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="46" lean-forward="false" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/custom/MstKendaraanCustom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="5" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <marker date="1492932979880" expanded="true" signature="977:993" ph="Select count... mst" />
+            <marker date="1492932979880" expanded="true" signature="977:1054" ph="Select count... mst_kendaraan" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/custom/TmstUserCustom.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="43" column="89" lean-forward="false" selection-start-line="43" selection-start-column="89" selection-end-line="43" selection-end-column="89" />
           <folding />
         </state>
       </provider>

@@ -27,6 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+	    $model = new MstKendaraanCustom;
 		$data = array();
 		$isPegawai = BLAuthorization::isPegawai();
 		$isAdmin = BLAuthorization::isAdmin();
@@ -41,6 +42,7 @@ class SiteController extends Controller
 		}
 		$data['isPegawai'] = $isPegawai;
 		$data['isAdmin'] = $isAdmin;
+		$data['model'] = $model;
 		$this->render('index', $data);
 	}
 
