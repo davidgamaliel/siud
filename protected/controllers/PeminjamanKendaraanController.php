@@ -182,7 +182,7 @@ class PeminjamanKendaraanController extends Controller
 
      public function actionListPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
-        $this->render('listPinjamKendaraan', array(
+        $this->render('listpinjamKendaraan', array(
             'model'=>$model
         ));
     }
