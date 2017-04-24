@@ -8,7 +8,7 @@
 
 <div class="wrapper wrapper-content">
 	<?php if($isPegawai): ?>
-		<?php $this->renderPartial('/ruangan/ListPeminjaman', array('provider'=>$provider)) ?>
+		<?php $this->renderPartial('/ruangan/ListPeminjaman', array('provider'=>$provider, 'model'=>$model)) ?>
 	<?php elseif($isAdmin): ?>
 		<?php
 			$this->widget('ext.highcharts.HighchartsWidget', array(

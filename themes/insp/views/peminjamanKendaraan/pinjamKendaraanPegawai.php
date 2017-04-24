@@ -1,6 +1,7 @@
 <?php
 Yii::app()->clientScript->registerScript('search', "
 $('#TrxPeminjamanKendaraanCustom_waktu_mulai').datetimepicker({
+    useCurrent: false,
     format: 'DD/MM/YYYY H:mm'
 });
 $('#TrxPeminjamanKendaraanCustom_waktu_selesai').datetimepicker({
@@ -54,7 +55,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                     <?php
                     $form = $this->beginWidget('CActiveForm',array(
                         'id' => 'upload-form',
-                        'enableAjaxValidation' => false,
+                        'enableAjaxValidation' => true,
                         'htmlOptions' => array('enctype' => 'multipart/form-data'),
                     ));
                     ?>
@@ -79,7 +80,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                             <label class="col-sm-2 control-label">Jenis Kendaraan</label>
                             <div class="col-sm-10">
                                 <?php
-                                $list = CHtml::listData($model_kendaraan,'id', function ($model_kendaraan) { return CHtml::encode($model_kendaraan->nama);});
+                                $list = CHtml::listData($model_kendaraan,'id', function ($model_kendaraan) { return CHtml::encode($model_kendaraan->nama.' - '.$model_kendaraan->no_polisi);});
                                 echo CHtml::dropDownList('TrxPeminjamanKendaraanCustom[kendaraan_id]','',$list,array('class'=>'form-control m-b'));
                                 ?>
                                 <?php echo $form->error($model, 'kendaraan_id', array('class' => 'text-danger')); ?>
@@ -115,7 +116,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white" type="submit">Cancel</button>
+                                <?php echo CHtml::link('Kembali',Yii::app()->request->urlReferrer ,array('class' => 'btn btn-warning')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class' => 'btn btn-primary', 'name' => 'submit', 'id' => 'submit')); ?>
                             </div>
                         </div>

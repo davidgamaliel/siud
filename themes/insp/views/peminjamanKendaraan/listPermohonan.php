@@ -42,8 +42,12 @@
                             array(
                                 'header'=>'ID permohonan',
                                 'value'=>'$data->id',
-                                //'headerHtmlOptions'=>array('style'=>'display:none'),
-                                //'htmlOptions'=>array('style'=>'display:none'),
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
+                            ),
+                            array(
+                                'name'=>'Nama Pemohon',
+                                'value'=>'TmstUserCustom::namaPeminjamKendaraan($data->id)'
                             ),
                             array(
                                 'header'=>'kendaraan_id',

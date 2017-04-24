@@ -1,6 +1,7 @@
 <?php
 Yii::app()->clientScript->registerScript('search', "
 $('#TrxPeminjamanKendaraanCustom_waktu_mulai').datetimepicker({
+    useCurrent: false,
     format: 'DD/MM/YYYY H:mm'
 });
 $('#TrxPeminjamanKendaraanCustom_waktu_selesai').datetimepicker({
@@ -54,9 +55,10 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                     <?php
                     $form = $this->beginWidget('CActiveForm',array(
                         'id' => 'upload-form',
-                        'enableAjaxValidation' => false,
+                        'enableAjaxValidation' => true,
                         'htmlOptions' => array('enctype' => 'multipart/form-data'),
                     ));
+                    
                     ?>
                     <div class="form-horizontal">
                         <div class="form-group">

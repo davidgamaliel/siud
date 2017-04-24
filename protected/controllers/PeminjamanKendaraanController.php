@@ -18,7 +18,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
+        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
 //            echo "<pre>";var_dump($file);die;
             $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
@@ -27,7 +27,7 @@ class PeminjamanKendaraanController extends Controller
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
             }
             else {
-                Yii::app()->user->setFlash('errors','Permohonan peminjaman berhasil dibuat');
+                Yii::app()->user->setFlash('errors','Permohonan peminjaman gagal dibuat');
             }
         }
         $this->render('pinjamKendaraan', array(
@@ -40,7 +40,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionPinjamKendaraanPegawai() {
         $model = new TrxPeminjamanKendaraanCustom();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
+        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
 //            echo "<pre>";var_dump($file);die;
             $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
@@ -49,7 +49,7 @@ class PeminjamanKendaraanController extends Controller
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonanPegawai',array('id'=>$model->id)));
             }
             else {
-                Yii::app()->user->setFlash('errors','Permohonan peminjaman berhasil dibuat');
+                Yii::app()->user->setFlash('errors','Permohonan peminjaman gagal dibuat');
             }
         }
         $this->render('pinjamKendaraanPegawai', array(

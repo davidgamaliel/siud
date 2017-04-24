@@ -27,6 +27,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+	    $model = new MstKendaraanCustom;
 		$setuju = array();
 		$tolak = array();
 		$proses = array();
@@ -73,6 +74,7 @@ class SiteController extends Controller
 		$data['proses'] = $proses;
 		$data['isPegawai'] = $isPegawai;
 		$data['isAdmin'] = $isAdmin;
+		$data['model'] = $model;
 		$this->render('index', $data);
 	}
 
