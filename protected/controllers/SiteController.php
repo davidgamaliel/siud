@@ -36,7 +36,9 @@ class SiteController extends Controller
 		$isAdmin = BLAuthorization::isAdmin();
 		$logicRuangan = new BLRuangan();
 		if($isPegawai) {
+			$kendaraanCustom = new TrxPeminjamanKendaraanCustom();
 			$provider = $logicRuangan->getAllRuangan();
+			$data['kendaraanCustom'] = $kendaraanCustom;
 			$data['provider'] = $provider;
 		}
 		if($isAdmin) {

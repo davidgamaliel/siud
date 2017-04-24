@@ -8,7 +8,8 @@
 
 <div class="wrapper wrapper-content">
 	<?php if($isPegawai): ?>
-		<?php $this->renderPartial('/ruangan/ListPeminjaman', array('provider'=>$provider, 'model'=>$model)) ?>
+		<?php $this->renderPartial('/ruangan/ListPeminjaman', array('provider'=>$provider)) ?>
+		<?php $this->renderPartial('/peminjamanKendaraan/listPeminjaman', array('model'=>$kendaraanCustom)) ?>
 	<?php elseif($isAdmin): ?>
 		<?php
 			$this->widget('ext.highcharts.HighchartsWidget', array(
@@ -66,6 +67,6 @@
 	<?php $this->renderPartial('/ruangan/ListPermohonan', array('provider' => $ruangan)) ?>
 </div>
 <div>
-	<?php $this->renderPartial('/peminjamanKendaraan/ListPermohonan', array('model' => $kendaraan)) ?>
+	<?php $this->renderPartial('/peminjamanKendaraan/listPermohonan', array('model' => $kendaraan)) ?>
 </div>
 <?php endif;?>

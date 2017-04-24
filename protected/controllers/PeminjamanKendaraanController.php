@@ -10,11 +10,6 @@ class PeminjamanKendaraanController extends Controller
 {
     public $layout = '//layouts/column2';
 
-    public function actionIndex()
-    {
-        $this->render('index');
-    }
-
     public function actionPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
@@ -182,7 +177,7 @@ class PeminjamanKendaraanController extends Controller
 
      public function actionListPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
-        $this->render('listPinjamKendaraan', array(
+        $this->render('listpinjamKendaraan', array(
             'model'=>$model
         ));
     }
