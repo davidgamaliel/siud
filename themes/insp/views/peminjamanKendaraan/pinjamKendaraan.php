@@ -58,7 +58,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                         'enableAjaxValidation' => true,
                         'htmlOptions' => array('enctype' => 'multipart/form-data'),
                     ));
-                    echo "<pre>";var_dump($form->error)
+                    
                     ?>
                     <div class="form-horizontal">
                         <div class="form-group">
