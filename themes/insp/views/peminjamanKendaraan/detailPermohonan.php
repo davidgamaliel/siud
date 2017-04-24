@@ -36,21 +36,14 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Waktu Mulai Peminjaman</label>
                             <div class="col-sm-10">
-                                <label class="form-control"><?php echo$model->waktu_mulai; ?></label>
+                                <label class="form-control"><?php echo TrxPeminjamanKendaraanCustom::tampilanTanggal($model->waktu_mulai); ?></label>
                                 <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Waktu Selesai Peminjaman</label>
                             <div class="col-sm-10">
-                                <label class="form-control"><?php echo$model->waktu_selesai; ?></label>
-                                <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Nomor Polisi</label>
-                            <div class="col-sm-10">
-                                <label class="form-control"><?php echo$model->no_polisi; ?></label>
+                                <label class="form-control"><?php echo TrxPeminjamanKendaraanCustom::tampilanTanggal($model->waktu_selesai); ?></label>
                                 <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
                             </div>
                         </div>

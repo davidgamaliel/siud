@@ -17,7 +17,7 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
-        $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
+        $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
 //            echo "<pre>";var_dump($file);die;
@@ -92,7 +92,10 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
+        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
+        $model_kendaraan->ketersediaan = false;
         if($model->save()) {
+            $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$model->id);
             echo CJSON::encode($result);
         }
@@ -105,7 +108,10 @@ class PeminjamanKendaraanController extends Controller
     public function actionTolakPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
+        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
+        $model_kendaraan->ketersediaan = true;
         if($model->save()) {
+            $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$_POST['id']);
             echo CJSON::encode($result);
         }
@@ -204,10 +210,9 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionEditPermohonan($id) {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
-        $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])) {
+        $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
+        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
-            echo "<pre>";var_dump($model);die;
             $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
             if($berhasil) {
                 Yii::app()->user->setFlash('success','Permohonan peminjaman berhasil dibuat');

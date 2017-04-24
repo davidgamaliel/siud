@@ -76,16 +76,6 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nomor Polisi</label>
-                            <div class="col-sm-10">
-                                <?php echo $form->textField($model,'no_polisi',array('class'=>'form-control')); ?>
-                                <?php echo $form->error($model, 'no_polisi', array('class' => 'text-danger')); ?>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Jenis Kendaraan</label>
                             <div class="col-sm-10">
                                 <?php

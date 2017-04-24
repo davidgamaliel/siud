@@ -50,12 +50,12 @@
                                 'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
                             ),
                             array(
-                                'header'=>'Waktu Mulai',
-                                'value'=>'$data->waktu_mulai',
+                                'header'=>'Waktu Awal Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_mulai)'
                             ),
                             array(
-                                'header'=>'Waktu Selesai',
-                                'value'=>'$data->waktu_selesai',
+                                'header'=>'Waktu Akhir Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
                             ),
                             array(
                                 'header'=>'Supir',
@@ -87,7 +87,7 @@
                                             'class'=>'btn btn-sm btn-primary',
                                             'data-toggle' => 'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ),
                                     'setujui'=>array(

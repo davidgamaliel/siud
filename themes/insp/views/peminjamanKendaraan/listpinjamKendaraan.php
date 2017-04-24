@@ -42,15 +42,21 @@
                             array(
                                 'name'=>'ID permohonan',
                                 'value'=>'$data->id',
-                                //'headerHtmlOptions'=>array('style'=>'display:none'),
-                                //'htmlOptions'=>array('style'=>'display:none'),
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
                                 'name'=>'kendaraan_id',
                                 'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
                             ),
-                            'waktu_mulai',
-                            'waktu_selesai',
+                            array(
+                                'header'=>'Tanggal Awal Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_mulai)'
+                            ),
+                            array(
+                                'header'=>'Tanggal Akhir Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
+                            ),
                             'supir',
 
                             array(

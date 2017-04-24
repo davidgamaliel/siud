@@ -76,20 +76,10 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Nomor Polisi</label>
-                            <div class="col-sm-10">
-                                <?php echo $form->textField($model,'no_polisi',array('class'=>'form-control')); ?>
-                                <?php echo $form->error($model, 'no_polisi', array('class' => 'text-danger')); ?>
-                            </div>
-                        </div>
-
-                        <div class="hr-line-dashed"></div>
-
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Jenis Kendaraan</label>
                             <div class="col-sm-10">
                                 <?php
-                                $list = CHtml::listData($model_kendaraan,'id', function ($model_kendaraan) { return CHtml::encode($model_kendaraan->nama);});
+                                $list = CHtml::listData($model_kendaraan,'id', function ($model_kendaraan) { return CHtml::encode($model_kendaraan->nama.' - '.$model_kendaraan->no_polisi);});
                                 echo CHtml::dropDownList('TrxPeminjamanKendaraanCustom[kendaraan_id]','',$list,array('class'=>'form-control m-b'));
                                 ?>
                                 <?php echo $form->error($model, 'kendaraan_id', array('class' => 'text-danger')); ?>
@@ -125,7 +115,7 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white" type="submit">Cancel</button>
+                                <?php echo CHtml::link('Kembali',Yii::app()->request->urlReferrer ,array('class' => 'btn btn-warning')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class' => 'btn btn-primary', 'name' => 'submit', 'id' => 'submit')); ?>
                             </div>
                         </div>
