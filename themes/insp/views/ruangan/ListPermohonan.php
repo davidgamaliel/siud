@@ -31,7 +31,7 @@
                 </div>
                 <div class="ibox-content">
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
-                        'id'=>'trx-card-order-custom-grid-instant',
+                        'id'=>'list-permohonan-ruangan',
                         'dataProvider'=>$provider,
                         'ajaxUpdate'=>true,
                         'columns'=>array(
@@ -40,35 +40,27 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
-                                'name'=>'ID permohonan',
-                                'value'=>'$data->id',
-                                'headerHtmlOptions'=>array('style'=>'display:none'),
-                                'htmlOptions'=>array('style'=>'display:none'),
-                            ),
-                            array(
                                 'header'=>'Peminjam',
-                                'name'=>'id_user_peminjam',
                                 'value'=>'$data->id_user_peminjam != null ? $data->idUserPeminjam->username : ""',
                             ),
                             array(
                                 'header'=>'Ruangan',
-                                'name'=>'id_ruangan',
                                 'value'=>'$data->id_ruangan != null ? $data->idRuangan->nama : ""',
                             ),
                             array(
                                 'header'=>'Waktu Awal Peminjaman',
-                                'name'=>'waktu_awal_peminjaman',
                                 'value'=>'$data->formatedWaktuMulai',
                             ),
                             array(
                                 'header'=>'Waktu Akhir Peminjaman',
-                                'name'=>'waktu_akhir_peminjaman',
                                 'value'=>'$data->formatedWaktuAkhir',
                             ),
-                            'kegiatan',
+                            array(
+                                'header'=>'Kegiatan',
+                                'value'=>'$data->kegiatan',
+                            ),
                             array(
                                 'header'=>'Nodin',
-                                'name'=>'nodin',
                                 'value'=>'CHtml::link(
                                             \'nodin\',
                                             Yii::app()->createUrl(\'/ruangan/viewNodinRuangan\', array(\'id\' => $data->id)) ,
@@ -77,7 +69,6 @@
                             ),
                             array(
                                 'header'=>'Status',
-                                'name'=>'status_id',
                                 'value'=>'$data->status->nama',
                             ),
                             array(
@@ -197,11 +188,8 @@
                             ),
                         ),
                         'pagerCssClass' => 'blank',
-                        'itemsCssClass' => 'table table-striped table-hover',
+                        'itemsCssClass' => 'table table-striped table-hover data_table_ruangan',
                         'cssFile' => false,
-                        'summaryCssClass' => 'dataTables_info',
-                        'summaryText' => Yii::t('form','Showing {start} to {end} of {count} entries'),
-                        'template' => '{items}<div class="row"><div class="col-md-5 col-sm-12">{summary}</div><div class="col-md-7 col-sm-12">{pager}</div></div><br />',
                     ));
                     ?>
                 </div>
@@ -210,40 +198,59 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content animated bounceInRight">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <!-- <i class="fa fa-laptop modal-icon"></i> -->
-                    <h4 class="modal-title">Beri Status Permohonan</h4>
-                    <!-- <small class="font-bold">Beri atau ubah status permohonan peminjam. Harap sertakan alasan</small> -->
-                </div>
-                <div class="modal-body">
-                    
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label text-left">Status</label>
+<script>
+    $(document).ready(function(){
+        $('.data_table_ruangan').DataTable({
+            'bInfo': false,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                {extend: 'excel', title: 'ExampleFile'},
+                {extend: 'pdf', title: 'ExampleFile'},
 
-                        <div class="col-sm-10">
-                            <?php echo CHtml::dropDownList('listStatus', $status, $dropdownStatus, array('class'=>'form-control m-b')); ?>
-                        </div>
-                    </div>
-                    <div class="hr-line-dashed"></div>
-                    <div class="form-group">
-                        <label class="col-sm-2">Alasan</label> 
-                        <div class="col-md-10">
-                            <textarea class="form-control textarea" rows="3" name="Message" id="Message" placeholder="Message"></textarea>    
-                        </div>
-                    </div>
-                    <div class="hr-line-dashed"></div>
-                    <p style="color:transparent">
-                        test
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">Batal</button>
-                    <?php echo CHtml::submitButton('Simpan', array('class'=>'btn btn-primary')); ?> 
-                </div>
-            </div>
-        </div>
-    </div>
+                {extend: 'print',
+                 customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
+
+        });
+
+        /* Init DataTables */
+        /*var oTable = $('#editable').DataTable();*/
+
+        /* Apply the jEditable handlers to the table */
+        /*oTable.$('td').editable( '../example_ajax.php', {
+            "callback": function( sValue, y ) {
+                var aPos = oTable.fnGetPosition( this );
+                oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+            },
+            "submitdata": function ( value, settings ) {
+                return {
+                    "row_id": this.parentNode.getAttribute('id'),
+                    "column": oTable.fnGetPosition( this )[2]
+                };
+            },
+
+            "width": "90%",
+            "height": "100%"
+        } );*/
+
+
+    });
+
+    /*function fnClickAddRow() {
+        $('#editable').dataTable().fnAddData( [
+            "Custom row",
+            "New row",
+            "New row",
+            "New row",
+            "New row" ] );
+
+    }*/
+</script>

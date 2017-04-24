@@ -160,6 +160,73 @@ class BLRuangan {
         }
         return $result;
     }
+
+    public function getArrayAllRuangan()
+    {
+        $sql = 'select nama from tmst_ruangan order by nama';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getJumlahRuanganSetuju($ruangan)
+    {
+        $sql = 'select count(tpr.id) as jumlah
+                from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
+                where tpr.status_id = 1
+                and tr.nama = \''.$ruangan.'\'';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getJumlahRuanganTolak($ruangan)
+    {
+        $sql = 'select count(tpr.id) as jumlah
+                from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
+                where tpr.status_id = 2
+                and tr.nama = \''.$ruangan.'\'';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getJumlahRuanganProses($ruangan)
+    {
+        $sql = 'select count(tpr.id) as jumlah
+                from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
+                where tpr.status_id = 3
+                and tr.nama = \''.$ruangan.'\'';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getArrayDataAllRuangan()
+    {
+        $setuju = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Disetujui'));
+        $tolak = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Ditolak'));
+        $proses = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Diproses'));
+        $sql = 'select tr.nama,
+                       count(tpr.id) as jumlah,
+                       '.$setuju->id.' as status
+                from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
+                where tpr.status_id = 1
+                group by tr.nama
+                union
+                select tr.nama,
+                       count(tpr.id) as jumlah,
+                       '.$tolak->id.' as status
+                from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
+                where tpr.status_id = 2
+                group by tr.nama
+                union
+                select tr.nama,
+                       count(tpr.id) as jumlah,
+                       '.$proses->id.' as status
+                from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
+                where tpr.status_id = 3
+                group by tr.nama
+                ';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
         
 }
 

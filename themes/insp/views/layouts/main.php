@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/clockpicker/clockpicker.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/daterangepicker/daterangepicker.css">
 	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/datetimepicker/datetimepicker.css">
+	<link rel="stylesheet" href="<?php echo Yii::app()->theme->baseUrl; ?>/sources/css/plugins/dataTables/dataTables.bootstrap.css">
 		<!--JQUERY-->
 		<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/jquery-2.1.1.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
@@ -138,7 +139,7 @@
 			</div>
 			<?php echo $content; ?>
 			<div class="footer small">
-				PT. Artajasa Pembayaran Elektronis &copy; 2016
+				LEMSANEG &copy; 2017
 			</div><!--footer ends-->
 		</div><!--page ends-->
 	</div><!--wrapper ends-->
@@ -155,5 +156,7 @@
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/clockpicker/clockpicker.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/daterangepicker/daterangepicker.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datetimepicker/datetimepicker.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/dataTables/datatables.min.js"></script>
+	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/dataTables/jquery.dataTables.js"></script>
 </body>
 </html>

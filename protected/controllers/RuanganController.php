@@ -206,6 +206,8 @@ class RuanganController extends Controller
 		$this->render('KelolaPermohonan', $data);
 	}
 
+	
+
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

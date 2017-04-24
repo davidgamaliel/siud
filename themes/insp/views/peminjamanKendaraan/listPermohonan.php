@@ -40,21 +40,29 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
-                                'name'=>'ID permohonan',
+                                'header'=>'ID permohonan',
                                 'value'=>'$data->id',
                                 //'headerHtmlOptions'=>array('style'=>'display:none'),
                                 //'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
-                                'name'=>'kendaraan_id',
+                                'header'=>'kendaraan_id',
                                 'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
                             ),
-                            'waktu_mulai',
-                            'waktu_selesai',
-                            'supir',
+                            array(
+                                'header'=>'Waktu Mulai',
+                                'value'=>'$data->waktu_mulai',
+                            ),
+                            array(
+                                'header'=>'Waktu Selesai',
+                                'value'=>'$data->waktu_selesai',
+                            ),
+                            array(
+                                'header'=>'Supir',
+                                'value'=>'$data->supir',
+                            ),
                              array(
                                 'header'=>'File Nodin',
-                                'name'=>'nodin',
                                 'value'=>'CHtml::link(
                                             $data->nodin,
                                             Yii::app()->createUrl(\'/peminjamankendaraan/viewNodin\', array(\'id\' => $data->id)) ,
@@ -64,7 +72,7 @@
                             ),
                             //'nodin',
                             array(
-                                'name'=>'status',
+                                'header'=>'status',
                                 'value'=>'StatusPeminjaman::getStatusPeminjaman($data->status)'
                             ),
                             array(
@@ -184,11 +192,8 @@
                             ),
                         ),
                         'pagerCssClass' => 'blank',
-                        'itemsCssClass' => 'table table-striped table-hover',
+                        'itemsCssClass' => 'table table-striped table-hover data_table_kendaraan',
                         'cssFile' => false,
-                        'summaryCssClass' => 'dataTables_info',
-                        'summaryText' => Yii::t('form','Showing {start} to {end} of {count} entries'),
-                        'template' => '{items}<div class="row"><div class="col-md-5 col-sm-12">{summary}</div><div class="col-md-7 col-sm-12">{pager}</div></div><br />',
                     ));
                     ?>
                 </div>
@@ -196,3 +201,59 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.data_table_kendaraan').DataTable({
+            'bInfo': false,
+            dom: '<"html5buttons"B>lTfgitp',
+            buttons: [
+                {extend: 'excel', title: 'ExampleFile'},
+                {extend: 'pdf', title: 'ExampleFile'},
+
+                {extend: 'print',
+                 customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                }
+                }
+            ]
+
+        });
+
+        /* Init DataTables */
+        /*var oTable = $('#editable').DataTable();*/
+
+        /* Apply the jEditable handlers to the table */
+        /*oTable.$('td').editable( '../example_ajax.php', {
+            "callback": function( sValue, y ) {
+                var aPos = oTable.fnGetPosition( this );
+                oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+            },
+            "submitdata": function ( value, settings ) {
+                return {
+                    "row_id": this.parentNode.getAttribute('id'),
+                    "column": oTable.fnGetPosition( this )[2]
+                };
+            },
+
+            "width": "90%",
+            "height": "100%"
+        } );*/
+
+
+    });
+
+    /*function fnClickAddRow() {
+        $('#editable').dataTable().fnAddData( [
+            "Custom row",
+            "New row",
+            "New row",
+            "New row",
+            "New row" ] );
+
+    }*/
+</script>
