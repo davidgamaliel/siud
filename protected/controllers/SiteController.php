@@ -28,18 +28,50 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
 	    $model = new MstKendaraanCustom;
+		$setuju = array();
+		$tolak = array();
+		$proses = array();
 		$data = array();
 		$isPegawai = BLAuthorization::isPegawai();
 		$isAdmin = BLAuthorization::isAdmin();
+		$logicRuangan = new BLRuangan();
 		if($isPegawai) {
-			$provider = BLRuangan::getAllRuangan();
+			$provider = $logicRuangan->getAllRuangan();
 			$data['provider'] = $provider;
 		}
 		if($isAdmin) {
-			$allApprovedRuangan = BLRuangan::getAllApprovedRuangan();
-			$data['allApprovedRuangan'] = $allApprovedRuangan;
-			var_dump($allApprovedRuangan);
+			$kendaraan = new TrxPeminjamanKendaraanCustom();
+			$today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
+			$ruangan = new CActiveDataProvider('TranPeminjamanRuangan', array(
+				'criteria'=>array(
+			        'condition'=>'waktu_awal_peminjaman > '. '\'' . $today->format('Y-m-d H:i') . '\'',
+			    ),
+				'sort'=>array(
+					'defaultOrder'=>'waktu_awal_peminjaman'
+				),
+				'pagination'=>array(
+			        'pageSize'=>20,
+			    ),
+			));
+			$allRuangan = array();
+			$allApprovedRuangan = $logicRuangan->getAllApprovedRuangan();
+			$allDataRuangan = $logicRuangan->getArrayAllRuangan();
+			
+			foreach ($allDataRuangan as $data) {
+				$allRuangan[] = $data['nama'];
+				$setuju[] = intval($logicRuangan->getJumlahRuanganSetuju($data['nama'])[0]['jumlah']);
+				$tolak[] = intval($logicRuangan->getJumlahRuanganTolak($data['nama'])[0]['jumlah']);
+				$proses[] = intval($logicRuangan->getJumlahRuanganProses($data['nama'])[0]['jumlah']);
+			}
+			$data['kendaraan'] = $kendaraan;
+			$data['ruangan'] = $ruangan;
+			$data['allRuangan'] = $allRuangan;
+			
 		}
+		//var_dump($setuju);
+		$data['setuju'] = $setuju;
+		$data['tolak'] = $tolak;
+		$data['proses'] = $proses;
 		$data['isPegawai'] = $isPegawai;
 		$data['isAdmin'] = $isAdmin;
 		$data['model'] = $model;
