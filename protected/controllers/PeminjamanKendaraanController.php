@@ -87,8 +87,8 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
-        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
-        $model_kendaraan->ketersediaan = false;
+//        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
+//        $model_kendaraan->ketersediaan = false;
         if($model->save()) {
             $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$model->id);
@@ -103,8 +103,8 @@ class PeminjamanKendaraanController extends Controller
     public function actionTolakPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
-        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
-        $model_kendaraan->ketersediaan = true;
+//        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
+//        $model_kendaraan->ketersediaan = true;
         if($model->save()) {
             $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$_POST['id']);
