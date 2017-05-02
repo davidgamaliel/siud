@@ -115,14 +115,36 @@ class BLRuangan {
 
     }
 
-    public function getAllApprovedRuangan()
+    public function getAllApprovedRuangan($begin=null, $end=null)
     {
         $sql = 'select tr.nama, count(tpr.id_ruangan)
                 from tran_peminjaman_ruangan tpr 
                      left join tmst_ruangan tr on tr.id = tpr.id_ruangan
                      left join tref_status_permohonan tsp on tsp.id = tpr.status_id
-                where tsp.nama = \'Disetujui\'
-                group by tr.nama';
+                where tsp.nama = \'Disetujui\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND waktu_awal_peminjaman BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $sql .= ' group by tr.nama';
+        $command = Yii::app()->db->createCommand($sql);
+
+        $result = $command->queryAll();
+        return $result;
+    }
+
+    public function getAllDisapprovedRuangan($begin=null, $end=null)
+    {
+        $sql = 'select tr.nama, count(tpr.id_ruangan)
+                from tran_peminjaman_ruangan tpr 
+                     left join tmst_ruangan tr on tr.id = tpr.id_ruangan
+                     left join tref_status_permohonan tsp on tsp.id = tpr.status_id
+                where tsp.nama = \'Ditolak\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND waktu_awal_peminjaman BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $sql .= ' group by tr.nama';
         $command = Yii::app()->db->createCommand($sql);
 
         $result = $command->queryAll();
@@ -226,6 +248,21 @@ class BLRuangan {
                 ';
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
+    }
+
+    public function getAllTahunPeminjaman()
+    {
+        $result = array();
+        $sql = "select distinct to_char(waktu_awal_peminjaman, 'YYYY') as tahun
+                from tran_peminjaman_ruangan";
+        $command = Yii::app()->db->createCommand($sql);
+        $tahun = $command->queryAll();
+        if($tahun) {
+            foreach ($tahun as $value) {
+                $result[$value['tahun']] = $value['tahun'];
+            }
+        }
+        return $result;
     }
         
 }

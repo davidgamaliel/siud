@@ -40,6 +40,12 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
+                                'header'=>'ID permohonan',
+                                'value'=>'$data->id',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
+                            ),
+                            array(
                                 'header'=>'Peminjam',
                                 'value'=>'$data->id_user_peminjam != null ? $data->idUserPeminjam->username : ""',
                             ),

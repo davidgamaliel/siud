@@ -49,6 +49,7 @@
 								array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Daftar Peminjaman</span>', 'url'=>array('/ruangan/listPeminjaman'), 'visible'=> BLAuthorization::isPegawai()),
 								array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Kelola Ruangan</span>', 'url'=>array('/ruangan/daftarRuangan'), 'visible'=> BLAuthorization::isAdmin()),
 								array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Kelola Permohonan</span>', 'url'=>array('/ruangan/kelolaPermohonan'), 'visible'=> BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
+								array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Laporan</span>', 'url'=>array('/ruangan/laporanRuangan'), 'visible'=> BLAuthorization::isAdmin()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),
@@ -62,6 +63,7 @@
 
 								array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamanKendaraan/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
                                 array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Kelola Kendaraan</span>', 'url'=>array('/peminjamanKendaraan/kelolaKendaraan'), 'visible'=> BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Laporan</span>', 'url'=>array('/peminjamanKendaraan/laporanKendaraan'), 'visible'=> BLAuthorization::isAdmin()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),

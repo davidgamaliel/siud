@@ -206,6 +206,43 @@ class RuanganController extends Controller
 		$this->render('KelolaPermohonan', $data);
 	}
 
+	public function actionLaporanRuangan() {
+		$data = array();
+		$model = new TranPeminjamanRuangan();
+		$logic = new BLRuangan();
+		$allRuangan = array();
+		
+		$tahun = Date('Y');
+		$bulan = Date('m');
+		$allTahun = $logic->getAllTahunPeminjaman();
+		$allBulan = ['01'=>'Januari', '02'=>'Februari', '03'=>'Maret', '04'=>'April', '05'=>'Mei', '06'=>'Juni', '07'=>'Juli', '08'=>'Agustus', '09'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember'];
+
+		if(isset($_POST['pilih'])) {
+			$tahun = $_POST['tahun'];
+			$bulan = $_POST['bulan'];
+		}
+		
+		$begin = Date($tahun.'-'.$bulan.'-'.'01');
+		$end = Date($tahun.'-'.$bulan.'-'.'t');
+		
+		$setuju = $logic->getAllApprovedRuangan($begin, $end);
+		if($setuju) $setuju = [intval($setuju[0]['count'])];
+		else $setuju = [0];
+
+		$tolak = $logic->getAllDisapprovedRuangan($begin, $end);
+		if($tolak) $tolak = [intval($tolak[0]['count'])];
+		else $tolak = [0];
+
+		$data['tahun'] = $tahun;
+		$data['bulan'] = $bulan;
+		$data['allTahun'] = $allTahun;
+		$data['allBulan'] = $allBulan;
+		$data['allRuangan'] = $allRuangan;
+		$data['setuju'] = $setuju;
+		$data['tolak'] = $tolak;
+		$this->render('LaporanRuangan',  $data);
+	}
+
 	
 
 	// Uncomment the following methods and override them if needed
