@@ -223,4 +223,12 @@ class PeminjamanKendaraanController extends Controller
         ));
 
     }
+
+    public function actionDetailKendaraanPeminjaman($id) {
+        $model = new TrxPeminjamanKendaraanCustom();
+        $this->render('detailKendaraanPeminjaman', array(
+            'model' => $model,
+            'id'=>$id
+        ));
+    }
 }

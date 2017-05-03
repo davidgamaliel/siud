@@ -203,4 +203,17 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             return '';
         }
     }
+
+    public function getListPeminjamanByIdKendaraan($id) {
+        $today = new DateTime();
+        $format = $today->format('d-m-y');
+        $provider = new CActiveDataProvider($this, array(
+            'criteria'=>array(
+                'condition'=>"status=1 AND waktu_mulai >= to_timestamp('" . $format . "' , 'DD-MM-YY') AND kendaraan_id = " . $id ."",
+                'order'=>'waktu_mulai DESC',
+            ),
+        ));
+
+        return $provider;
+    }
 }

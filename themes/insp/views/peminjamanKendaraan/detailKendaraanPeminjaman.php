@@ -1,10 +1,18 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: reals
+ * Date: 5/3/2017
+ * Time: 9:32 PM
+ */
+?>
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>Daftar Permohonan Peminjaman Ruangan</h2>
+        <h2>Daftar Permohonan Peminjaman Kendaraan Yang Telah Disetujui</h2>
     </div>
     <?php
     $this->breadcrumbs=array(
-        'daftar peminjaman ruangan',
+        'daftar peminjaman kendaraan',
     );
     ?>
 </div>
@@ -27,12 +35,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    Daftar Ruangan
+                    Daftar Permohonan
                 </div>
                 <div class="ibox-content">
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
                         'id'=>'list-peminjaman',
-                        'dataProvider'=>$provider,
+                        'dataProvider'=>$model->getListPeminjamanByIdKendaraan($id),
                         'ajaxUpdate'=>true,
                         'columns'=>array(
                             array(
@@ -40,31 +48,45 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
-                                'name'=>'ID Ruangan',
+                                'header'=>'ID permohonan',
                                 'value'=>'$data->id',
                                 'headerHtmlOptions'=>array('style'=>'display:none'),
                                 'htmlOptions'=>array('style'=>'display:none'),
                             ),
-                            'nama',
-                            'lokasi',
-                            'fasilitas',
-                            'kapasitas',
                             array(
-                                'header'=>'aksi',
-                                'class'=>'CButtonColumn',
-                                'template'=>'{detail}',
-                                'buttons'=>array(
-                                    'detail'=>array(
-                                        'label'=>'Ketersediaan',
-                                        'options'=>array(
-                                            'title'=>'Detail',
-                                            'class'=>'btn btn-sm btn-primary',
-                                        ),
-                                        'url'=>'Yii::app()->createUrl("ruangan/detailRuanganPeminjaman", array("id"=>$data->id))',
-                                        'visible'=>'true'
-                                    ), 
-                                )
-                            )
+                                'name'=>'Nama Pemohon',
+                                'value'=>'TmstUserCustom::namaPeminjamKendaraan($data->id)'
+                            ),
+                            array(
+                                'header'=>'kendaraan_id',
+                                'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
+                            ),
+                            array(
+                                'header'=>'Waktu Awal Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_mulai)'
+                            ),
+                            array(
+                                'header'=>'Waktu Akhir Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
+                            ),
+                            array(
+                                'header'=>'Supir',
+                                'value'=>'$data->supir',
+                            ),
+                            array(
+                                'header'=>'File Nodin',
+                                'value'=>'CHtml::link(
+                                            $data->nodin,
+                                            Yii::app()->createUrl(\'/peminjamankendaraan/viewNodin\', array(\'id\' => $data->id)) ,
+                                            array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
+                                'type'=>'raw',
+
+                            ),
+                            //'nodin',
+                            array(
+                                'header'=>'status',
+                                'value'=>'StatusPeminjaman::getStatusPeminjaman($data->status)'
+                            ),
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'
