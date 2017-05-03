@@ -2,10 +2,12 @@
 Yii::app()->clientScript->registerScript('search', "
 $('#TrxPeminjamanKendaraanCustom_waktu_mulai').datetimepicker({
     useCurrent: false,
+    useDefault: false
     format: 'DD/MM/YYYY H:mm'
 });
 $('#TrxPeminjamanKendaraanCustom_waktu_selesai').datetimepicker({
     useCurrent: false,
+    useDefault: false
     format: 'DD/MM/YYYY H:mm'
 });
 $('#TrxPeminjamanKendaraanCustom_waktu_mulai').on(\"dp.change\",function (e) {
@@ -58,7 +60,6 @@ $('#TrxPeminjamanKendaraanCustom_waktu_selesai').on(\"dp.change\",function (e) {
                         'enableAjaxValidation' => true,
                         'htmlOptions' => array('enctype' => 'multipart/form-data'),
                     ));
-                    
                     ?>
                     <div class="form-horizontal">
                         <div class="form-group">

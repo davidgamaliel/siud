@@ -12,6 +12,7 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
+        $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
@@ -22,7 +23,6 @@ class PeminjamanKendaraanController extends Controller
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
             }
             else {
-                Yii::app()->user->setFlash('errors','Permohonan peminjaman gagal dibuat');
             }
         }
         $this->render('pinjamKendaraan', array(
@@ -34,6 +34,7 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionPinjamKendaraanPegawai() {
         $model = new TrxPeminjamanKendaraanCustom();
+        $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
@@ -87,10 +88,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
-//        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
-//        $model_kendaraan->ketersediaan = false;
         if($model->save()) {
-            $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$model->id);
             echo CJSON::encode($result);
         }
@@ -103,10 +101,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionTolakPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
-//        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
-//        $model_kendaraan->ketersediaan = true;
         if($model->save()) {
-            $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$_POST['id']);
             echo CJSON::encode($result);
         }

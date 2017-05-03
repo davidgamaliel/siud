@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c4128b96-d725-436d-930d-eff9d475e1d2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/models/constant/StatusPeminjaman.php" afterPath="$PROJECT_DIR$/protected/models/constant/StatusPeminjaman.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" afterPath="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" afterPath="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,8 +40,18 @@
           <file leaf-file-name="PeminjamanKendaraanController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="617">
-                  <caret line="258" column="24" lean-forward="false" selection-start-line="258" selection-start-column="24" selection-end-line="258" selection-end-column="24" />
+                <state relative-caret-position="374">
+                  <caret line="43" column="45" lean-forward="true" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pinjamKendaraan.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-425">
+                  <caret line="2" column="63" lean-forward="false" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
@@ -58,26 +69,27 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TrxPeminjamanKendaraanCustom.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="TrxPeminjamanKendaraanCustom.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="314">
-                  <caret line="221" column="51" lean-forward="false" selection-start-line="221" selection-start-column="51" selection-end-line="221" selection-end-column="51" />
+                <state relative-caret-position="408">
+                  <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
                   <folding>
-                    <marker date="1493824628446" expanded="true" signature="1320:1665" ph="select count... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="2508:2853" ph="select count... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="7887:7986" ph="select disti... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="8351:8605" ph="select mk.na... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="8351:8623" ph="select mk.na... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="8351:8635" ph="select mk.na... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="9101:9383" ph="select mk.na... trx_peminjaman_kendaraan" />
-                    <marker date="1493824628446" expanded="true" signature="9846:10129" ph="select mk.na... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="1320:1665" ph="select count... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="2508:2853" ph="select count... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="4714:6280" ph="..." />
+                    <marker date="1493826897208" expanded="true" signature="7887:7986" ph="select disti... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="8351:8605" ph="select mk.na... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="8351:8623" ph="select mk.na... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="8351:8635" ph="select mk.na... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="9101:9383" ph="select mk.na... trx_peminjaman_kendaraan" />
+                    <marker date="1493826897208" expanded="true" signature="9846:10129" ph="select mk.na... trx_peminjaman_kendaraan" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="StatusPeminjaman.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="StatusPeminjaman.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/protected/models/constant/StatusPeminjaman.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="323">
@@ -136,7 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cancel</find>
       <find>id</find>
       <find>data ter</find>
       <find>required</find>
@@ -156,7 +167,6 @@
       <find>edit</find>
       <find>detailpermohonan</find>
       <find>model</find>
-      <find>setujui</find>
       <find>getall</find>
       <find>detailruanganpeminjaman</find>
       <find>ListPeminjaman</find>
@@ -166,6 +176,8 @@
       <find>disapp</find>
       <find>laporanruangan</find>
       <find>getalltahun</find>
+      <find>nodin</find>
+      <find>setujui</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -196,7 +208,6 @@
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/detailPermohonan.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/editPermohonan.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/site/index.php" />
-        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php" />
         <option value="$PROJECT_DIR$/protected/models/custom/TmstUserCustom.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPermohonan.php" />
@@ -206,10 +217,11 @@
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/detailKendaraanPeminjaman.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/listPeminjaman.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/ruangan/ListPeminjaman.php" />
-        <option value="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" />
         <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/laporanKendaraan.php" />
-        <option value="$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php" />
         <option value="$PROJECT_DIR$/protected/models/constant/StatusPeminjaman.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php" />
+        <option value="$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php" />
+        <option value="$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php" />
       </list>
     </option>
   </component>
@@ -631,7 +643,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cms" />
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -729,15 +741,15 @@
       <workItem from="1492950313746" duration="2062000" />
       <workItem from="1493020803262" duration="5901000" />
       <workItem from="1493086899327" duration="269000" />
-      <workItem from="1493819729897" duration="5022000" />
+      <workItem from="1493819729897" duration="7145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76669000" />
+    <option name="totallyTimeSpent" value="78792000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17803837" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -970,14 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="22" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraanPegawai.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="638">
@@ -1120,13 +1124,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/laporanKendaraan.php">
+    <entry file="file://$PROJECT_DIR$/protected/models/constant/StatusPeminjaman.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="64" column="62" lean-forward="false" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
-          <folding>
-            <element signature="e#6#88#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1142,34 +1144,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/controllers/PeminjamanKendaraanController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="617">
-          <caret line="258" column="24" lean-forward="false" selection-start-line="258" selection-start-column="24" selection-end-line="258" selection-end-column="24" />
+        <state relative-caret-position="374">
+          <caret line="43" column="45" lean-forward="true" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/laporanKendaraan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="64" column="62" lean-forward="false" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
+          <folding>
+            <element signature="e#6#88#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/themes/insp/views/peminjamanKendaraan/pinjamKendaraan.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="2" column="63" lean-forward="false" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/protected/models/custom/TrxPeminjamanKendaraanCustom.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="221" column="51" lean-forward="false" selection-start-line="221" selection-start-column="51" selection-end-line="221" selection-end-column="51" />
+        <state relative-caret-position="408">
+          <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
           <folding>
-            <marker date="1493824628446" expanded="true" signature="1320:1665" ph="select count... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="2508:2853" ph="select count... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="7887:7986" ph="select disti... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="8351:8605" ph="select mk.na... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="8351:8623" ph="select mk.na... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="8351:8635" ph="select mk.na... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="9101:9383" ph="select mk.na... trx_peminjaman_kendaraan" />
-            <marker date="1493824628446" expanded="true" signature="9846:10129" ph="select mk.na... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="1320:1665" ph="select count... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="2508:2853" ph="select count... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="4714:6280" ph="..." />
+            <marker date="1493826897208" expanded="true" signature="7887:7986" ph="select disti... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="8351:8605" ph="select mk.na... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="8351:8623" ph="select mk.na... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="8351:8635" ph="select mk.na... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="9101:9383" ph="select mk.na... trx_peminjaman_kendaraan" />
+            <marker date="1493826897208" expanded="true" signature="9846:10129" ph="select mk.na... trx_peminjaman_kendaraan" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/protected/models/constant/StatusPeminjaman.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="10" lean-forward="true" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
