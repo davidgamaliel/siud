@@ -12,6 +12,7 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionPinjamKendaraan() {
         $model = new TrxPeminjamanKendaraanCustom();
+        $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
@@ -22,7 +23,6 @@ class PeminjamanKendaraanController extends Controller
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
             }
             else {
-                Yii::app()->user->setFlash('errors','Permohonan peminjaman gagal dibuat');
             }
         }
         $this->render('pinjamKendaraan', array(
@@ -34,6 +34,7 @@ class PeminjamanKendaraanController extends Controller
 
     public function actionPinjamKendaraanPegawai() {
         $model = new TrxPeminjamanKendaraanCustom();
+        $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
         if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
 //            $file = CUploadedFile::getInstance($model,'nodin');
@@ -87,10 +88,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
-//        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
-//        $model_kendaraan->ketersediaan = false;
         if($model->save()) {
-            $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$model->id);
             echo CJSON::encode($result);
         }
@@ -103,10 +101,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionTolakPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
-//        $model_kendaraan = MstKendaraanCustom::model()->findByPk($model->kendaraan_id);
-//        $model_kendaraan->ketersediaan = true;
         if($model->save()) {
-            $model_kendaraan->save();
             $result = array('status'=>'berhasil','id'=>$_POST['id']);
             echo CJSON::encode($result);
         }
@@ -224,9 +219,47 @@ class PeminjamanKendaraanController extends Controller
 
     }
 
-    public function actionLaporanKendaraan()
-    {
-        
+    public function actionDetailKendaraanPeminjaman($id) {
+        $model = new TrxPeminjamanKendaraanCustom();
+        $this->render('detailKendaraanPeminjaman', array(
+            'model' => $model,
+            'id'=>$id
+        ));
     }
+    public function actionLaporanKendaraan() {
+        $model = new TrxPeminjamanKendaraanCustom();
+        $allKendaraan = array();
 
+        $tahun = Date('Y');
+        $bulan = Date('m');
+        $allTahun = $model->getAllTahunPeminjaman();
+        $allBulan = $allBulan = ['01'=>'Januari', '02'=>'Februari', '03'=>'Maret', '04'=>'April', '05'=>'Mei', '06'=>'Juni', '07'=>'Juli', '08'=>'Agustus', '09'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember'];
+
+        if(isset($_POST['pilih'])) {
+            $tahun = $_POST['tahun'];
+            $bulan = $_POST['bulan'];
+        }
+
+        $begin = Date($tahun.'-'.$bulan.'-'.'01');
+        $end = Date($tahun.'-'.$bulan.'-'.'t');
+
+        $setuju = $model->getAllApprovedKendaraan($begin, $end);
+        if($setuju) $setuju = [intval($setuju[0]['count'])];
+        else $setuju = [0];
+
+        $tolak = $model->getAllDisapprovedKendaraan($begin, $end);
+        if($tolak) $tolak = [intval($tolak[0]['count'])];
+        else $tolak = [0];
+
+        $this->render('laporanKendaraan', array(
+            'tahun' => $tahun,
+            'bulan' => $bulan,
+            'allTahun' => $allTahun,
+            'allBulan' => $allBulan,
+            'allKendaraan' => $allKendaraan,
+            'setuju' => $setuju,
+            'tolak' => $tolak,
+        ));
+
+    }
 }

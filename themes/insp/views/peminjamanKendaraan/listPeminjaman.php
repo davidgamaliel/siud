@@ -13,12 +13,12 @@
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    Daftar Peminjaman
+                    Daftar Kendaraan
                 </div>
                 <div class="ibox-content">
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
                         'id'=>'trx-card-order-custom-grid-instant',
-                        'dataProvider'=>$model->listPeminjaman(),
+                        'dataProvider'=>$model->getAllKendaraan(),
                         'ajaxUpdate'=>false,
                         'columns'=>array(
                             array(
@@ -26,16 +26,32 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
-                                'name'=>'kendaraan_id',
-                                'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
+                                'name'=>'Nama Kendaraan',
+                                'value'=>'$data->nama',
                             ),
-                            'tanggal_peminjaman',
-                            'waktu_peminjaman',
-                            'supir',
-                            'nodin',
                             array(
-                                'name'=>'status',
-                                'value'=>'StatusPeminjaman::getStatusPeminjaman($data->status)'
+                                'name'=>'No Polisi',
+                                'value'=>'$data->no_polisi',
+                            ),
+                            array(
+                                'name'=>'Keterangan',
+                                'value'=>'$data->keterangan',
+                            ),
+                            array(
+                                'header'=>'aksi',
+                                'class'=>'CButtonColumn',
+                                'template'=>'{detail}',
+                                'buttons'=>array(
+                                    'detail'=>array(
+                                        'label'=>'Ketersediaan',
+                                        'options'=>array(
+                                            'title'=>'Detail',
+                                            'class'=>'btn btn-sm btn-primary',
+                                        ),
+                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailKendaraanPeminjaman", array("id"=>$data->id))',
+                                        'visible'=>'true'
+                                    ),
+                                )
                             )
                         ),
                         'htmlOptions' => array(

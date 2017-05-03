@@ -203,4 +203,84 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             return '';
         }
     }
+
+    public function getListPeminjamanByIdKendaraan($id) {
+        $today = new DateTime();
+        $format = $today->format('d-m-y');
+        $provider = new CActiveDataProvider($this, array(
+            'criteria'=>array(
+                'condition'=>"status=1 AND waktu_mulai >= to_timestamp('" . $format . "' , 'DD-MM-YY') AND kendaraan_id = " . $id ."",
+                'order'=>'waktu_mulai DESC',
+            ),
+        ));
+
+        return $provider;
+    }
+
+    public function getAllTahunPeminjaman() {
+        $result = array();
+        $sql = "select distinct to_char(waktu_mulai, 'YYYY') as tahun
+                from trx_peminjaman_kendaraan";
+        $command = Yii::app()->db->createCommand($sql);
+        $tahun = $command->queryAll();
+        if($tahun) {
+            foreach ($tahun as $value) {
+                $result[$value['tahun']] = $value['tahun'];
+            }
+        }
+        return $result;
+    }
+
+    public function getAllApprovedKendaraan($begin=null, $end=null)
+    {
+        $sql = 'select mk.nama, count(tpk.id)
+                from trx_peminjaman_kendaraan tpk 
+                     left join mst_kendaraan mk on mk.id = tpk.kendaraan_id
+                     left join tref_status_permohonan tsp on tsp.id = tpk.status
+                where tsp.nama = \'Disetujui\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $sql .= ' group by mk.nama';
+        $command = Yii::app()->db->createCommand($sql);
+
+        $result = $command->queryAll();
+        return $result;
+    }
+
+    public function getAllDisapprovedKendaraan($begin=null, $end=null)
+    {
+        $sql = 'select mk.nama, count(tpk.id)
+                from trx_peminjaman_kendaraan tpk 
+                     left join mst_kendaraan mk on mk.id = tpk.kendaraan_id
+                     left join tref_status_permohonan tsp on tsp.id = tpk.status
+                where tsp.nama = \'Ditolak\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $sql .= ' group by mk.nama';
+        $command = Yii::app()->db->createCommand($sql);
+
+        $result = $command->queryAll();
+        return $result;
+    }
+    public function getAllProcessedKendaraan($begin=null, $end=null)
+    {
+        $sql = 'select mk.nama, count(tpk.id)
+                from trx_peminjaman_kendaraan tpk 
+                     left join mst_kendaraan mk on mk.id = tpk.kendaraan_id
+                     left join tref_status_permohonan tsp on tsp.id = tpk.status
+                where tsp.nama = \'Diproses\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $sql .= ' group by mk.nama';
+        $command = Yii::app()->db->createCommand($sql);
+
+        $result = $command->queryAll();
+        return $result;
+    }
 }
