@@ -8,13 +8,13 @@
  */
 class StatusPeminjaman
 {
-    const MENUNGGU_PERSETUJUAN = 0 ;
+    const MENUNGGU_PERSETUJUAN = 3 ;
     const DISETUJUI = 1;
-    const DITOLAK = 99;
+    const DITOLAK = 2;
 
     public static function getStatusPeminjaman($kode) {
         $options = array(
-            self::MENUNGGU_PERSETUJUAN => 'Menunggu Persetujuan',
+            self::MENUNGGU_PERSETUJUAN => 'Diproses',
             self::DISETUJUI => 'Disetujui',
             self::DITOLAK => 'Ditolak'
         );
