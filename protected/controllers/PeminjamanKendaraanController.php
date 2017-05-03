@@ -231,4 +231,40 @@ class PeminjamanKendaraanController extends Controller
             'id'=>$id
         ));
     }
+    public function actionLaporanKendaraan() {
+        $model = new TrxPeminjamanKendaraanCustom();
+        $allKendaraan = array();
+
+        $tahun = Date('Y');
+        $bulan = Date('m');
+        $allTahun = $model->getAllTahunPeminjaman();
+        $allBulan = $allBulan = ['01'=>'Januari', '02'=>'Februari', '03'=>'Maret', '04'=>'April', '05'=>'Mei', '06'=>'Juni', '07'=>'Juli', '08'=>'Agustus', '09'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember'];
+
+        if(isset($_POST['pilih'])) {
+            $tahun = $_POST['tahun'];
+            $bulan = $_POST['bulan'];
+        }
+
+        $begin = Date($tahun.'-'.$bulan.'-'.'01');
+        $end = Date($tahun.'-'.$bulan.'-'.'t');
+
+        $setuju = $model->getAllApprovedKendaraan($begin, $end);
+        if($setuju) $setuju = [intval($setuju[0]['count'])];
+        else $setuju = [0];
+
+        $tolak = $model->getAllDisapprovedKendaraan($begin, $end);
+        if($tolak) $tolak = [intval($tolak[0]['count'])];
+        else $tolak = [0];
+
+        $this->render('laporanKendaraan', array(
+            'tahun' => $tahun,
+            'bulan' => $bulan,
+            'allTahun' => $allTahun,
+            'allBulan' => $allBulan,
+            'allKendaraan' => $allKendaraan,
+            'setuju' => $setuju,
+            'tolak' => $tolak,
+        ));
+
+    }
 }
