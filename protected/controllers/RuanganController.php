@@ -211,6 +211,8 @@ class RuanganController extends Controller
 		$model = new TranPeminjamanRuangan();
 		$logic = new BLRuangan();
 		$allRuangan = array();
+		$statusApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Disetujui'));
+		$statusDisApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Ditolak'));
 		
 		$tahun = Date('Y');
 		$bulan = Date('m');
@@ -233,6 +235,24 @@ class RuanganController extends Controller
 		if($tolak) $tolak = [intval($tolak[0]['count'])];
 		else $tolak = [0];
 
+		$mulai = DateTime::createFromFormat('d-m-Y', '01-'.$bulan.'-'.$tahun);
+		$endString = $mulai->format('t').'-'.$bulan.'-'.$tahun;
+		$akhir = DateTime::createFromFormat('d-m-Y', $endString);
+		$condition = '(status_id = ' . $statusApp->id . ' OR status_id = ' . $statusDisApp->id . ') AND waktu_awal_peminjaman BETWEEN \'' . $mulai->format('Y-m-d H:i') . '\' AND \'' . $akhir->format('Y-m-d H:i') . '\'';
+
+		$provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
+			'criteria'=>array(
+		        'condition'=> $condition,
+		    ),
+			'sort'=>array(
+				'defaultOrder'=>'waktu_awal_peminjaman'
+			),
+			'pagination'=>array(
+		        'pageSize'=>20,
+		    ),
+		));
+
+		$data['provider'] = $provider;
 		$data['tahun'] = $tahun;
 		$data['bulan'] = $bulan;
 		$data['allTahun'] = $allTahun;

@@ -223,4 +223,10 @@ class PeminjamanKendaraanController extends Controller
         ));
 
     }
+
+    public function actionLaporanKendaraan()
+    {
+        
+    }
+
 }
