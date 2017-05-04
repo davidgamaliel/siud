@@ -26,7 +26,13 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e)
 	?>
 </div>
 
-
+<?php if(Yii::app()->user->hasFlash('warning')):?>
+<div class="row">
+    <div class="alert alert-warning alert-dismissable col-lg-12">
+        <p><?php echo Yii::app()->user->getFlash('warning'); ?></p>
+    </div>
+</div>
+<?php endif; ?>
 
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">

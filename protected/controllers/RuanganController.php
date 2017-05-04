@@ -25,8 +25,7 @@ class RuanganController extends Controller
 			$thisDate = $model->waktu_awal_peminjaman;
 			$isClashed = $logic->istimeClashed($model->waktu_awal_peminjaman, $model->waktu_akhir_peminjaman, $model->id_ruangan);
 			if($isClashed) {
-				var_dump('Ruangan bentrok');
-				die;
+				Yii::app()->user->setFlash('warning', 'Jadwal ruangan yang dipilih bentrok dengan jadwal yang sudah ada');
 			}
 			else {
 				$mulai = DateTime::createFromFormat('d/m/Y G:i', $model->waktu_awal_peminjaman)->setTimeZone(new DateTimeZone('Asia/Jakarta'));
