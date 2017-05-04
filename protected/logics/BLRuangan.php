@@ -190,32 +190,41 @@ class BLRuangan {
         return $command->queryAll();
     }
 
-    public function getJumlahRuanganSetuju($ruangan)
+    public function getJumlahRuanganSetuju($ruangan, $begin=null, $end=null)
     {
         $sql = 'select count(tpr.id) as jumlah
                 from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
                 where tpr.status_id = 1
                 and tr.nama = \''.$ruangan.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpr.waktu_awal_peminjaman BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
     }
 
-    public function getJumlahRuanganTolak($ruangan)
+    public function getJumlahRuanganTolak($ruangan, $begin=null, $end=null)
     {
         $sql = 'select count(tpr.id) as jumlah
                 from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
                 where tpr.status_id = 2
                 and tr.nama = \''.$ruangan.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpr.waktu_awal_peminjaman BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
     }
 
-    public function getJumlahRuanganProses($ruangan)
+    public function getJumlahRuanganProses($ruangan, $begin=null, $end=null)
     {
         $sql = 'select count(tpr.id) as jumlah
                 from tmst_ruangan tr left join tran_peminjaman_ruangan tpr on tr.id = tpr.id_ruangan
                 where tpr.status_id = 3
                 and tr.nama = \''.$ruangan.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpr.waktu_awal_peminjaman BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
     }

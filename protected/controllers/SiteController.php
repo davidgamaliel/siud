@@ -35,6 +35,33 @@ class SiteController extends Controller
 		$isPegawai = BLAuthorization::isPegawai();
 		$isAdmin = BLAuthorization::isAdmin();
 		$logicRuangan = new BLRuangan();
+		$tahun = Date('Y');
+		$bulan = Date('m');
+		$allTahun = $logicRuangan->getAllTahunPeminjaman();
+		$allBulan = ['01'=>'Januari', '02'=>'Februari', '03'=>'Maret', '04'=>'April', '05'=>'Mei', '06'=>'Juni', '07'=>'Juli', '08'=>'Agustus', '09'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember'];
+		$statusApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Disetujui'));
+		$statusDisApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Ditolak'));
+		/*if(isset($_POST['pilih'])) {
+			$tahun = $_POST['tahun'];
+			$bulan = $_POST['bulan'];
+		}*/
+
+		$begin = Date($tahun.'-'.$bulan.'-'.'01');
+		$end = Date($tahun.'-'.$bulan.'-'.'t');
+		
+		$setuju = $logicRuangan->getAllApprovedRuangan($begin, $end);
+		if($setuju) $setuju = [intval($setuju[0]['count'])];
+		else $setuju = [0];
+
+		$tolak = $logicRuangan->getAllDisapprovedRuangan($begin, $end);
+		if($tolak) $tolak = [intval($tolak[0]['count'])];
+		else $tolak = [0];
+
+		$mulai = DateTime::createFromFormat('d-m-Y', '01-'.$bulan.'-'.$tahun);
+		$endString = $mulai->format('t').'-'.$bulan.'-'.$tahun;
+		$akhir = DateTime::createFromFormat('d-m-Y', $endString);
+		$condition = '(status_id = ' . $statusApp->id . ' OR status_id = ' . $statusDisApp->id . ') AND waktu_awal_peminjaman BETWEEN \'' . $mulai->format('Y-m-d H:i') . '\' AND \'' . $akhir->format('Y-m-d H:i') . '\'';
+
 		if($isPegawai) {
 			$kendaraanCustom = new MstKendaraanCustom();
 			$provider = $logicRuangan->getAllRuangan();
@@ -46,7 +73,7 @@ class SiteController extends Controller
 			$today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
 			$ruangan = new CActiveDataProvider('TranPeminjamanRuangan', array(
 				'criteria'=>array(
-			        'condition'=>'waktu_awal_peminjaman > '. '\'' . $today->format('Y-m-d H:i') . '\'',
+			        'condition'=>$condition,
 			    ),
 				'sort'=>array(
 					'defaultOrder'=>'waktu_awal_peminjaman'
@@ -56,14 +83,14 @@ class SiteController extends Controller
 			    ),
 			));
 			$allRuangan = array();
-			$allApprovedRuangan = $logicRuangan->getAllApprovedRuangan();
+			$allApprovedRuangan = $logicRuangan->getAllApprovedRuangan($begin, $end);
 			$allDataRuangan = $logicRuangan->getArrayAllRuangan();
 			
 			foreach ($allDataRuangan as $data) {
 				$allRuangan[] = $data['nama'];
-				$setuju[] = intval($logicRuangan->getJumlahRuanganSetuju($data['nama'])[0]['jumlah']);
-				$tolak[] = intval($logicRuangan->getJumlahRuanganTolak($data['nama'])[0]['jumlah']);
-				$proses[] = intval($logicRuangan->getJumlahRuanganProses($data['nama'])[0]['jumlah']);
+				$setuju[] = intval($logicRuangan->getJumlahRuanganSetuju($data['nama'], $begin, $end)[0]['jumlah']);
+				$tolak[] = intval($logicRuangan->getJumlahRuanganTolak($data['nama'], $begin, $end)[0]['jumlah']);
+				$proses[] = intval($logicRuangan->getJumlahRuanganProses($data['nama'], $begin, $end)[0]['jumlah']);
 			}
 			$data['kendaraan'] = $kendaraan;
 			$data['ruangan'] = $ruangan;
@@ -71,6 +98,8 @@ class SiteController extends Controller
 			
 		}
 		//var_dump($setuju);
+		$data['bulan'] = $allBulan[$bulan];
+		$data['tahun'] = $tahun;
 		$data['setuju'] = $setuju;
 		$data['tolak'] = $tolak;
 		$data['proses'] = $proses;

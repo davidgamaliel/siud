@@ -212,6 +212,9 @@ class RuanganController extends Controller
 		$allRuangan = array();
 		$statusApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Disetujui'));
 		$statusDisApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Ditolak'));
+		$setuju = array();
+		$tolak = array();
+		$proses = array();
 		
 		$tahun = Date('Y');
 		$bulan = Date('m');
@@ -226,13 +229,23 @@ class RuanganController extends Controller
 		$begin = Date($tahun.'-'.$bulan.'-'.'01');
 		$end = Date($tahun.'-'.$bulan.'-'.'t');
 		
-		$setuju = $logic->getAllApprovedRuangan($begin, $end);
+		/*$setuju = $logic->getAllApprovedRuangan($begin, $end);
 		if($setuju) $setuju = [intval($setuju[0]['count'])];
 		else $setuju = [0];
 
 		$tolak = $logic->getAllDisapprovedRuangan($begin, $end);
 		if($tolak) $tolak = [intval($tolak[0]['count'])];
-		else $tolak = [0];
+		else $tolak = [0];*/
+
+		$allRuangan = array();
+		$allApprovedRuangan = $logic->getAllApprovedRuangan($begin, $end);
+		$allDataRuangan = $logic->getArrayAllRuangan();
+		foreach ($allDataRuangan as $data) {
+			$allRuangan[] = $data['nama'];
+			$setuju[] = intval($logic->getJumlahRuanganSetuju($data['nama'], $begin, $end)[0]['jumlah']);
+			$tolak[] = intval($logic->getJumlahRuanganTolak($data['nama'], $begin, $end)[0]['jumlah']);
+			$proses[] = intval($logic->getJumlahRuanganProses($data['nama'], $begin, $end)[0]['jumlah']);
+		}
 
 		$mulai = DateTime::createFromFormat('d-m-Y', '01-'.$bulan.'-'.$tahun);
 		$endString = $mulai->format('t').'-'.$bulan.'-'.$tahun;
@@ -251,6 +264,10 @@ class RuanganController extends Controller
 		    ),
 		));
 
+		$data['allRuangan'] = $allRuangan;
+		$data['setuju'] = $setuju;
+		$data['tolak'] = $tolak;
+		$data['proses'] = $proses;
 		$data['provider'] = $provider;
 		$data['tahun'] = $tahun;
 		$data['bulan'] = $bulan;

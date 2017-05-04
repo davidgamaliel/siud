@@ -48,7 +48,7 @@
 			        ),
 			        'xAxis' => array(
 			        	'text' => 'Nama Ruangan',
-			            'categories' => array('Ruangan'),
+			            'categories' => $allRuangan,
 			        ),
 			        'yAxis' => array(
 			        	'text' => 'Jumlah Permohonan',
@@ -76,6 +76,11 @@
 			                'name' => 'Ditolak',
 			                'data' => $tolak,
 			            ),
+                        array(
+                            'type' => 'column',
+                            'name' => 'Diprose',
+                            'data' => $proses,
+                        )
 			        ),
 			    )
 			));

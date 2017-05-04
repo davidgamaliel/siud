@@ -11,6 +11,7 @@
 		<?php $this->renderPartial('/ruangan/ListPeminjaman', array('provider'=>$provider)) ?>
 		<?php $this->renderPartial('/peminjamanKendaraan/listPeminjaman', array('model'=>$kendaraanCustom)) ?>
 	<?php elseif($isAdmin): ?>
+
 		<?php
 			$this->widget('ext.highcharts.HighchartsWidget', array(
 			    'scripts' => array(
@@ -19,7 +20,7 @@
 			    ),
 			    'options' => array(
 			        'title' => array(
-			            'text' => 'Grafik Permohonan Ruangan',
+			            'text' => 'Grafik Permohonan Ruangan ' . $bulan . ' - ' . $tahun,
 			        ),
 			        'xAxis' => array(
 			        	'text' => 'Nama Ruangan',
