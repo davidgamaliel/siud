@@ -266,6 +266,37 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $result = $command->queryAll();
         return $result;
     }
+
+    public function getDetailAllApprovedDisapprovedKendaraanUntukLaporan($begin=null, $end=null) {
+        $sql = 'select *
+                from trx_peminjaman_kendaraan tpk 
+                     left join tref_status_permohonan tsp on tsp.id = tpk.status
+                where (tsp.nama = \'Disetujui\' OR tsp.nama = \'Ditolak\') ';
+        if($begin != null && $end != null) {
+            $sql .= ' AND waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $command = Yii::app()->db->createCommand($sql);
+        $result = $command->queryAll();
+        $command = Yii::app()->db->createCommand('SELECT COUNT(*) from (' . $sql .') as foo');
+        $count = $command->queryScalar();
+
+        $model = new CArrayDataProvider($result, array( //or $model=new CArrayDataProvider($rawData, array(... //using with querAll...
+            'keyField' => 'id',
+            'totalItemCount' => $count,
+
+            'sort' => array(
+                'defaultOrder' => array(
+                    'id' => CSort::SORT_DESC, //default sort value
+                ),
+            ),
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
+        ));
+        return $model;
+    }
+
     public function getAllProcessedKendaraan($begin=null, $end=null)
     {
         $sql = 'select mk.nama, count(tpk.id)

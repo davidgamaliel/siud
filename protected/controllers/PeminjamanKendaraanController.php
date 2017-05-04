@@ -251,6 +251,7 @@ class PeminjamanKendaraanController extends Controller
         if($tolak) $tolak = [intval($tolak[0]['count'])];
         else $tolak = [0];
 
+        $dataList = $model->getDetailAllApprovedDisapprovedKendaraanUntukLaporan($begin, $end);
         $this->render('laporanKendaraan', array(
             'tahun' => $tahun,
             'bulan' => $bulan,
@@ -259,6 +260,7 @@ class PeminjamanKendaraanController extends Controller
             'allKendaraan' => $allKendaraan,
             'setuju' => $setuju,
             'tolak' => $tolak,
+            'provider' => $dataList
         ));
 
     }

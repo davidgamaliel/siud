@@ -16,6 +16,14 @@ class TmstUserCustom extends TmstUser
     public static function namaPeminjamKendaraan($id) {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
         $model_user = TmstUserCustom::model()->findByPk($model->id_peminjam);
+        //echo "<pre>";var_dump($model);die;
+        if($model_user) {
+            return $model_user->username;
+        }
+    }
+    public static function namaPeminjamKendaraanByUserId($userid) {
+        $model_user = TmstUserCustom::model()->findByPk($userid);
+        //echo "<pre>";var_dump($model);die;
         if($model_user) {
             return $model_user->username;
         }

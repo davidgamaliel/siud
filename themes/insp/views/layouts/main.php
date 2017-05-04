@@ -73,6 +73,7 @@
                                 array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/penggunaanBensin'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
                                 array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/listPenggunaan'),'visible'=>BLAuthorization::isAdmin()),
                                 array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Riwayat Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/riwayatPenggunaan'), 'visible'=> BLAuthorization::isPegawai()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Laporan</span>', 'url'=>array('/penggunaanBensin/laporanBensin'), 'visible'=> BLAuthorization::isAdmin()),
                             ),
                             'visible'=>!Yii::app()->user->isGuest
                         ),

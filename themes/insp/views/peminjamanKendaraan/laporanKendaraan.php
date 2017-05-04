@@ -54,7 +54,7 @@ $form=$this->beginWidget('CActiveForm', array(
             ),
             'xAxis' => array(
                 'text' => 'Nama Kendaraan',
-                'categories' => array('Ruangan'),
+                'categories' => array('Kendaraan'),
             ),
             'yAxis' => array(
                 'text' => 'Jumlah Permohonan',
@@ -87,3 +87,110 @@ $form=$this->beginWidget('CActiveForm', array(
     ));
     ?>
 </div>
+
+<div class="wrapper wrapper-content animate fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    Daftar Permohonan
+                </div>
+                <div class="ibox-content">
+                    <?php $this->widget('zii.widgets.grid.CGridView', array(
+                        'id'=>'list-permohonan-ruangan',
+                        'dataProvider'=>$provider,
+                        'ajaxUpdate'=>true,
+                        'columns'=>array(
+                            array(
+                                'header'=>'No',
+                                'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
+                            ),
+                            array(
+                                'header'=>'ID permohonan',
+                                'value'=>'$data["id"]',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
+                            ),
+                            array(
+                                'name'=>'Nama Pemohon',
+                                'value'=>'TmstUserCustom::namaPeminjamKendaraanByUserId($data["id_peminjam"])'
+                            ),
+                            array(
+                                'header'=>'kendaraan_id',
+                                'value'=>'MstKendaraanCustom::getNamaKendaraan($data["kendaraan_id"])',
+                            ),
+                            array(
+                                'header'=>'Waktu Awal Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data["waktu_mulai"])'
+                            ),
+                            array(
+                                'header'=>'Waktu Akhir Peminjaman',
+                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data["waktu_selesai"])'
+                            ),
+                            array(
+                                'header'=>'Supir',
+                                'value'=>'$data["supir"]',
+                            ),
+                            array(
+                                'header'=>'File Nodin',
+                                'value'=>'CHtml::link(
+                                            $data["nodin"],
+                                            Yii::app()->createUrl(\'/peminjamankendaraan/viewNodin\', array(\'id\' => $data["id"])) ,
+                                            array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
+                                'type'=>'raw',
+                            ),
+                            array(
+                                'header'=>'status',
+                                'value'=>'StatusPeminjaman::getStatusPeminjaman($data["status"])'
+                            ),
+                        ),
+                        'htmlOptions' => array(
+                            'class' => 'table table-striped'
+                        ),
+                        'pager' => array(
+                            'header' => '',
+                            'prevPageLabel' =>'<i class="fa fa-angle-left"></i>',
+                            'nextPageLabel' =>'<i class="fa fa-angle-right"></i>',
+                            'firstPageLabel' =>'<i class="fa fa-angle-double-left"></i>',
+                            'lastPageLabel' =>'<i class="fa fa-angle-double-right"></i>',
+                            'cssFile' => false,
+                            'htmlOptions' => array(
+                                'class' => 'pagination',
+                            ),
+                        ),
+                        'pagerCssClass' => 'blank',
+                        'itemsCssClass' => 'table table-striped table-hover data_table_ruangan',
+                        'cssFile' => false,
+                    ));
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.data_table_ruangan').DataTable({
+            'info': false,
+            dom: '<"html5buttons"Br>lTfgitp',
+            buttons: [
+                {extend: 'excel', title: 'Permohonan Peminjaman Kendaraan'},
+                {extend: 'pdf', title: 'Permohonan Peminjaman Kendaraan'},
+
+                {extend: 'print',
+                    customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+
+        });
+    });
+</script>
+

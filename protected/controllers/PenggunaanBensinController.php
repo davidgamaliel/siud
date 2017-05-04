@@ -60,4 +60,22 @@ class PenggunaanBensinController extends Controller
             'model'=>$model
         ));
     }
+
+    public function actionLaporanBensin() {
+        $model = new TrxPenggunaanBensinCustom();
+        $allWaktuPenggunaanBensin = $model->getAllBulanTahunPenggunaan();
+        $allBensin = array();
+        $jumlahBensin = array();
+        foreach ($allWaktuPenggunaanBensin as $data) {
+            $allBensin[] = $data['stampel2'];
+            $jumlahBensin[] = intval($model->getTotalPenggunaanBensinDalam1Bulan($data['stampel'])[0]['total']);
+
+        }
+
+        $this->render('laporanBensin', array(
+            'model' => $model,
+            'allBensin'=>$allBensin,
+            'jumlahBensin'=>$jumlahBensin
+        ));
+    }
 }

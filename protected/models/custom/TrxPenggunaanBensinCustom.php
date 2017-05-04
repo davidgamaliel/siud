@@ -90,4 +90,22 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
             return '';
         }
     }
+
+    public function getAllBulanTahunPenggunaan() {
+        $sql= "
+            select distinct to_char(tanggal,'MM-YYYY') stampel, to_char(tanggal,'Month YYYY') stampel2
+            from trx_penggunaan_bensin
+        ";
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getTotalPenggunaanBensinDalam1Bulan($bulan) {
+        $sql = "
+            select sum(jumlah_bensin) total
+            from trx_penggunaan_bensin
+            where to_char(tanggal,'MM-YYYY') = "."'".$bulan."'";
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
 }
