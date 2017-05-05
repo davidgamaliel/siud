@@ -5,6 +5,12 @@
  * Date: 4/21/2017
  * Time: 9:38 AM
  */
+Yii::app()->clientScript->registerScript('search', "
+$('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
+    useCurrent: false,
+    format: 'DD/MM/YYYY H:mm'
+});
+");
 ?>
 
 <div class="row  border-bottom white-bg dashboard-header">
@@ -35,6 +41,15 @@
                     ?>
                     <div class="form-horizontal">
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">Waktu Penggunaan Bensin</label>
+                            <div class="col-sm-3" id="datetimepicker1">
+                                <?php echo $form->textField($model,'tanggal',array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model, 'tanggal', array('class' => 'text-danger')); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">Unit Kerja</label>
                             <div class="col-sm-10">
                                 <?php echo $form->textField($model,'unit_kerja', array('class'=>'form-control')); ?>
@@ -55,7 +70,7 @@
                     <div class="hr-line-dashed"></div>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Jumlah Bensin (liter)</label>
+                            <label class="col-sm-2 control-label">Total Pengeluaran Bensin (rupiah)</label>
                             <div class="col-sm-10">
                                 <?php echo $form->textField($model,'jumlah_bensin', array('class'=>'form-control', 'type'=>'number')); ?>
                                 <?php echo $form->error($model,'jumlah_bensin', array('class'=>'text-daanger')); ?>

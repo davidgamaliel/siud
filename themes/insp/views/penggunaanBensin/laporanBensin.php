@@ -25,7 +25,7 @@
                     'text' => 'Grafik Penggunaan Bensin',
                 ),
                 'xAxis' => array(
-                    'text' => 'Nama Ruangan',
+                    'text' => 'Per Bulan',
                     'categories' => $allBensin,
                 ),
                 'yAxis' => array(
@@ -34,7 +34,7 @@
                 'labels' => array(
                     'items' => array(
                         array(
-                            'html' => 'Jumlah Penggunaan Bensin Per Bulan',
+                            'html' => 'Jumlah Pengeluaran Bensin Per Bulan',
                             'style' => array(
                                 'left' => '50px',
                                 'top' => '18px',
@@ -46,7 +46,7 @@
                 'series' => array(
                     array(
                         'type' => 'column',
-                        'name' => 'Jumlah bensin(*dalam liter)',
+                        'name' => 'Jumlah bensin(*dalam rupiah)',
                         'data' => $jumlahBensin,
                     ),
                 ),
