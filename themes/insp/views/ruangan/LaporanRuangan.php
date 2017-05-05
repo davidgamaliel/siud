@@ -78,7 +78,7 @@
 			            ),
                         array(
                             'type' => 'column',
-                            'name' => 'Diprose',
+                            'name' => 'Diproses',
                             'data' => $proses,
                         )
 			        ),

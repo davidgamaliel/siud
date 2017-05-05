@@ -79,6 +79,9 @@ class BLRuangan {
 
     public function istimeClashed($begin, $end, $idRuangan) {
         $result = false;
+        if($idRuangan == null || $idRuangan == '') {
+            return false;
+        }
         $criteria = new CDbCriteria();
         $criteria->condition = "id_ruangan = :ruangan AND waktu_akhir_peminjaman > to_timestamp(:begin, 'DD-MM-YYYY hh24:mi') AND waktu_awal_peminjaman < to_timestamp(:end, 'DD-MM-YYYY hh24:mi')";
         $criteria->params = array(':begin'=>$begin, ':end'=>$end, ':ruangan'=>$idRuangan);

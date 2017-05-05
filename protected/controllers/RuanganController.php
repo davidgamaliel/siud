@@ -28,14 +28,16 @@ class RuanganController extends Controller
 				Yii::app()->user->setFlash('warning', 'Jadwal ruangan yang dipilih bentrok dengan jadwal yang sudah ada');
 			}
 			else {
-				$mulai = DateTime::createFromFormat('d/m/Y G:i', $model->waktu_awal_peminjaman)->setTimeZone(new DateTimeZone('Asia/Jakarta'));
-				$akhir = DateTime::createFromFormat('d/m/Y G:i', $model->waktu_akhir_peminjaman)->setTimeZone(new DateTimeZone('Asia/Jakarta'));
-				$model->waktu_awal_peminjaman = $mulai->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
-		        $model->waktu_akhir_peminjaman = $akhir->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
+				$mulai = $model->waktu_awal_peminjaman != null ? DateTime::createFromFormat('d/m/Y G:i', $model->waktu_awal_peminjaman) : false;
+				$akhir = $model->waktu_akhir_peminjaman != null ? DateTime::createFromFormat('d/m/Y G:i', $model->waktu_akhir_peminjaman) : false;
+				$model->waktu_awal_peminjaman = $mulai == false ? null : $mulai->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
+		        $model->waktu_akhir_peminjaman = $akhir == false ? null : $akhir->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
 				$model->id_user_peminjam = Yii::app()->user->getState('user_id');
 				$model->status_id = 3;
 				$berkas = CUploadedFile::getInstance($model, 'nodin');
-				$filename = 'pinjamruangan'.$today->format('THis').'.'.$berkas->getExtensionName();
+				if($berkas != null) {
+					$filename = 'pinjamruangan'.$today->format('THis').'.'.$berkas->getExtensionName();
+				}
 
 
 				if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
@@ -49,9 +51,9 @@ class RuanganController extends Controller
 					$this->redirect(array('site/index'));
 				}
 				else {
-					// var_dump($model->getErrors());
-					// die();
-				}
+					/*echo '<pre>' ; var_dump($model->getErrors());
+					die();
+*/				}
 			}
 		}
 
@@ -212,6 +214,7 @@ class RuanganController extends Controller
 		$allRuangan = array();
 		$statusApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Disetujui'));
 		$statusDisApp = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Ditolak'));
+		$statusProc = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Diproses'));
 		$setuju = array();
 		$tolak = array();
 		$proses = array();
@@ -250,7 +253,7 @@ class RuanganController extends Controller
 		$mulai = DateTime::createFromFormat('d-m-Y', '01-'.$bulan.'-'.$tahun);
 		$endString = $mulai->format('t').'-'.$bulan.'-'.$tahun;
 		$akhir = DateTime::createFromFormat('d-m-Y', $endString);
-		$condition = '(status_id = ' . $statusApp->id . ' OR status_id = ' . $statusDisApp->id . ') AND waktu_awal_peminjaman BETWEEN \'' . $mulai->format('Y-m-d H:i') . '\' AND \'' . $akhir->format('Y-m-d H:i') . '\'';
+		$condition = '(status_id = ' . $statusApp->id . ' OR status_id = ' . $statusDisApp->id . ' OR status_id = ' . $statusProc->id . ') AND waktu_awal_peminjaman BETWEEN \'' . $mulai->format('Y-m-d H:i') . '\' AND \'' . $akhir->format('Y-m-d H:i') . '\'';
 
 		$provider = new CActiveDataProvider('TranPeminjamanRuangan', array(
 			'criteria'=>array(
