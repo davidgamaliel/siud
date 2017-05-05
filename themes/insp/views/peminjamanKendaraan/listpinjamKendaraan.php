@@ -88,7 +88,7 @@
                                             'class'=>'btn btn-sm btn-primary',
                                             'data-toggle' => 'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ),
 
