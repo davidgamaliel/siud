@@ -1,5 +1,4 @@
 <?php $this->pageTitle=Yii::app()->name; ?>
-
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-8">
 		<h2>Selamat Datang di <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h2>
@@ -61,6 +60,55 @@
 			    )
 			));
 		?>
+        <?php
+        $this->widget('ext.highcharts.HighchartsWidget', array(
+            'scripts' => array(
+                'modules/exporting',
+                'themes/grid-light',
+            ),
+            'options' => array(
+                'title' => array(
+                    'text' => 'Grafik Permohonan Kendaraan ' . $bulan . ' - ' . $tahun,
+                ),
+                'xAxis' => array(
+                    'text' => 'Nama Ruangan',
+                    'categories' => $allKendaraan,
+                ),
+                'yAxis' => array(
+                    'text' => 'Jumlah Permohonan',
+                ),
+                'labels' => array(
+                    'items' => array(
+                        array(
+                            'html' => 'Jumlah Permohonan Kendaraan',
+                            'style' => array(
+                                'left' => '50px',
+                                'top' => '18px',
+                                'color' => 'js:(Highcharts.theme && Highcharts.theme.textColor) || \'black\'',
+                            ),
+                        ),
+                    ),
+                ),
+                'series' => array(
+                    array(
+                        'type' => 'column',
+                        'name' => 'Disetujui',
+                        'data' => $setujuKendaraan,
+                    ),
+                    array(
+                        'type' => 'column',
+                        'name' => 'Ditolak',
+                        'data' => $tolakKendaraan,
+                    ),
+                    array(
+                        'type' => 'column',
+                        'name' => 'Diproses',
+                        'data' => $prosesKendaraan,
+                    ),
+                ),
+            )
+        ));
+        ?>
 	<?php endif; ?>
 </div>
 <?php if($isAdmin): ?>

@@ -231,6 +231,12 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         return $result;
     }
 
+    public function getArrayAllKendaraan() {
+        $sql = 'select nama from mst_kendaraan order by nama';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
     public function getAllApprovedKendaraan($begin=null, $end=null)
     {
         $sql = 'select mk.nama, count(tpk.id)
@@ -313,5 +319,40 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
 
         $result = $command->queryAll();
         return $result;
+    }
+
+    public function getJumlahKendaraanSetuju($kendaraan,$begin = null, $end=null) {
+        $sql = 'select count(tpk.id) as jumlah
+                from mst_kendaraan mk left join trx_peminjaman_kendaraan tpk on mk.id = tpk.kendaraan_id
+                where tpk.status = 1
+                and mk.nama = \''.$kendaraan.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpk.waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getJumlahKendaraanDitolak($kendaraan,$begin = null, $end=null) {
+        $sql = 'select count(tpk.id) as jumlah
+                from mst_kendaraan mk left join trx_peminjaman_kendaraan tpk on mk.id = tpk.kendaraan_id
+                where tpk.status = 2
+                and mk.nama = \''.$kendaraan.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpk.waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+    public function getJumlahKendaraanDiproses($kendaraan,$begin = null, $end=null) {
+        $sql = 'select count(tpk.id) as jumlah
+                from mst_kendaraan mk left join trx_peminjaman_kendaraan tpk on mk.id = tpk.kendaraan_id
+                where tpk.status = 3
+                and mk.nama = \''.$kendaraan.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpk.waktu_mulai BETWEEN  to_timestamp(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_timestamp(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
     }
 }

@@ -34,6 +34,9 @@ class SiteController extends Controller
 		$setuju = array();
 		$tolak = array();
 		$proses = array();
+		$setujuKendaraan = array();
+		$tolakKendaraan = array();
+		$prosesKendaraan = array();
 		$data = array();
 		$isPegawai = BLAuthorization::isPegawai();
 		$isAdmin = BLAuthorization::isAdmin();
@@ -88,7 +91,8 @@ class SiteController extends Controller
 			$allRuangan = array();
 			$allApprovedRuangan = $logicRuangan->getAllApprovedRuangan($begin, $end);
 			$allDataRuangan = $logicRuangan->getArrayAllRuangan();
-			
+
+
 			foreach ($allDataRuangan as $data) {
 				$allRuangan[] = $data['nama'];
 				$setuju[] = intval($logicRuangan->getJumlahRuanganSetuju($data['nama'], $begin, $end)[0]['jumlah']);
@@ -98,7 +102,24 @@ class SiteController extends Controller
 			$data['kendaraan'] = $kendaraan;
 			$data['ruangan'] = $ruangan;
 			$data['allRuangan'] = $allRuangan;
-			
+
+
+			$allKendaraan = array();
+			$allDataKendaraan = $kendaraan->getArrayAllKendaraan();
+
+            foreach ($allDataKendaraan as $setiap) {
+                $allKendaraan[] = $setiap['nama'];
+                $setujuKendaraan[] = intval($kendaraan->getJumlahKendaraanSetuju($setiap['nama'], $begin, $end)[0]['jumlah']);
+                $tolakKendaraan[] = intval($kendaraan->getJumlahKendaraanDitolak($setiap['nama'], $begin, $end)[0]['jumlah']);
+                $prosesKendaraan[] = intval($kendaraan->getJumlahKendaraanDiproses($setiap['nama'], $begin, $end)[0]['jumlah']);
+            }
+
+            $data['allKendaraan'] = $allKendaraan;
+            $data['setujuKendaraan'] = $setujuKendaraan;
+            $data['tolakKendaraan'] = $tolakKendaraan;
+            $data['prosesKendaraan'] = $prosesKendaraan;
+
+
 		}
 		//var_dump($setuju);
 		$data['bulan'] = $allBulan[$bulan];
