@@ -88,3 +88,6 @@
         </div>
     </div>
 </div>
+<div class="wrapper wrapper-content animate fadeInRight">
+    <div align="center"><?php echo CHtml::link('Tambah Permintaan',array('ruangan/pinjamRuangan'), array('class'=>'btn btn-primary')); ?></div>
+</div>

@@ -97,7 +97,8 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e)
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white" type="submit">Cancel</button>
+                                <!-- <button class="btn btn-white" type="submit">Cancel</button> -->
+                                <?php echo CHtml::link('Batal',array('ruangan/listPeminjaman'), array('class'=>'btn btn-white')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class'=>'btn btn-primary')); ?> 
                                 <!-- <button class="btn btn-primary" type="submit">Kirim</button> -->
                             </div>
