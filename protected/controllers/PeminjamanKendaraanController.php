@@ -56,7 +56,7 @@ class PeminjamanKendaraanController extends Controller
     }
 
     public function actionlistPeminjaman() {
-        $model = new TrxPeminjamanKendaraanCustom();
+        $model = new MstKendaraanCustom;
         $this->render('listPeminjaman', array(
             'model'=>$model
         ));

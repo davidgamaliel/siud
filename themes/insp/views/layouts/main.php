@@ -58,12 +58,11 @@
                                 //array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Kendaraan Dipinjam</span>', 'url'=>array('/peminjamanKendaraan/listPeminjaman')),
 								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/peminjamanKendaraan/pinjamKendaraan'),'visible'=>BLAuthorization::isAdmin()),
 								array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Peminjaman</span>', 'url'=>array('/peminjamanKendaraan/pinjamKendaraanPegawai'),'visible'=>BLAuthorization::isPegawai()),
-
-								array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Riwayat Peminjaman</span>', 'url'=>array('/peminjamanKendaraan/listpinjamKendaraan'), 'visible'=> BLAuthorization::isPegawai()),
-
+                                array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Daftar Kendaraan</span>', 'url'=>array('/peminjamanKendaraan/listPeminjaman'), 'visible'=> BLAuthorization::isPegawai()),
+								array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Status Permohonan</span>', 'url'=>array('/peminjamanKendaraan/listpinjamKendaraan'), 'visible'=> BLAuthorization::isPegawai()),
 								array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamanKendaraan/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
                                 array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Kelola Kendaraan</span>', 'url'=>array('/peminjamanKendaraan/kelolaKendaraan'), 'visible'=> BLAuthorization::isAdmin()),
-                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Laporan</span>', 'url'=>array('/peminjamanKendaraan/laporanKendaraan'), 'visible'=> BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Rekap</span>', 'url'=>array('/peminjamanKendaraan/laporanKendaraan'), 'visible'=> BLAuthorization::isAdmin()),
 							),
 							'visible'=>!Yii::app()->user->isGuest
 						),
@@ -73,7 +72,7 @@
                                 array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/penggunaanBensin'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
                                 array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/listPenggunaan'),'visible'=>BLAuthorization::isAdmin()),
                                 array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Riwayat Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/riwayatPenggunaan'), 'visible'=> BLAuthorization::isPegawai()),
-                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Laporan</span>', 'url'=>array('/penggunaanBensin/laporanBensin'), 'visible'=> BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Rekap</span>', 'url'=>array('/penggunaanBensin/laporanBensin'), 'visible'=> BLAuthorization::isAdmin()),
                             ),
                             'visible'=>!Yii::app()->user->isGuest
                         ),

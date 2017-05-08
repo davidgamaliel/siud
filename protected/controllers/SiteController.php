@@ -27,6 +27,9 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+	    if(empty(Yii::app()->user->getState('user_id'))) {
+	        $this->redirect(Yii::app()->createUrl('site/login'));
+        }
 	    $model = new MstKendaraanCustom;
 		$setuju = array();
 		$tolak = array();

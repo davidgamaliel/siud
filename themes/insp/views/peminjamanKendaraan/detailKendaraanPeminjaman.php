@@ -115,3 +115,4 @@
         </div>
     </div>
 </div>
+<div align="center"><?php echo CHtml::link('Buat Permintaan', array('/peminjamanKendaraan/pinjamKendaraanPegawai'), array('class'=>'btn btn-primary', 'align'=>'right')); ?></div>
