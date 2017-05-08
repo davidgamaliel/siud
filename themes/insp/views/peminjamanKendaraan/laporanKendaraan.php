@@ -54,7 +54,7 @@ $form=$this->beginWidget('CActiveForm', array(
             ),
             'xAxis' => array(
                 'text' => 'Nama Kendaraan',
-                'categories' => array('Kendaraan'),
+                'categories' => $allKendaraan,
             ),
             'yAxis' => array(
                 'text' => 'Jumlah Permohonan',
@@ -82,6 +82,11 @@ $form=$this->beginWidget('CActiveForm', array(
                     'name' => 'Ditolak',
                     'data' => $tolak,
                 ),
+                array(
+                    'type' => 'column',
+                    'name' => 'Diproses',
+                    'data' => $proses,
+                )
             ),
         )
     ));

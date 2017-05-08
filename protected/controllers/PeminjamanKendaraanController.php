@@ -235,6 +235,9 @@ class PeminjamanKendaraanController extends Controller
         $bulan = Date('m');
         $allTahun = $model->getAllTahunPeminjaman();
         $allBulan = $allBulan = ['01'=>'Januari', '02'=>'Februari', '03'=>'Maret', '04'=>'April', '05'=>'Mei', '06'=>'Juni', '07'=>'Juli', '08'=>'Agustus', '09'=>'September', '10'=>'Oktober', '11'=>'November', '12'=>'Desember'];
+        $setuju = array();
+        $tolak = array();
+        $proses = array();
 
         if(isset($_POST['pilih'])) {
             $tahun = $_POST['tahun'];
@@ -244,13 +247,22 @@ class PeminjamanKendaraanController extends Controller
         $begin = Date($tahun.'-'.$bulan.'-'.'01');
         $end = Date($tahun.'-'.$bulan.'-'.'t');
 
-        $setuju = $model->getAllApprovedKendaraan($begin, $end);
-        if($setuju) $setuju = [intval($setuju[0]['count'])];
-        else $setuju = [0];
+//        $setuju = $model->getAllApprovedKendaraan($begin, $end);
+//        if($setuju) $setuju = [intval($setuju[0]['count'])];
+//        else $setuju = [0];
+//
+//        $tolak = $model->getAllDisapprovedKendaraan($begin, $end);
+//        if($tolak) $tolak = [intval($tolak[0]['count'])];
+//        else $tolak = [0];
 
-        $tolak = $model->getAllDisapprovedKendaraan($begin, $end);
-        if($tolak) $tolak = [intval($tolak[0]['count'])];
-        else $tolak = [0];
+        $allKendaraan = array();
+        $allDataKendaraan = $model->getArrayAllKendaraan();
+        foreach ($allDataKendaraan as $setiap) {
+            $allKendaraan[] = $setiap['nama'];
+            $setuju[] = intval($model->getJumlahKendaraanSetuju($setiap['nama'], $begin, $end)[0]['jumlah']);
+            $tolak[] = intval($model->getJumlahKendaraanDitolak($setiap['nama'], $begin, $end)[0]['jumlah']);
+            $proses[] = intval($model->getJumlahKendaraanDiproses($setiap['nama'], $begin, $end)[0]['jumlah']);
+        }
 
         $dataList = $model->getDetailAllApprovedDisapprovedKendaraanUntukLaporan($begin, $end);
         $this->render('laporanKendaraan', array(
@@ -261,7 +273,11 @@ class PeminjamanKendaraanController extends Controller
             'allKendaraan' => $allKendaraan,
             'setuju' => $setuju,
             'tolak' => $tolak,
-            'provider' => $dataList
+            'provider' => $dataList,
+            'allKendaraan'=>$allKendaraan,
+            'setuju'=>$setuju,
+            'tolak'=>$tolak,
+            'proses'=>$proses,
         ));
 
     }
