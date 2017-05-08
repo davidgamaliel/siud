@@ -29,7 +29,7 @@
                 <div class="ibox-title">
                     Daftar Permohonan
                 </div>
-                <div class="ibox-content">
+                <div class="ibox-content CGridViewContainer">
                     <?php $this->widget('zii.widgets.grid.CGridView', array(
                         'id'=>'list-peminjaman',
                         'dataProvider'=>$model->listPermohonan(),
@@ -113,7 +113,7 @@
                                                 'data'=>'js:{id: id_permintaan}',
                                                 'dataType'=>'JSON',
                                                 'success'=>"function(data){
-                                                                    console.log('data terkirim');
+                                                                    console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
                                                                         $('#peringatan1').show();

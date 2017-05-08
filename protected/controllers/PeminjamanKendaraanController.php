@@ -88,12 +88,13 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
+        $model->validate();
         if($model->save()) {
             $result = array('status'=>'berhasil','id'=>$model->id);
             echo CJSON::encode($result);
         }
         else {
-            $result = array('status'=>'gagal');
+            $result = array('status'=>'gagal','id'=>$_POST['id'], 'Errors'=>$model->getErrors());
             echo CJSON::encode($result);
         }
     }

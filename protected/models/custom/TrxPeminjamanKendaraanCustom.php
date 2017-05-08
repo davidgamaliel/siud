@@ -17,8 +17,8 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $defaultRule = parent::rules();
         $newRule = array(
             array('kendaraan_id, peminjam, waktu_mulai, waktu_selesai', 'required')  ,
-            array('waktu_awal','constrainTanggalAwal'),
-            array('waktu_selesai','constrainTanggalAkhir'),
+//            array('waktu_awal','constrainTanggalAwal'),
+//            array('waktu_selesai','constrainTanggalAkhir'),
 //            array('MIN_REQUEST','numerical','integerOnly'=>true,'min'=>1,'max'=>9999999),
             //array('MAX_REQUEST','notLessThanMin')
         );

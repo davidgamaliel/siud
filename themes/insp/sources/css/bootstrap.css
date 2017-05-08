@@ -6797,4 +6797,5 @@ button.close {
     display: none !important;
   }
 }
+.CGridViewContainer { width: 960px; overflow: auto; }
 /*# sourceMappingURL=bootstrap.css.map */
