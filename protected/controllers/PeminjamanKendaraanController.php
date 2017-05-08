@@ -11,19 +11,12 @@ class PeminjamanKendaraanController extends Controller
     public $layout = '//layouts/column2';
 
     public function actionPinjamKendaraan() {
-        $model = new TrxPeminjamanKendaraanCustom();
+        $model = new PinjamKendaraanForm();
         $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
-//            $file = CUploadedFile::getInstance($model,'nodin');
-//            echo "<pre>";var_dump($file);die;
-            $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
-            if($berhasil) {
-                Yii::app()->user->setFlash('success','Permohonan peminjaman berhasil dibuat');
+        if(isset($_POST['PinjamKendaraanForm'])&& isset($_POST['submit'])) {
+            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm']))
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
-            }
-            else {
-            }
         }
         $this->render('pinjamKendaraan', array(
             'model' => $model,
@@ -33,22 +26,29 @@ class PeminjamanKendaraanController extends Controller
     }
 
     public function actionPinjamKendaraanPegawai() {
-        $model = new TrxPeminjamanKendaraanCustom();
+        $model = new PinjamKendaraanForm();
         $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
-//            $file = CUploadedFile::getInstance($model,'nodin');
-//            echo "<pre>";var_dump($file);die;
-            $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
-            if($berhasil) {
-                Yii::app()->user->setFlash('success','Permohonan peminjaman berhasil dibuat');
+        if(isset($_POST['PinjamKendaraanForm'])&& isset($_POST['submit'])) {
+            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm']))
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonanPegawai',array('id'=>$model->id)));
-            }
-            else {
-                Yii::app()->user->setFlash('errors','Permohonan peminjaman gagal dibuat');
-            }
         }
-        $this->render('pinjamKendaraanPegawai', array(
+        $this->render('pinjamKendaraanPegawai2', array(
+            'model' => $model,
+            'model_kendaraan'=>$model_kendaraan
+        ));
+
+    }
+
+    public function actionPinjamKendaraanPegawai2() {
+        $model = new PinjamKendaraanForm();
+        $model->unsetAttributes();
+        $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
+        if(isset($_POST['PinjamKendaraanForm'])&& isset($_POST['submit'])) {
+            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm']))
+                $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonanPegawai',array('id'=>$model->id)));
+        }
+        $this->render('pinjamKendaraanPegawai2', array(
             'model' => $model,
             'model_kendaraan'=>$model_kendaraan
         ));
