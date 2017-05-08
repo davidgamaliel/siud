@@ -93,18 +93,12 @@ class SiteController extends Controller
 			$allDataRuangan = $logicRuangan->getArrayAllRuangan();
 
 
-			foreach ($allDataRuangan as $data) {
-				$allRuangan[] = $data['nama'];
-				$setuju[] = intval($logicRuangan->getJumlahRuanganSetuju($data['nama'], $begin, $end)[0]['jumlah']);
-				$tolak[] = intval($logicRuangan->getJumlahRuanganTolak($data['nama'], $begin, $end)[0]['jumlah']);
-				$proses[] = intval($logicRuangan->getJumlahRuanganProses($data['nama'], $begin, $end)[0]['jumlah']);
+			foreach ($allDataRuangan as $rm) {
+				$allRuangan[] = $rm['nama'];
+				$setuju[] = intval($logicRuangan->getJumlahRuanganSetuju($rm['nama'], $begin, $end)[0]['jumlah']);
+				$tolak[] = intval($logicRuangan->getJumlahRuanganTolak($rm['nama'], $begin, $end)[0]['jumlah']);
+				$proses[] = intval($logicRuangan->getJumlahRuanganProses($rm['nama'], $begin, $end)[0]['jumlah']);
 			}
-			var_dump($setuju);
-			var_dump('<br />');
-			var_dump($proses);
-			var_dump('<br />');
-			var_dump($tolak);
-			var_dump('<br />');
 			$data['kendaraan'] = $kendaraan;
 			$data['ruangan'] = $ruangan;
 			$data['allRuangan'] = $allRuangan;
