@@ -52,13 +52,13 @@ class SiteController extends Controller
 		$begin = Date($tahun.'-'.$bulan.'-'.'01');
 		$end = Date($tahun.'-'.$bulan.'-'.'t');
 		
-		$setuju = $logicRuangan->getAllApprovedRuangan($begin, $end);
+		/*$setuju = $logicRuangan->getAllApprovedRuangan($begin, $end);
 		if($setuju) $setuju = [intval($setuju[0]['count'])];
 		else $setuju = [0];
 
 		$tolak = $logicRuangan->getAllDisapprovedRuangan($begin, $end);
 		if($tolak) $tolak = [intval($tolak[0]['count'])];
-		else $tolak = [0];
+		else $tolak = [0];*/
 
 		$mulai = DateTime::createFromFormat('d-m-Y', '01-'.$bulan.'-'.$tahun);
 		$endString = $mulai->format('t').'-'.$bulan.'-'.$tahun;
@@ -95,6 +95,12 @@ class SiteController extends Controller
 				$tolak[] = intval($logicRuangan->getJumlahRuanganTolak($data['nama'], $begin, $end)[0]['jumlah']);
 				$proses[] = intval($logicRuangan->getJumlahRuanganProses($data['nama'], $begin, $end)[0]['jumlah']);
 			}
+			var_dump($setuju);
+			var_dump('<br />');
+			var_dump($proses);
+			var_dump('<br />');
+			var_dump($tolak);
+			var_dump('<br />');
 			$data['kendaraan'] = $kendaraan;
 			$data['ruangan'] = $ruangan;
 			$data['allRuangan'] = $allRuangan;
