@@ -17,8 +17,8 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $defaultRule = parent::rules();
         $newRule = array(
             array('kendaraan_id, peminjam, waktu_mulai, waktu_selesai', 'required')  ,
-//            array('waktu_awal','constrainTanggalAwal'),
-//            array('waktu_selesai','constrainTanggalAkhir'),
+            array('waktu_awal','constrainTanggalAwal'),
+            array('waktu_selesai','constrainTanggalAkhir'),
 //            array('MIN_REQUEST','numerical','integerOnly'=>true,'min'=>1,'max'=>9999999),
             //array('MAX_REQUEST','notLessThanMin')
         );
@@ -33,7 +33,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
 
     public function constrainTanggalAwal ($attribute) {
         //echo "<pre>";var_dump($this->attributes);die;
-        if(empty($this->waktu_mulai->params[':mulai']) || is_null($this->waktu_mulai->params[':mulai'])) {
+        if(empty($this->waktu_mulai->params[':mulai']) || is_null($this->waktu_mulai)) {
             $this->addError($attribute, 'Waktu mulai tidak boleh kosong');
         }
         else {
@@ -47,7 +47,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
                 and kendaraan_id = :id_kendaraan
             ";
                 $data = Yii::app()->db->createCommand($sql);
-                $data->bindValue(':waktuAwal',$this->waktu_mulai->params[':mulai']);
+                $data->bindValue(':waktuAwal',$this->waktu_mulai);
                 $data->bindValue(':id_kendaraan',$this->kendaraan_id);
                 $rawData = $data->queryAll();
                 $count = $rawData[0]['peminjaman'];
@@ -57,7 +57,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         }
     }
     public function constrainTanggalAkhir ($attribute) {
-        if (empty($this->waktu_selesai->params[':selesai']) || is_null($this->waktu_selesai->params[':selesai'])) {
+        if (empty($this->waktu_selesai->params[':selesai']) || is_null($this->waktu_selesai)) {
             $this->addError($attribute, 'Waktu selesai tidak boleh kosong');
         }
         else
@@ -72,7 +72,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
                 and kendaraan_id = :id_kendaraan
             ";
                 $data = Yii::app()->db->createCommand($sql);
-                $data->bindValue(':waktuAwal',$this->waktu_selesai->params[':selesai']);
+                $data->bindValue(':waktuAwal',$this->waktu_selesai);
                 $data->bindValue(':id_kendaraan',$this->kendaraan_id);
                 $rawData = $data->queryAll();
                 $count = $rawData[0]['peminjaman'];
@@ -121,6 +121,9 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$filename);
             $this->nodin = $filename;
         }
+        $this->validate();
+//        echo "<Pre>";var_dump($this->getErrors());
+//        echo "<pre>";var_dump($this->attributes);die;
         if($this->validate()) {
             $this->save();
             return true;

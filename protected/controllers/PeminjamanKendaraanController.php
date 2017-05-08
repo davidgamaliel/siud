@@ -89,7 +89,7 @@ class PeminjamanKendaraanController extends Controller
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
         $model->validate();
-        if($model->save()) {
+        if($model->saveAttributes(array('status'))) {
             $result = array('status'=>'berhasil','id'=>$model->id);
             echo CJSON::encode($result);
         }
@@ -102,7 +102,7 @@ class PeminjamanKendaraanController extends Controller
     public function actionTolakPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
-        if($model->save()) {
+        if($model->saveAttributes(array('status'))) {
             $result = array('status'=>'berhasil','id'=>$_POST['id']);
             echo CJSON::encode($result);
         }
