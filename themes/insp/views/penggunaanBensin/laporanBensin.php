@@ -22,14 +22,14 @@
             ),
             'options' => array(
                 'title' => array(
-                    'text' => 'Grafik Penggunaan Bensin',
+                    'text' => 'Grafik Total Harga Penggunaan Bensin',
                 ),
                 'xAxis' => array(
                     'text' => 'Per Bulan',
                     'categories' => $allBensin,
                 ),
                 'yAxis' => array(
-                    'text' => 'Jumlah Penggunaan Bensin',
+                    'text' => 'Total Harga Penggunaan Bensin',
                 ),
                 'labels' => array(
                     'items' => array(
@@ -46,7 +46,7 @@
                 'series' => array(
                     array(
                         'type' => 'column',
-                        'name' => 'Jumlah bensin(*dalam rupiah)',
+                        'name' => 'Total Harga Bensin(*rupiah)',
                         'data' => $jumlahBensin,
                     ),
                 ),
@@ -80,7 +80,7 @@
                             'unit_kerja',
                             'keperluan',
                             array(
-                                'header'=>'Jumlah Bensin (liter)',
+                                'header'=>'Total Harga Penggunaan Bensin (*rupiah)',
                                 'value'=>'$data->jumlah_bensin'
                             ),
                             array(
@@ -113,7 +113,7 @@
                             ),
                         ),
                         'pagerCssClass' => 'blank',
-                        'itemsCssClass' => 'table table-striped table-hover',
+                        'itemsCssClass' => 'table table-striped table-hover data_table_ruangan',
                         'cssFile' => false,
                         'summaryCssClass' => 'dataTables_info',
                         'summaryText' => Yii::t('form','Showing {start} to {end} of {count} entries'),
@@ -125,4 +125,29 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('.data_table_ruangan').DataTable({
+            'info': false,
+            dom: '<"html5buttons"Br>lTfgitp',
+            buttons: [
+                {extend: 'excel', title: 'Total Harga Penggunaan Bensin'},
+                {extend: 'pdf', title: 'Total Harga Penggunaan Bensin'},
+
+                {extend: 'print',
+                    customize: function (win){
+                        $(win.document.body).addClass('white-bg');
+                        $(win.document.body).css('font-size', '10px');
+
+                        $(win.document.body).find('table')
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
+                }
+            ]
+
+        });
+    });
+</script>
 
