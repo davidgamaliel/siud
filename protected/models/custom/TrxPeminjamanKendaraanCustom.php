@@ -303,4 +303,50 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
     }
+
+    public static function validasiWaktuMulai($id) {
+        $model = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
+        $sql="
+                select 
+                      count(*) peminjaman
+                from trx_peminjaman_kendaraan
+                where 
+                (waktu_mulai <= to_timestamp(:waktuAwal,'YYYY-MM-DD hh24:mi')  and waktu_selesai >= to_timestamp(:waktuAwal,'YYYY-MM-DD hh24:mi'))
+                and status = 1
+                and kendaraan_id = :id_kendaraan 
+                and id != ".$model->id;
+        $data = Yii::app()->db->createCommand($sql);
+        $data->bindValue(':waktuAwal',$model->waktu_mulai);
+        $data->bindValue(':id_kendaraan',$model->kendaraan_id);
+        $rawData = $data->queryAll();
+        $count = $rawData[0]['peminjaman'];
+        if(intval($count) > 0 ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static function validasiWaktuSelesai($id) {
+        $model = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
+        $sql="
+                select 
+                      count(*) peminjaman
+                from trx_peminjaman_kendaraan
+                where 
+                (waktu_mulai <= to_timestamp(:waktuAwal,'YYYY-MM-DD hh24:mi')  and waktu_selesai >= to_timestamp(:waktuAwal,'YYYY-MM-DD hh24:mi'))
+                and status = 1
+                and kendaraan_id = :id_kendaraan 
+                and id != ".$model->id;
+        $data = Yii::app()->db->createCommand($sql);
+        $data->bindValue(':waktuAwal',$model->waktu_selesai);
+        $data->bindValue(':id_kendaraan',$model->kendaraan_id);
+        $rawData = $data->queryAll();
+        $count = $rawData[0]['peminjaman'];
+        if(intval($count) > 0 ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

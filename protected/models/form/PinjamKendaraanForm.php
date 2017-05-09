@@ -13,7 +13,7 @@ class PinjamKendaraanForm extends CFormModel
     public $waktu_mulai;
     public $waktu_selesai;
     public $nodin;
-    public $id_peminjaman;
+    public $id_peminjam;
     public $id;
 
 
@@ -47,6 +47,9 @@ class PinjamKendaraanForm extends CFormModel
                 (waktu_mulai <= to_timestamp(:waktuAwal,'DD/MM/YYYY hh24:mi')  and waktu_selesai >= to_timestamp(:waktuAwal,'DD/MM/YYYY hh24:mi'))
                 and status = 1
                 and kendaraan_id = :id_kendaraan";
+            if (!empty($this->id)|| !is_null($this->id)) {
+                $sql .= " and id != ". $this->id;
+            }
             $data = Yii::app()->db->createCommand($sql);
             $data->bindValue(':waktuAwal',$this->waktu_mulai);
             $data->bindValue(':id_kendaraan',$this->kendaraan_id);
@@ -68,6 +71,9 @@ class PinjamKendaraanForm extends CFormModel
                 (waktu_mulai <= to_timestamp(:waktuAwal,'DD/MM/YYYY hh24:mi')  and waktu_selesai >= to_timestamp(:waktuAwal,'DD/MM/YYYY hh24:mi'))
                 and status = 1
                 and kendaraan_id = :id_kendaraan";
+            if (!empty($this->id)|| !is_null($this->id)) {
+                $sql .= " and id != ". $this->id;
+            }
             $data = Yii::app()->db->createCommand($sql);
             $data->bindValue(':waktuAwal',$this->waktu_selesai);
             $data->bindValue(':id_kendaraan',$this->kendaraan_id);
@@ -112,5 +118,41 @@ class PinjamKendaraanForm extends CFormModel
         else {
             return false;
         }
+    }
+
+    public function loadPeminjamanModel($id) {
+        $modelPeminjaman = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
+        $this->kendaraan_id = $modelPeminjaman->kendaraan_id;
+        $this->kegiatan  = $modelPeminjaman->kegiatan;
+        $this->supir = $modelPeminjaman->supir;
+        $this->waktu_mulai = $modelPeminjaman->waktu_mulai;
+        $this->waktu_selesai = $modelPeminjaman->waktu_selesai;
+        $this->id = $modelPeminjaman->id;
+    }
+
+    public function updateFormPeminjaman($param) {
+        $this->attributes = $param;
+        $this->kegiatan = $param['kegiatan'];
+        $this->supir = $param['supir'];
+        if ($this->validate()) {
+            $today = new DateTime();
+            $model = TrxPeminjamanKendaraanCustom::model()->findByPk($this->id);
+            $model->kendaraan_id = $this->kendaraan_id;
+            $model->kegiatan = $this->kegiatan;
+            $model->supir = $this->supir;
+            $model->waktu_mulai = new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$this->waktu_mulai));
+            $model->waktu_selesai = new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$this->waktu_selesai));
+            $file = CUploadedFile::getInstance($this,'nodin');
+            if(!is_null($file)) {
+                $filename = 'pinjamkendaraan'.$today->format('THis').'.'.$file->getExtensionName();
+                $file->saveAs(Yii::app()->basePath . '/data/nodin_kendaraan/'.$filename);
+                $model->nodin = $filename;
+            }
+            $model->save();
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

@@ -12,14 +12,14 @@
     <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan1" style="display: none;">
         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
         <b>Perhatian! </b>
-        <p id="pesan_peringatan"></p>
+        <p id="pesan_peringatan1"></p>
     </div>
 </div>
 <div class="row">
-    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
+    <div class="alert alert-danger alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
         <b>Perhatian! </b>
-        <p id="pesan_peringatan"></p>
+        <p id="pesan_peringatan2"></p>
     </div>
 </div>
 <div class="wrapper wrapper-content animate fadeInRight">
@@ -115,16 +115,16 @@
                                                 'success'=>"function(data){
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
+                                                                        document.getElementById('pesan_peringatan1').innerHTML =data['message']
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-peminjaman').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }else{
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui'
-                                                                        $('#peringatan1').show();
-                                                                        $('#peringatan2').hide();
+                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                                                                        $('#peringatan2').show();
+                                                                        $('#peringatan1').hide();
                                                                         $('#list-peminjaman').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
@@ -158,7 +158,7 @@
                                                                     console.log('data terkirim');
                                                                     if(data['status']=='berhasil'){
                                                              
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil ditolak'
+                                                                        document.getElementById('pesan_peringatan1').innerHTML = data['message']
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-peminjaman').yiiGridView('update', {
@@ -166,7 +166,7 @@
                                                                         });
                                                                     }else{
                                                                       
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal ditolak'
+                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
                                                                          $('#peringatan2').show();
                                                                          $('#peringatan1').hide();
                                                                          $('#list-peminjaman').yiiGridView('update', {

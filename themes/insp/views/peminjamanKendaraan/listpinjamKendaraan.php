@@ -100,7 +100,7 @@
                                             'data-toggle'=>'tooltip',
                                         ),
                                         'url'=>'Yii::app()->createUrl("peminjamanKendaraan/editPermohonan", array("id"=>$data->id))',
-                                        'visible'=>'$data->status == 0'
+                                        'visible'=>'$data->status == StatusPeminjaman::MENUNGGU_PERSETUJUAN'
                                     ),
 
                                 )

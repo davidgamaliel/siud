@@ -18,7 +18,7 @@ class PeminjamanKendaraanController extends Controller
             if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm']))
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
         }
-        $this->render('pinjamKendaraan', array(
+        $this->render('pinjamKendaraanPegawai2', array(
             'model' => $model,
             'model_kendaraan'=>$model_kendaraan
         ));
@@ -36,7 +36,7 @@ class PeminjamanKendaraanController extends Controller
         $this->render('pinjamKendaraanPegawai2', array(
             'model' => $model,
             'model_kendaraan'=>$model_kendaraan
-        ));
+    ));
 
     }
 
@@ -88,13 +88,16 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
-        $model->validate();
-        if($model->saveAttributes(array('status'))) {
-            $result = array('status'=>'berhasil','id'=>$model->id);
-            echo CJSON::encode($result);
+        $waktuMulai = TrxPeminjamanKendaraanCustom::validasiWaktuMulai(intval($_POST['id']));
+        $waktuSelesai =TrxPeminjamanKendaraanCustom::validasiWaktuSelesai(intval($_POST['id']));
+        if($waktuMulai && $waktuSelesai) {
+            if($model->saveAttributes(array('status'))) {
+                $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'waktuMulai'=>$waktuMulai, 'waktuSelesai'=>$waktuSelesai);
+                echo CJSON::encode($result);
+            }
         }
         else {
-            $result = array('status'=>'gagal','id'=>$_POST['id'], 'Errors'=>$model->getErrors());
+            $result = array('status'=>'gagal','id'=>$_POST['id'], 'message'=>'Sudah ada jadwal peminjaman yang disetujui pada waktu tersebut');
             echo CJSON::encode($result);
         }
     }
@@ -103,11 +106,11 @@ class PeminjamanKendaraanController extends Controller
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
         if($model->saveAttributes(array('status'))) {
-            $result = array('status'=>'berhasil','id'=>$_POST['id']);
+            $result = array('status'=>'berhasil','id'=>$_POST['id'],'message'=>'berhasil menolak permohonan');
             echo CJSON::encode($result);
         }
         else {
-            $result = array('status'=>'gagal','id'=>$_POST['id']);
+            $result = array('status'=>'gagal','id'=>$_POST['id'],'message'=>'gagal menolak permohonan');
             echo CJSON::encode($result);
         }
     }
@@ -200,17 +203,13 @@ class PeminjamanKendaraanController extends Controller
     }
 
     public function actionEditPermohonan($id) {
-        $model = TrxPeminjamanKendaraanCustom::model()->findByPk($id);
+        $model = new PinjamKendaraanForm();
+        $model->loadPeminjamanModel($id);
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
-        if(isset($_POST['TrxPeminjamanKendaraanCustom'])&& isset($_POST['submit'])) {
-//            $file = CUploadedFile::getInstance($model,'nodin');
-            $berhasil = $model->simpan($_POST['TrxPeminjamanKendaraanCustom']);
-            if($berhasil) {
-                Yii::app()->user->setFlash('success','Permohonan peminjaman berhasil dibuat');
-                $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
-            }
-            else {
-                Yii::app()->user->setFlash('errors','Permohonan peminjaman berhasil dibuat');
+        if(isset($_POST['PinjamKendaraanForm'])&& isset($_POST['submit'])) {
+            if($model->updateFormPeminjaman($_POST['PinjamKendaraanForm'])) {
+                Yii::app()->user->setFlash('success','Permohonan peminjaman berhasil diubah');
+                $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonanPegawai',array('id'=>$model->id)));
             }
         }
         $this->render('pinjamKendaraan', array(
