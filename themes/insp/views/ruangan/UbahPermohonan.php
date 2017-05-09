@@ -17,7 +17,7 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e)
 ?>
 <div class="row  border-bottom white-bg dashboard-header">
 	<div class="col-sm-8">
-		<h2>Form Permohonan Peminjaman Ruangan</h2>
+		<h2>Form Ubah Permohonan Peminjaman Ruangan</h2>
 	</div>
 	<?php
 		$this->breadcrumbs=array(

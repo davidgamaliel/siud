@@ -59,6 +59,22 @@
                                             array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
                                 'type'=>'raw',
                             ),
+                            array(
+                                'header'=>'aksi',
+                                'class'=>'CButtonColumn',
+                                'template'=>'{ubah}',
+                                'buttons'=>array(
+                                    'ubah'=>array(
+                                        'label'=>'<i class="fa fa-pencil"></i>',
+                                        'options'=>array(
+                                            'title'=>'Ubah',
+                                            'class'=>'btn btn-sm btn-primary',
+                                        ),
+                                        'url'=>'Yii::app()->createUrl("ruangan/ubahPermohonan", array("id"=>$data->id))',
+                                        'visible'=>'true'
+                                    ), 
+                                )
+                            )
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'

@@ -79,12 +79,13 @@ class BLRuangan {
 
     public function istimeClashed($begin, $end, $idRuangan) {
         $result = false;
+        $stsSetuju = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Disetujui'));
         if($idRuangan == null || $idRuangan == '') {
             return false;
         }
         $criteria = new CDbCriteria();
-        $criteria->condition = "id_ruangan = :ruangan AND waktu_akhir_peminjaman > to_timestamp(:begin, 'DD-MM-YYYY hh24:mi') AND waktu_awal_peminjaman < to_timestamp(:end, 'DD-MM-YYYY hh24:mi')";
-        $criteria->params = array(':begin'=>$begin, ':end'=>$end, ':ruangan'=>$idRuangan);
+        $criteria->condition = "id_ruangan = :ruangan AND status_id = :status AND waktu_akhir_peminjaman > to_timestamp(:begin, 'DD-MM-YYYY hh24:mi') AND waktu_awal_peminjaman < to_timestamp(:end, 'DD-MM-YYYY hh24:mi')";
+        $criteria->params = array(':begin'=>$begin, ':end'=>$end, ':ruangan'=>$idRuangan, ':status'=>$stsSetuju->id);
         $clashed = TranPeminjamanRuangan::model()->findAll($criteria);
         if($clashed && count($clashed) > 0) {
             $result = true;
@@ -275,6 +276,21 @@ class BLRuangan {
             }
         }
         return $result;
+    }
+
+    public function updateRuangan($data, $model) {
+        $model->attributes = $data;
+        if($model->validate()) {
+            $model->update();
+        }
+        return $model;
+    }
+
+    public function formatedDatefromDb($timestamp) {
+        $tanggalSplit = explode(' ', $timestamp);
+        $date = explode('-', $tanggalSplit[0])[2] . '/' . explode('-', $tanggalSplit[0])[1] . '/' . explode('-', $tanggalSplit[0])[0];
+        $time = explode(':', $tanggalSplit[1])[0] . ':' . explode(':', $tanggalSplit[1])[1];
+        return $date . ' ' . $time;
     }
         
 }

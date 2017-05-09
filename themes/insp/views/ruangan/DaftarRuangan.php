@@ -61,7 +61,7 @@
                                             'title'=>'Ubah',
                                             'class'=>'btn btn-sm btn-primary',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("ruangan/tambahRuangan")',
+                                        'url'=>'Yii::app()->createUrl("ruangan/ubahRuangan", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ), 
                                 )

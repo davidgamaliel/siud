@@ -111,19 +111,19 @@
                                                 'data'=>'js:{id: id_permintaan}',
                                                 'dataType'=>'JSON',
                                                 'success'=>"function(data){
-                                                                    console.log('data terkirim');
+                                                                    console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
-                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                        $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }else{
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui'
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui' + data['message'] + ''
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
-                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                        $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }
@@ -153,13 +153,13 @@
                                                                 'data'=>'js:{id: id_permintaan}',
                                                                 'dataType'=>'JSON',
                                                                 'success'=>"function(data){
-                                                                    console.log('data terkirim');
+                                                                    console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
                                                              
                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil ditolak'
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
-                                                                        $('#list-peminjaman').yiiGridView('update', {
+                                                                        $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }else{
@@ -167,7 +167,7 @@
                                                                          document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal ditolak'
                                                                          $('#peringatan2').show();
                                                                          $('#peringatan1').hide();
-                                                                         $('#list-peminjaman').yiiGridView('update', {
+                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }

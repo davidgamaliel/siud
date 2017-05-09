@@ -102,21 +102,31 @@ class RuanganController extends Controller
 
 	public function actionSetujuiPeminjaman() {
         $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
-        $model->status_id = 1;
-        if($model->save()) {
-            $result = array('status'=>'berhasil','id'=>$model->id);
+        $logic = new BLRuangan();
+        $begin = $logic->formatedDatefromDb($model->waktu_awal_peminjaman);
+        $end = $logic->formatedDatefromDb($model->waktu_akhir_peminjaman);
+        $isClashed = $logic->istimeClashed($begin, $end, $model->id_ruangan);
+        if($isClashed) {
+        	$result = array('status'=>'gagal', 'message'=>', Waktu perminjaman ruangan ini bentrok dengan peminjaman yang sudah disetujui');
             echo CJSON::encode($result);
         }
         else {
-            $result = array('status'=>'gagal');
-            echo CJSON::encode($result);
+        	$model->status_id = 1;
+	        if($model->saveAttributes(array('status_id'))) {
+	            $result = array('status'=>'berhasil','id'=>$model->id);
+	            echo CJSON::encode($result);
+	        }
+	        else {
+	            $result = array('status'=>'gagal', 'message'=>'');
+	            echo CJSON::encode($result);
+	        }
         }
     }
 
     public function actionTolakPeminjaman() {
         $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
         $model->status_id = 2;
-        if($model->save()) {
+        if($model->saveAttributes(array('status_id'))) {
             $result = array('status'=>'berhasil','id'=>$_POST['id']);
             echo CJSON::encode($result);
         }
@@ -280,6 +290,86 @@ class RuanganController extends Controller
 		$data['setuju'] = $setuju;
 		$data['tolak'] = $tolak;
 		$this->render('LaporanRuangan',  $data);
+	}
+
+	public function actionUbahRuangan() {
+		$data = array();
+		$id = $_GET['id'];
+		$model = new TmstRuangan();
+		if($id) {
+			$model = TmstRuangan::model()->findByPk($id);
+		}
+		$logic = new BLRuangan();
+
+		if(isset($_POST['TmstRuangan'])) {
+			$result = $logic->updateRuangan($_POST['TmstRuangan'], $model);
+			if($result) {
+				$this->redirect(array('ruangan/daftarRuangan'));
+			}
+		}
+
+		$data['model'] = $model;
+		$this->render('UbahRuangan', $data);
+	}
+
+	public function actionUbahPermohonan() {
+		$data = array();
+		$logic = new BLRuangan();
+		$model = new TranPeminjamanRuangan();
+		$id = $_GET['id'];
+		if($id) {
+			$model = TranPeminjamanRuangan::model()->findByPk($id);
+			$model->waktu_awal_peminjaman = $logic->formatedDatefromDb($model->waktu_awal_peminjaman);
+	        $model->waktu_akhir_peminjaman = $logic->formatedDatefromDb($model->waktu_akhir_peminjaman);
+		}
+
+		$dropdownRuangan = $logic->getRuanganDropdown();
+
+		if(isset($_POST["TranPeminjamanRuangan"])) {
+			/*var_dump($_POST["TranPeminjamanRuangan"]);
+			die();*/
+			// $logic->insertRuangan($_POST["TranPeminjamanRuangan"], $model);
+
+			$model->attributes = $_POST['TranPeminjamanRuangan'];
+			$today = new DateTime();
+			$thisDate = $model->waktu_awal_peminjaman;
+			$isClashed = $logic->istimeClashed($model->waktu_awal_peminjaman, $model->waktu_akhir_peminjaman, $model->id_ruangan);
+			if($isClashed) {
+				Yii::app()->user->setFlash('warning', 'Jadwal ruangan yang dipilih bentrok dengan jadwal yang sudah ada');
+			}
+			else {
+				$mulai = $model->waktu_awal_peminjaman != null ? DateTime::createFromFormat('d/m/Y G:i', $model->waktu_awal_peminjaman) : false;
+				$akhir = $model->waktu_akhir_peminjaman != null ? DateTime::createFromFormat('d/m/Y G:i', $model->waktu_akhir_peminjaman) : false;
+				$model->waktu_awal_peminjaman = $mulai == false ? null : $mulai->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:mulai,'DD-MM-YYYY hh24:mi')", array(":mulai"=>$model->waktu_awal_peminjaman));
+		        $model->waktu_akhir_peminjaman = $akhir == false ? null : $akhir->format('Y-m-d H:i'); //new CDbExpression("TO_TIMESTAMP(:selesai,'DD-MM-YYYY hh24:mi')", array(":selesai"=>$model->waktu_akhir_peminjaman));
+				$model->id_user_peminjam = Yii::app()->user->getState('user_id');
+				$model->status_id = 3;
+				$berkas = CUploadedFile::getInstance($model, 'nodin');
+				if($berkas != null) {
+					$filename = 'pinjamruangan'.$today->format('THis').'.'.$berkas->getExtensionName();
+				}
+
+
+				if(is_object($berkas) && get_class($berkas) ==='CUploadedFile') {
+					$model->nodin = $berkas;
+					$model->nodin->saveAs(Yii::app()->params['nodinRuangan'].$filename);
+					$model->nodin = $filename;
+				}
+
+				if($model->validate()) {
+					$model->save();
+					$this->redirect(array('ruangan/kelolaPermohonan'));
+				}
+				else {
+					/*echo '<pre>' ; var_dump($model->getErrors());
+					die();
+*/				}
+			}
+		}
+
+		$data['dropdownRuangan'] = $dropdownRuangan;
+		$data['model'] = $model;
+		$this->render('UbahPermohonan', $data);
 	}
 
 	
