@@ -9,7 +9,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
     <div class="col-sm-8">
-        <h2>Laporan Penggunaan Bensin</h2>
+        <h2>Rekap Penggunaan Bensin</h2>
     </div>
 </div>
 

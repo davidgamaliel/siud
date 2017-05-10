@@ -1,6 +1,6 @@
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>Daftar Permohonan Peminjaman Ruangan</h2>
+        <h2>Daftar Peminjaman Ruangan</h2>
     </div>
     <?php
     $this->breadcrumbs=array(

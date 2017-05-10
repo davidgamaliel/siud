@@ -1,6 +1,6 @@
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>Daftar Permohonan Peminjaman Kendaraan</h2>
+        <h2>Kelola Permohonan Peminjaman Kendaraan</h2>
     </div>
     <?php
     $this->breadcrumbs=array(

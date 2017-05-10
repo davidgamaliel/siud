@@ -116,7 +116,7 @@ $('#PinjamKendaraanForm_waktu_selesai').on(\"dp.change\",function (e) {
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <?php echo CHtml::link('Kembali',Yii::app()->request->urlReferrer ,array('class' => 'btn btn-warning')); ?>
+                                <?php echo CHtml::link('Kembali',Yii::app()->request->urlReferrer ,array('class' => 'btn btn-white')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class' => 'btn btn-primary', 'name' => 'submit', 'id' => 'submit')); ?>
                             </div>
                         </div>

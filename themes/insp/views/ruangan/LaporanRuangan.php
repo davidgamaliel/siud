@@ -2,7 +2,7 @@
 
 <div class="row wrapper border-bottom white-bg page-heading">
 	<div class="col-sm-8">
-		<h2>Selamat Datang di <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h2>
+		<h2>Rekap Permohonan Peminjaman Ruangan</h2>
 	</div>
 </div>
 

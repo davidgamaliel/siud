@@ -113,14 +113,14 @@
                                                 'success'=>"function(data){
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
+                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ' , berhasil disetujui'
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }else{
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui' + data['message'] + ''
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ' , gagal disetujui' + data['message'] + ''
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
@@ -156,7 +156,7 @@
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
                                                              
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil ditolak'
+                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ', berhasil ditolak'
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
@@ -164,7 +164,7 @@
                                                                         });
                                                                     }else{
                                                                       
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal ditolak'
+                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ' , gagal ditolak'
                                                                          $('#peringatan2').show();
                                                                          $('#peringatan1').hide();
                                                                          $('#list-permohonan-ruangan').yiiGridView('update', {

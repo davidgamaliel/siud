@@ -46,10 +46,22 @@
                                 'headerHtmlOptions'=>array('style'=>'display:none'),
                                 'htmlOptions'=>array('style'=>'display:none'),
                             ),
-                            'nama',
-                            'lokasi',
-                            'fasilitas',
-                            'kapasitas',
+                            array(
+                                'header'=>'Nama',
+                                'value'=>'$data->nama',
+                            ),
+                            array(
+                                'header'=>'Lokasi',
+                                'value'=>'$data->lokasi',
+                            ),
+                            array(
+                                'header'=>'Fasilitas',
+                                'value'=>'$data->fasilitas',
+                            ),
+                            array(
+                                'header'=>'Kapasitas',
+                                'value'=>'$data->kapasitas',
+                            ),
                             array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',

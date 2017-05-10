@@ -70,7 +70,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <?php echo CHtml::link('Cancel', array('/ruangan/daftarRuangan'), array('class'=>'btn btn-white')); ?>
+                                <?php echo CHtml::link('Kembali', array('/ruangan/daftarRuangan'), array('class'=>'btn btn-white')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class'=>'btn btn-primary')); ?> 
                                 <!-- <button class="btn btn-primary" type="submit">Kirim</button> -->
                             </div>

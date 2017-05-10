@@ -15,7 +15,7 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
 
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>laporan Penggunaan Bensin</h2>
+        <h2>Form Penggunaan Bensin</h2>
     </div>
     <?php
     $this->breadcrumbs=array(
@@ -91,7 +91,7 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white" type="submit">Cancel</button>
+                                <?php echo CHtml::link('Kembali',array('penggunaanBensin/riwayatPenggunaan'), array('class'=>'btn btn-white')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class' => 'btn btn-primary', 'name' => 'submit', 'id' => 'submit')); ?>
                             </div>
                         </div>
