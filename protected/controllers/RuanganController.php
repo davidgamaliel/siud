@@ -107,7 +107,7 @@ class RuanganController extends Controller
         $end = $logic->formatedDatefromDb($model->waktu_akhir_peminjaman);
         $isClashed = $logic->istimeClashed($begin, $end, $model->id_ruangan);
         if($isClashed) {
-        	$result = array('status'=>'gagal', 'message'=>', Waktu perminjaman ruangan ini bentrok dengan peminjaman yang sudah disetujui');
+        	$result = array('status'=>'gagal', 'message'=>', Waktu perminjaman ruangan ini bentrok dengan peminjaman yang sudah disetujui', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
             echo CJSON::encode($result);
         }
         else {
