@@ -17,8 +17,8 @@
 		<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/jquery-2.1.1.js"></script>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
-<?php $logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/logo.png'); ?>
-<?php $logoimg80 = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/logo.png'); ?>
+<?php $logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/siud-logo.png'); ?>
+<?php $logoimg80 = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/siud-logo.png'); ?>
 <body>
 	<div id="wrapper">
 		<!--sidebar start-->
