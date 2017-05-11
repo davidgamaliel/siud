@@ -107,7 +107,7 @@ $('#PinjamKendaraanForm_waktu_selesai').on(\"dp.change\",function (e) {
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Upload Nodin</label>
                             <div class="col-sm-10">
-                                <?php echo $form->fileField($model,'nodin',array('class'=>'form-control')); ?>
+                                <?php echo $form->fileField($model,'nodin',array('class'=>'form-control')); ?><i>Upload file dalam format JPG</i>
                                 <?php echo $form->error($model, 'nodin', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
