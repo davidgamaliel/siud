@@ -80,7 +80,7 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
                     <div class="hr-line-dashed"></div>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Struk Bensin</label>
+                            <label class="col-sm-2 control-label">Scan Kwitansi bensin (bermaterai)</label>
                             <div class="col-sm-10">
                                 <?php echo $form->fileField($model,'file_struk',array('class'=>'form-control')); ?>
                                 <?php echo $form->error($model, 'file_struk', array('class' => 'text-danger')); ?>

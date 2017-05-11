@@ -13,6 +13,49 @@
     </div>
 </div>
 
+<div class="row">
+    <?php if (Yii::app()->user->hasFlash('success')) : ?>
+        <div class="form-group">
+            <div class="alert alert-success alert-dismissable col-md-12">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <b>Success! </b><?php echo Yii::app()->user->getFlash('success'); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if (Yii::app()->user->hasFlash('errors')) : ?>
+        <div class="form-group">
+            <div class="alert alert-danger alert-dismissable col-md-12">
+                <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                <b>Error! </b><?php echo Yii::app()->user->getFlash('errors'); ?>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>
+
+<?php
+$form=$this->beginWidget('CActiveForm', array(
+    'id'=>'report-ruangan',
+    'enableAjaxValidation'=>true,
+    'enableClientValidation'=>true,
+));
+?>
+
+<div class="wrapper wrapper-content">
+    <div>
+        <form>
+            <div class="form horizontal">
+                <label class="col-sm-1  control-label">Tahun</label>
+                <div class="col-sm-2">
+                    <?php echo CHtml::dropDownList('tahun', $tahun, $allTahun, array('class'=>'form-control m-b')); ?>
+                </div>
+                <?php
+                echo CHtml::submitButton('Pilih', array('class'=>'btn btn-primary', 'name'=>'pilih'));
+                $this->endWidget();
+                ?>
+            </div>
+        </form>
+    </div>
+</div>
 <div class="wrapper wrapper-content">
         <?php
         $this->widget('ext.highcharts.HighchartsWidget', array(
@@ -74,11 +117,16 @@
                             ),
                             array(
                                 'header'=>'Pemohon',
-                                'name'=>'id_pemohon',
                                 'value'=>'$data->id_pemohon == null ? "" : $data->idPemohon->username',
                             ),
-                            'unit_kerja',
-                            'keperluan',
+                            array(
+                                'header'=>'Unit Kerja',
+                                'value'=>'$data->unit_kerja'
+                            ),
+                            array(
+                                'header'=>'Keperluan',
+                                'value'=>'$data->keperluan'
+                            ),
                             array(
                                 'header'=>'Total Harga Penggunaan Bensin (*rupiah)',
                                 'value'=>'$data->jumlah_bensin'
@@ -89,7 +137,6 @@
                             ),
                             array(
                                 'header'=>'File Struk',
-                                'name'=>'file_struk',
                                 'value'=>'CHtml::link(
                                             $data->file_struk,
                                             Yii::app()->createUrl(\'/penggunaanBensin/viewStrukBensin\', array(\'id\' => $data->id)) ,

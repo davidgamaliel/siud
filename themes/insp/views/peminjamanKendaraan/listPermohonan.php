@@ -22,6 +22,13 @@
         <p id="pesan_peringatan2"></p>
     </div>
 </div>
+<br/>
+<div class="col-md-1">
+    <?php echo CHtml::button('Refresh Halaman', array('class' => 'btn btn-warning','onclick'=>"myFunction()")); ?>
+</div>
+<br/>
+<br/>
+
 <div class="wrapper wrapper-content animate fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -91,7 +98,7 @@
                                             'class'=>'btn btn-sm btn-primary',
                                             'data-toggle' => 'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ),
                                     'setujui'=>array(
@@ -206,6 +213,9 @@
     </div>
 </div>
 <script>
+    function myFunction() {
+        location.reload();
+    }
     $(document).ready(function(){
         $('.data_table_kendaraan').DataTable({
             'bInfo': false,

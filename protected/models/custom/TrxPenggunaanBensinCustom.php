@@ -15,7 +15,8 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
         // will receive user inputs.
         $defaultRule = parent::rules();
         $newRule = array(
-            array('unit_kerja, keperluan, file_struk, jumlah_bensin, id_pemohon', 'required')  ,
+            array('unit_kerja, keperluan, jumlah_bensin, id_pemohon', 'required')  ,
+            array('file_struk', 'file', 'types'=>'jpg, png, pdf', 'safe'=>false, 'allowEmpty'=>false, 'message'=>'{attribute} tidak boleh kosong'),
 //            array('MIN_REQUEST','numerical','integerOnly'=>true,'min'=>1,'max'=>9999999),
             //array('MAX_REQUEST','notLessThanMin')
         );
@@ -31,6 +32,7 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
     public function simpan($param) {
         $today = new DateTime();
         $this->attributes = $param;
+        $this->tanggal = new CDbExpression("TO_TIMESTAMP(:mulai,'DD/MM/YYYY hh24:mi')", array(":mulai"=>$param['tanggal']));
         $this->id_pemohon = Yii::app()->user->getState('user_id');
         $file = CUploadedFile::getInstance($this,'file_struk');
         if(!is_null($file)) {
@@ -38,8 +40,13 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
             $file->saveAs(Yii::app()->basePath . '/data/struk_bensin/'.$filename);
             $this->file_struk = $filename;
         }
-        if($this->validate())
+        if($this->validate()) {
             $this->save();
+            return true;
+        } else{
+            return false;
+        }
+
     }
 
     public function listLaporan() {
@@ -80,11 +87,11 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
             11 => 'November',
             12 => 'Desember',
         );
-        //echo "<pre>";var_dump($tanggal);die;
         if(!is_null($tanggal) & !empty($tanggal)) {
             $temp = explode(' ',$tanggal);
             $tempTanggal = explode('-',$temp[0]);
             return ''. $tempTanggal[2] . ' ' . $arrayBulan[intval($tempTanggal[1])]  . ' ' . $tempTanggal[0];
+
         }
         else {
             return '';
@@ -105,6 +112,34 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
             select sum(jumlah_bensin) total
             from trx_penggunaan_bensin
             where to_char(tanggal,'MM-YYYY') = "."'".$bulan."'";
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+    public function getTotalPenggunaanBensinDalam1Bulan1Tahun($bulan, $tahun) {
+        $sql = "
+            select sum(jumlah_bensin) total
+            from trx_penggunaan_bensin
+            where to_char(tanggal,'MM-YYYY') = "."'".$bulan."-".$tahun."'";
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+    public function getAllTahunPeminjaman() {
+        $result = array();
+        $sql = "select distinct to_char(tanggal, 'YYYY') as tahun
+                from trx_penggunaan_bensin";
+        $command = Yii::app()->db->createCommand($sql);
+        $tahun = $command->queryAll();
+        if($tahun) {
+            foreach ($tahun as $value) {
+                $result[$value['tahun']] = $value['tahun'];
+            }
+        }
+        return $result;
+    }
+
+    public function getBulanAdaData($tahun) {
+        $sql = "select distinct to_char(tanggal, 'MM') as bulan from trx_penggunaan_bensin
+        where to_char(tanggal,'yyyy') ='". $tahun."'". " order by to_char(tanggal,'MM') asc";
         $command = Yii::app()->db->createCommand($sql);
         return $command->queryAll();
     }

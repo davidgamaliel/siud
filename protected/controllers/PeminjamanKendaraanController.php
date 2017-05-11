@@ -15,8 +15,10 @@ class PeminjamanKendaraanController extends Controller
         $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('condition'=>'ketersediaan = true','order'=>'id asc'));
         if(isset($_POST['PinjamKendaraanForm'])&& isset($_POST['submit'])) {
-            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm']))
+            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm'])) {
+                Yii::app()->user->setFlash('success','Permohonan Kendaraan berhasil ditambahkan');
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonan',array('id'=>$model->id)));
+            }
         }
         $this->render('pinjamKendaraanPegawai2', array(
             'model' => $model,
@@ -30,8 +32,10 @@ class PeminjamanKendaraanController extends Controller
         $model->unsetAttributes();
         $model_kendaraan = MstKendaraan::model()->findAll(array('order'=>'id asc'));
         if(isset($_POST['PinjamKendaraanForm'])&& isset($_POST['submit'])) {
-            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm']))
+            if($model->simpanPeminjamanKendaraan($_POST['PinjamKendaraanForm'])) {
+                Yii::app()->user->setFlash('success','Permohonan Kendaraan berhasil ditambahkan');
                 $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/detailPermohonanPegawai',array('id'=>$model->id)));
+            }
         }
         $this->render('pinjamKendaraanPegawai2', array(
             'model' => $model,
@@ -125,6 +129,12 @@ class PeminjamanKendaraanController extends Controller
     public function actionEditkendaraan($id) {
         $model = MstKendaraanCustom::model()->findByPk($id);
 
+        if(isset($_POST['MstKendaraanCustom'])&& isset($_POST['submit'])) {
+            if ($model->simpanKendaraan($_POST['MstKendaraanCustom'])) {
+                Yii::app()->user->setFlash('success','Detail kendaraan berhasil diubah');
+                $this->redirect(Yii::app()->createUrl('peminjamanKendaraan/kelolaKendaraan'));
+            }
+        }
         $this->render('editKendaraan', array(
            'model'=>$model
         ));
