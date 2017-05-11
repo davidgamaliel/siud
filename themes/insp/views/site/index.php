@@ -116,6 +116,6 @@
 	<?php $this->renderPartial('/ruangan/ListPermohonan', array('provider' => $ruangan)) ?>
 </div>
 <div>
-	<?php $this->renderPartial('/peminjamanKendaraan/listPermohonan', array('model' => $kendaraan)) ?>
+	<?php $this->renderPartial('/peminjamanKendaraan/listPermohonan2', array('model' => $kendaraan)) ?>
 </div>
 <?php endif;?>
