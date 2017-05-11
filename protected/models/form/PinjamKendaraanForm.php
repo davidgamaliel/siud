@@ -21,6 +21,7 @@ class PinjamKendaraanForm extends CFormModel
     {
         return array(
             array('kendaraan_id, waktu_mulai, waktu_selesai', 'required'),
+            array('nodin', 'file', 'types'=>'jpg, png, pdf', 'safe'=>false, 'allowEmpty'=>false, 'message'=>'{attribute} tidak boleh kosong'),
             array('kendaraan_id, waktu_mulai, waktu_selesai, kegiatan, supir, nodin', 'safe'),
             array('waktu_mulai','validasiWaktuAwal'),
             array('waktu_selesai','validasiWaktuSelesai'),

@@ -15,7 +15,8 @@ class TrxPenggunaanBensinCustom extends TrxPenggunaanBensin
         // will receive user inputs.
         $defaultRule = parent::rules();
         $newRule = array(
-            array('unit_kerja, keperluan, file_struk, jumlah_bensin, id_pemohon', 'required')  ,
+            array('unit_kerja, keperluan, jumlah_bensin, id_pemohon', 'required')  ,
+            array('file_struk', 'file', 'types'=>'jpg, png, pdf', 'safe'=>false, 'allowEmpty'=>false, 'message'=>'{attribute} tidak boleh kosong'),
 //            array('MIN_REQUEST','numerical','integerOnly'=>true,'min'=>1,'max'=>9999999),
             //array('MAX_REQUEST','notLessThanMin')
         );
