@@ -220,7 +220,7 @@
         $('.data_table_kendaraan').DataTable({
             'bInfo': false,
             dom: '<"html5buttons"B>lTfgitp',
-            buttons: [
+            buttons: [/*
                 {extend: 'excel', title: 'Permohonan Peminjaman Kendaraan'},
                 {extend: 'pdf', title: 'Permohonan Peminjaman Kendaraan'},
 
@@ -234,7 +234,7 @@
                                 .css('font-size', 'inherit');
                 }
                 }
-            ]
+            */]
 
         });
 
