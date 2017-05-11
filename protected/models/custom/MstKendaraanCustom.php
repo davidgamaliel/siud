@@ -37,7 +37,7 @@ class MstKendaraanCustom extends MstKendaraan
         else {
             $count = self::model()->countBySql('Select count(*) from mst_kendaraan where no_polisi = :nopol and id != :idEdit', array('nopol'=>$this->no_polisi, 'idEdit'=>$this->id));
             if ($count > 0)
-                $this->addErrors($attribute, 'Nomor polisi sudah terdaftar pada kendaraan lain');
+                $this->addError($attribute, 'Nomor polisi sudah terdaftar pada kendaraan lain');
         }
     }
 

@@ -208,7 +208,7 @@
                             ),
                         ),
                         'pagerCssClass' => 'blank',
-                        'itemsCssClass' => 'table table-striped table-hover',
+                        'itemsCssClass' => 'table table-striped table-hover data_table_ruangan',
                         'cssFile' => false,
                         'summaryCssClass' => 'dataTables_info',
                         'summaryText' => Yii::t('form','Showing {start} to {end} of {count} entries'),
@@ -220,3 +220,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.data_table_ruangan').DataTable({
+            'info': false,
+            dom: '<"html5buttons"Br>lTfgitp',
+            buttons: [
+            ]
+
+        });
+    });
+</script>
+

@@ -157,7 +157,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         $format = $today->format('d-m-y');
         $provider = new CActiveDataProvider($this, array(
             'criteria'=>array(
-                'condition'=>"status=1 AND waktu_mulai >= to_timestamp('" . $format . "' , 'DD-MM-YY') AND kendaraan_id = " . $id ."",
+                'condition'=>"status=1 AND (waktu_mulai <= to_timestamp('" . $format . "' , 'DD-MM-YY') AND waktu_selesai >= to_timestamp('" . $format . "' , 'DD-MM-YY')) AND kendaraan_id = " . $id ."",
                 'order'=>'waktu_mulai DESC',
             ),
         ));
