@@ -107,17 +107,17 @@ class RuanganController extends Controller
         $end = $logic->formatedDatefromDb($model->waktu_akhir_peminjaman);
         $isClashed = $logic->istimeClashed($begin, $end, $model->id_ruangan);
         if($isClashed) {
-        	$result = array('status'=>'gagal', 'message'=>', Waktu perminjaman ruangan ini bentrok dengan peminjaman yang sudah disetujui', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
+        	$result = array('status'=>'gagal', 'message'=>'Sudah ada jadwal peminjaman yang disetujui pada waktu tersebut', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
             echo CJSON::encode($result);
         }
         else {
         	$model->status_id = 1;
 	        if($model->saveAttributes(array('status_id'))) {
-	            $result = array('status'=>'berhasil','id'=>$model->id, 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
+	            $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
 	            echo CJSON::encode($result);
 	        }
 	        else {
-	            $result = array('status'=>'gagal', 'message'=>'', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
+	            $result = array('status'=>'gagal', 'message'=>'Sudah ada jadwal peminjaman yang disetujui pada waktu tersebut', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
 	            echo CJSON::encode($result);
 	        }
         }
@@ -127,11 +127,11 @@ class RuanganController extends Controller
         $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
         $model->status_id = 2;
         if($model->saveAttributes(array('status_id'))) {
-            $result = array('status'=>'berhasil','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
+            $result = array('status'=>'berhasil','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username, 'message'=>'berhasil menolak permohonan');
             echo CJSON::encode($result);
         }
         else {
-            $result = array('status'=>'gagal','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
+            $result = array('status'=>'gagal','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username, 'message'=>'gagal menolak permohonan');
             echo CJSON::encode($result);
         }
     }

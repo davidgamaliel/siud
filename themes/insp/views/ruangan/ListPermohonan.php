@@ -16,10 +16,10 @@
     </div>
 </div>
 <div class="row">
-    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
+    <div class="alert alert-danger alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
         <b>Perhatian! </b>
-        <p id="pesan_peringatan"></p>
+        <p id="pesan_peringatan2"></p>
     </div>
 </div>
 <br />
@@ -120,16 +120,16 @@
                                                 'success'=>"function(data){
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ' , berhasil disetujui'
+                                                                        document.getElementById('pesan_peringatan').innerHTML = data['message']
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }else{
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ' , gagal disetujui' + data['message'] + ''
-                                                                        $('#peringatan1').show();
-                                                                        $('#peringatan2').hide();
+                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                                                                        $('#peringatan2').show();
+                                                                        $('#peringatan1').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
@@ -163,7 +163,7 @@
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
                                                              
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ', berhasil ditolak'
+                                                                        document.getElementById('pesan_peringatan').innerHTML = data['message']
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
@@ -171,7 +171,7 @@
                                                                         });
                                                                     }else{
                                                                       
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permohonan ruangan ' + data['nama'] + ' oleh ' + data['user'] + ' , gagal ditolak'
+                                                                         document.getElementById('pesan_peringatan').innerHTML = data['message']
                                                                          $('#peringatan2').show();
                                                                          $('#peringatan1').hide();
                                                                          $('#list-permohonan-ruangan').yiiGridView('update', {
