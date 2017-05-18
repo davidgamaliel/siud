@@ -63,10 +63,6 @@
                                 'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
                             ),
                             array(
-                                'header'=>'Supir',
-                                'value'=>'$data->supir',
-                            ),
-                            array(
                                 'header'=>'File Nodin',
                                 'value'=>'CHtml::link(
                                             $data->nodin,
@@ -80,107 +76,107 @@
                                 'header'=>'status',
                                 'value'=>'StatusPeminjaman::getStatusPeminjaman($data->status)'
                             ),
-                            array(
-                                'header'=>'aksi',
-                                'class'=>'CButtonColumn',
-                                'template'=>'{detail} {setujui} {tolak}',
-                                'buttons'=>array(
-                                    'detail'=>array(
-                                        'label'=>'<i class="fa fa-file-text-o"></i>',
-                                        'options'=>array(
-                                            'title'=>'Detail',
-                                            'class'=>'btn btn-sm btn-primary',
-                                            'data-toggle' => 'tooltip',
-                                        ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
-                                        'visible'=>'true'
-                                    ),
-                                    'setujui'=>array(
-                                        'label'=>'<i class="fa fa-check-square"></i>',
-                                        'options'=>array(
-                                            'title'=>'Setujui',
-                                            'class'=>'btn btn-sm btn-success setujui',
-                                            'data-toggle' => 'tooltip',
-                                        ),
-                                        //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
-                                        'visible'=>'true',
-                                        'click' => "js:function(event){  
-												event.preventDefault();
-												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
-												$('#modalCardNominative').modal('show');
-												".CHtml::ajax(array(
-                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
-                                                'type'=>'POST',
-                                                'data'=>'js:{id: id_permintaan}',
-                                                'dataType'=>'JSON',
-                                                'success'=>"function(data){
-                                                                    console.log('data terkirim', data);
-                                                                    if(data['status']=='berhasil'){
-                                                                        document.getElementById('pesan_peringatan1').innerHTML =data['message']
-                                                                        $('#peringatan1').show();
-                                                                        $('#peringatan2').hide();
-                                                                        $('#list-peminjaman').yiiGridView('update', {
-                                                                            data: $(this).serialize()
-                                                                        });
-                                                                    }else{
-                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
-                                                                        $('#peringatan2').show();
-                                                                        $('#peringatan1').hide();
-                                                                        $('#list-peminjaman').yiiGridView('update', {
-                                                                            data: $(this).serialize()
-                                                                        });
-                                                                    }
-                                                                }"
-                                            ))
-                                            ."
-										}"
-                                    ),
-                                    'tolak'=>array(
-                                        'label'=>'<i class="fa fa-minus-square"></i>',
-                                        'options'=>array(
-                                            'title'=>'Tolak',
-                                            'class'=>'btn btn-sm btn-danger tolak',
-                                            'data-toggle' => 'tooltip',
-                                        ),
-                                        //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
-                                        'visible'=>'true',
-                                        'click' => "js:function(event){  
-												event.preventDefault();
-												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
-												console.log('id yang mau dirubah', id_permintaan)
-												$('#modalCardNominative').modal('show');
-											
-												".CHtml::ajax(array(
-                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
-                                                'type'=>'POST',
-                                                'data'=>'js:{id: id_permintaan}',
-                                                'dataType'=>'JSON',
-                                                'success'=>"function(data){
-                                                                    console.log('data terkirim');
-                                                                    if(data['status']=='berhasil'){
-                                                             
-                                                                        document.getElementById('pesan_peringatan1').innerHTML = data['message']
-                                                                        $('#peringatan1').show();
-                                                                        $('#peringatan2').hide();
-                                                                        $('#list-peminjaman').yiiGridView('update', {
-                                                                            data: $(this).serialize()
-                                                                        });
-                                                                    }else{
-                                                                      
-                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
-                                                                         $('#peringatan2').show();
-                                                                         $('#peringatan1').hide();
-                                                                         $('#list-peminjaman').yiiGridView('update', {
-                                                                            data: $(this).serialize()
-                                                                        });
-                                                                    }
-                                                                }"
-                                            ))
-                                            ."
-										}"
-                                    ),
-                                )
-                            )
+//                            array(
+//                                'header'=>'aksi',
+//                                'class'=>'CButtonColumn',
+//                                'template'=>'{detail} {setujui} {tolak}',
+//                                'buttons'=>array(
+//                                    'detail'=>array(
+//                                        'label'=>'<i class="fa fa-file-text-o"></i>',
+//                                        'options'=>array(
+//                                            'title'=>'Detail',
+//                                            'class'=>'btn btn-sm btn-primary',
+//                                            'data-toggle' => 'tooltip',
+//                                        ),
+//                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
+//                                        'visible'=>'true'
+//                                    ),
+//                                    'setujui'=>array(
+//                                        'label'=>'<i class="fa fa-check-square"></i>',
+//                                        'options'=>array(
+//                                            'title'=>'Setujui',
+//                                            'class'=>'btn btn-sm btn-success setujui',
+//                                            'data-toggle' => 'tooltip',
+//                                        ),
+//                                        //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
+//                                        'visible'=>'true',
+//                                        'click' => "js:function(event){
+//												event.preventDefault();
+//												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
+//												$('#modalCardNominative').modal('show');
+//												".CHtml::ajax(array(
+//                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
+//                                                'type'=>'POST',
+//                                                'data'=>'js:{id: id_permintaan}',
+//                                                'dataType'=>'JSON',
+//                                                'success'=>"function(data){
+//                                                                    console.log('data terkirim', data);
+//                                                                    if(data['status']=='berhasil'){
+//                                                                        document.getElementById('pesan_peringatan1').innerHTML =data['message']
+//                                                                        $('#peringatan1').show();
+//                                                                        $('#peringatan2').hide();
+//                                                                        $('#list-peminjaman').yiiGridView('update', {
+//                                                                            data: $(this).serialize()
+//                                                                        });
+//                                                                    }else{
+//                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
+//                                                                        $('#peringatan2').show();
+//                                                                        $('#peringatan1').hide();
+//                                                                        $('#list-peminjaman').yiiGridView('update', {
+//                                                                            data: $(this).serialize()
+//                                                                        });
+//                                                                    }
+//                                                                }"
+//                                            ))
+//                                            ."
+//										}"
+//                                    ),
+//                                    'tolak'=>array(
+//                                        'label'=>'<i class="fa fa-minus-square"></i>',
+//                                        'options'=>array(
+//                                            'title'=>'Tolak',
+//                                            'class'=>'btn btn-sm btn-danger tolak',
+//                                            'data-toggle' => 'tooltip',
+//                                        ),
+//                                        //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
+//                                        'visible'=>'true',
+//                                        'click' => "js:function(event){
+//												event.preventDefault();
+//												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
+//												console.log('id yang mau dirubah', id_permintaan)
+//												$('#modalCardNominative').modal('show');
+//
+//												".CHtml::ajax(array(
+//                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
+//                                                'type'=>'POST',
+//                                                'data'=>'js:{id: id_permintaan}',
+//                                                'dataType'=>'JSON',
+//                                                'success'=>"function(data){
+//                                                                    console.log('data terkirim');
+//                                                                    if(data['status']=='berhasil'){
+//
+//                                                                        document.getElementById('pesan_peringatan1').innerHTML = data['message']
+//                                                                        $('#peringatan1').show();
+//                                                                        $('#peringatan2').hide();
+//                                                                        $('#list-peminjaman').yiiGridView('update', {
+//                                                                            data: $(this).serialize()
+//                                                                        });
+//                                                                    }else{
+//
+//                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
+//                                                                         $('#peringatan2').show();
+//                                                                         $('#peringatan1').hide();
+//                                                                         $('#list-peminjaman').yiiGridView('update', {
+//                                                                            data: $(this).serialize()
+//                                                                        });
+//                                                                    }
+//                                                                }"
+//                                            ))
+//                                            ."
+//										}"
+//                                    ),
+//                                )
+//                            )
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'

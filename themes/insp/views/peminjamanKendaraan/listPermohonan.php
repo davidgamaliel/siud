@@ -1,3 +1,76 @@
+<?php
+Yii::app()->clientScript->registerScript('apaaja', "
+$('.modalBack').click(function(event){
+    event.preventDefault();
+	$('#modalLaporan').modal('hide');
+});
+$('.modalSubmit').click(function(event){
+    event.preventDefault();
+    var persetujuan = $('#persetujuan').val();
+    var idPersetujuan = $('#idPeminjaman').val();
+    var alasanPersetujuan = $('#alasan').val();
+    if(persetujuan == '1') {
+    alert('masuk sini');
+    console.log(idPersetujuan);
+     ".CHtml::ajax(array(
+        'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
+        'type'=>'POST',
+        'data'=>'js:{id: idPersetujuan, alasan: alasanPersetujuan}',
+        'dataType'=>'JSON',
+        'success'=>"function(data){
+            console.log('data terkirim', data);
+            $('#modalLaporan').modal('hide')
+            if(data['status']=='berhasil'){
+                document.getElementById('pesan_peringatan1').innerHTML =data['message']
+                $('#peringatan1').show();
+                $('#peringatan2').hide();
+                $('#list-peminjaman').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }else{
+                 document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                $('#peringatan2').show();
+                $('#peringatan1').hide();
+                $('#list-peminjaman').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }
+        }"
+    ))
+    ."
+    }
+    else if (persetujuan == '2') {
+    ".CHtml::ajax(array(
+        'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
+        'type'=>'POST',
+        'data'=>'js:{id: idPersetujuan, alasan: alasanPersetujuan}',
+        'dataType'=>'JSON',
+        'success'=>"function(data){
+            console.log('data terkirim', data);
+            $('#modalLaporan').modal('hide')
+            if(data['status']=='berhasil'){             
+                document.getElementById('pesan_peringatan1').innerHTML = data['message']
+                $('#peringatan1').show();
+                $('#peringatan2').hide();
+                $('#list-peminjaman').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }else{
+              
+                 document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                 $('#peringatan2').show();
+                 $('#peringatan1').hide();
+                 $('#list-peminjaman').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }
+        }"
+    ))
+    ."
+    }
+});
+");
+?>
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
         <h2>Daftar Permohonan Peminjaman Kendaraan</h2>
@@ -101,13 +174,23 @@
                                         'label'=>'<i class="fa fa-pencil-square-o"></i>',
                                         'options'=>array(
                                             'title'=>'Setujui/Tolak',
-                                            'class'=>'btn btn-sm btn-primary',
+                                            'class'=>'btn btn-sm btn-primary aksi_aksi',
                                             'data-toggle' => 'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
                                         'visible'=>'true',
                                         'click'=> "js:function(event) {
                                                     event.preventDefault();
+//                                                    $('#modalLaporan').attr('action',$(this).attr('href'));
+                                                    $('#idPeminjaman').val($(this).parent().parent().children(':nth-child(2)').html());
+                                                    if ($(this).parent().parent().children(':nth-child(3)').html() == '&nbsp;') {
+                                                        $('#nama').val();
+                                                    }
+                                                    else {
+                                                        $('#nama').val($(this).parent().parent().children(':nth-child(3)').html());
+                                                    }
+                                                    $('#kendaraan').val($(this).parent().parent().children(':nth-child(4)').html());
+                                                    $('#mulai').val($(this).parent().parent().children(':nth-child(5)').html());
+                                                    $('#selesai').val($(this).parent().parent().children(':nth-child(6)').html());
                                                     $('#modalLaporan').modal('show');
                                         }"
                                     ),
@@ -119,7 +202,7 @@
                                             'data-toggle' => 'tooltip',
                                         ),
                                         //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
-                                        'visible'=>'true',
+                                        'visible'=>'false',
                                         'click' => "js:function(event){  
 												event.preventDefault();
 												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
@@ -159,7 +242,7 @@
                                             'data-toggle' => 'tooltip',
                                         ),
                                         //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
-                                        'visible'=>'true',
+                                        'visible'=>'false',
                                         'click' => "js:function(event){  
 												event.preventDefault();
 												var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
@@ -228,7 +311,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                             class="sr-only">Close</span></button>
-                <h4 class="modal-title">Cetak Form Permintaan Kartu ATM Reguler Nomor Khusus</h4>
+                <h4 class="modal-title">Persetujuan Peminjaman</h4>
 
             </div>
             <div class="wrapper wrapper-content animated fadeIn">
@@ -236,30 +319,63 @@
                     <div class="col-lg-12">
                         <div class="col-lg-12 form-horizontal white-bg">
                             <br>
-
-                            <?php $form = $this->beginWidget('CActiveForm', array(
-                                'id' => 'card-special-approve-form',
-                                'action'=>Yii::app()->createUrl('cardOrder/printRegularSpecialOrderReport'),
-                                // Please note: When you enable ajax validation, make sure the corresponding
-                                // controller action is handling ajax validation correctly.
-                                // There is a call to performAjaxValidation() commented in generated controller code.
-                                // See class documentation of CActiveForm for details on this.
-                                'enableAjaxValidation' => false,
-                            )); ?>
+                            <input type="hidden" id="idPeminjaman" name="idPeminjaman">
                             <div class="form-group">
-                                <label class="col-sm-5" for="TrxCardOrderCustom_PENERIMA">Petugas Card Center<span class="required">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" name="TrxCardOrderCustom_PENERIMA" class="form-control" required="required">
+                                <label class="col-sm-3">Nama Pemohon</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="nama" id="nama" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Kendaraan</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="kendaraan" id="kendaraan" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Waktu Awal</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="mulai" id="mulai" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Waktu Akhir</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="selesai" id="selesai" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Persetujuan <span class="required">*</span></label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <select class="form-control" id="persetujuan" name="persetujuan">
+                                            <option value="1">Disetujui</option>
+                                            <option value="2">Ditolak</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Alasan<span class="required">*</span></label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <textarea name="alasan" id="alasan" rows="5" cols="50"required></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <?php echo CHtml::submitButton('Cetak', array('class' => 'btn btn-success col-md-4', 'name' => 'print','id'=>'print')); ?>
+                                <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success col-md-4 modalSubmit')); ?>
                                 <?php //echo CHtml::button('Batal', array('class' => 'modalBack btn btn-warning col-md-4',)); ?>
-                                <?php echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4')); ?>
+                                <?php echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4 modalBack')); ?>
                             </div>
-
-                            <?php $this->endWidget(); ?>
-
                         </div><!-- form -->
 
                     </div>

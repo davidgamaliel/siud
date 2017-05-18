@@ -92,10 +92,11 @@ class PeminjamanKendaraanController extends Controller
     public function actionSetujuiPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DISETUJUI;
+        $model->alasan = $_POST['alasan'];
         $waktuMulai = TrxPeminjamanKendaraanCustom::validasiWaktuMulai(intval($_POST['id']));
-        $waktuSelesai =TrxPeminjamanKendaraanCustom::validasiWaktuSelesai(intval($_POST['id']));
+        $waktuSelesai = TrxPeminjamanKendaraanCustom::validasiWaktuSelesai(intval($_POST['id']));
         if($waktuMulai && $waktuSelesai) {
-            if($model->saveAttributes(array('status'))) {
+            if($model->saveAttributes(array('status', 'alasan'))) {
                 $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'waktuMulai'=>$waktuMulai, 'waktuSelesai'=>$waktuSelesai);
                 echo CJSON::encode($result);
             }
@@ -109,7 +110,8 @@ class PeminjamanKendaraanController extends Controller
     public function actionTolakPeminjaman() {
         $model = TrxPeminjamanKendaraanCustom::model()->findByPk(intval($_POST['id']));
         $model->status = StatusPeminjaman::DITOLAK;
-        if($model->saveAttributes(array('status'))) {
+        $model->alasan = $_POST['alasan'];
+        if($model->saveAttributes(array('status', 'alasan'))) {
             $result = array('status'=>'berhasil','id'=>$_POST['id'],'message'=>'berhasil menolak permohonan');
             echo CJSON::encode($result);
         }
