@@ -119,18 +119,7 @@ $form=$this->beginWidget('CActiveForm', array(
                                 'header'=>'Pemohon',
                                 'value'=>'$data->id_pemohon == null ? "" : $data->idPemohon->username',
                             ),
-<<<<<<< HEAD
                             'jabatan',
-=======
-                            array(
-                                'header'=>'Unit Kerja',
-                                'value'=>'$data->unit_kerja'
-                            ),
-                            array(
-                                'header'=>'Keperluan',
-                                'value'=>'$data->keperluan'
-                            ),
->>>>>>> b0b0591df4a7acbb534e790ae62e953ee70b7fff
                             array(
                                 'header'=>'Total Harga Penggunaan Bensin (*rupiah)',
                                 'value'=>'$data->jumlah_bensin'
