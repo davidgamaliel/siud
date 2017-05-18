@@ -3,6 +3,8 @@ Yii::app()->clientScript->registerScript('apaaja', "
 $('.modalBack').click(function(event){
     event.preventDefault();
 	$('#modalLaporan').modal('hide');
+	$('#persetujuan').val('1')
+    $('#alasan').val('')
 });
 $('.modalSubmit').click(function(event){
     event.preventDefault();
@@ -10,7 +12,6 @@ $('.modalSubmit').click(function(event){
     var idPersetujuan = $('#idPeminjaman').val();
     var alasanPersetujuan = $('#alasan').val();
     if(persetujuan == '1') {
-    alert('masuk sini');
     console.log(idPersetujuan);
      ".CHtml::ajax(array(
         'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
@@ -20,6 +21,8 @@ $('.modalSubmit').click(function(event){
         'success'=>"function(data){
             console.log('data terkirim', data);
             $('#modalLaporan').modal('hide')
+            $('#persetujuan').val('1')
+            $('#alasan').val('')
             if(data['status']=='berhasil'){
                 document.getElementById('pesan_peringatan1').innerHTML =data['message']
                 $('#peringatan1').show();
@@ -48,6 +51,8 @@ $('.modalSubmit').click(function(event){
         'success'=>"function(data){
             console.log('data terkirim', data);
             $('#modalLaporan').modal('hide')
+            $('#persetujuan').val('1')
+            $('#alasan').val('')
             if(data['status']=='berhasil'){             
                 document.getElementById('pesan_peringatan1').innerHTML = data['message']
                 $('#peringatan1').show();
@@ -353,7 +358,7 @@ $('.modalSubmit').click(function(event){
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3">Persetujuan <span class="required">*</span></label>
+                                <label class="col-sm-3">Persetujuan</label>
                                 <div class="row">
                                     <div class="input-group">
                                         <select class="form-control" id="persetujuan" name="persetujuan">
@@ -364,7 +369,7 @@ $('.modalSubmit').click(function(event){
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3">Alasan<span class="required">*</span></label>
+                                <label class="col-sm-3">Alasan</span></label>
                                 <div class="row">
                                     <div class="input-group">
                                         <textarea name="alasan" id="alasan" rows="5" cols="50"required></textarea>
