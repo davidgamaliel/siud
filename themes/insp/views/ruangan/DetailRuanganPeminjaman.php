@@ -58,8 +58,14 @@
                                 'value'=>'$data->formatedWaktuAkhir',
                                 'htmlOptions'=>array('text-align'=>'center'),
                             ),
-                            'kegiatan',
-                            'keterangan'
+                            array(
+                                'header'=>'Kegiatan',
+                                'value'=>'$data->kegiatan',
+                            ),
+                            array(
+                                'header'=>'Keterangan',
+                                'value'=>'$data->keterangan',
+                            ),
                         ),
                         'htmlOptions' => array(
                             'class' => 'table table-striped'
@@ -89,5 +95,5 @@
     </div>
 </div>
 <div class="wrapper wrapper-content animate fadeInRight">
-    <div align="center"><?php echo CHtml::link('Tambah Permintaan',array('ruangan/pinjamRuangan'), array('class'=>'btn btn-primary')); ?></div>
+    <div align="center"><?php echo CHtml::link('Buat Permintaan',array('ruangan/pinjamRuangan'), array('class'=>'btn btn-primary')); ?></div>
 </div>

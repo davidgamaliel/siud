@@ -8,7 +8,7 @@
 ?>
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>Kelola Permohonan</h2>
+        <h2>Kelola Permohonan Peminjaman Ruangan</h2>
     </div>
     <?php
     $this->breadcrumbs=array(
@@ -40,19 +40,18 @@
                             ),
                             array(
                                 'header'=>'Waktu Awal Peminjaman',
-                                'name'=>'waktu_awal_peminjaman',
                                 'value'=>'$data->formatedWaktuMulai',
                             ),
                             array(
                                 'header'=>'Waktu Akhir Peminjaman',
-                                'name'=>'waktu_akhir_peminjaman',
                                 'value'=>'$data->formatedWaktuAkhir',
                             ),
-                            'kegiatan',
-                            'keterangan',
+                            array(
+                                'header'=>'Kegiatan',
+                                'value'=>'$data->kegiatan',
+                            ),
                             array(
                                 'header'=>'Nodin',
-                                'name'=>'nodin',
                                 'value'=>'CHtml::link(
                                             \'nodin\',
                                             Yii::app()->createUrl(\'/ruangan/viewNodinRuangan\', array(\'id\' => $data->id)) ,
@@ -60,15 +59,19 @@
                                 'type'=>'raw',
                             ),
                             array(
+                                'header'=>'Status',
+                                'value'=>'$data->status->nama',
+                            ),
+                            array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',
                                 'template'=>'{ubah}',
                                 'buttons'=>array(
                                     'ubah'=>array(
-                                        'label'=>'<i class="fa fa-pencil"></i>',
+                                        'label'=>'<i class="fa fa-pencil-square-o"></i>',
                                         'options'=>array(
                                             'title'=>'Ubah',
-                                            'class'=>'btn btn-sm btn-primary',
+                                            'class'=>'btn btn-sm btn-success',
                                         ),
                                         'url'=>'Yii::app()->createUrl("ruangan/ubahPermohonan", array("id"=>$data->id))',
                                         'visible'=>'true'

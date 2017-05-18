@@ -107,17 +107,17 @@ class RuanganController extends Controller
         $end = $logic->formatedDatefromDb($model->waktu_akhir_peminjaman);
         $isClashed = $logic->istimeClashed($begin, $end, $model->id_ruangan);
         if($isClashed) {
-        	$result = array('status'=>'gagal', 'message'=>', Waktu perminjaman ruangan ini bentrok dengan peminjaman yang sudah disetujui');
+        	$result = array('status'=>'gagal', 'message'=>'Sudah ada jadwal peminjaman yang disetujui pada waktu tersebut', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
             echo CJSON::encode($result);
         }
         else {
         	$model->status_id = 1;
 	        if($model->saveAttributes(array('status_id'))) {
-	            $result = array('status'=>'berhasil','id'=>$model->id);
+	            $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
 	            echo CJSON::encode($result);
 	        }
 	        else {
-	            $result = array('status'=>'gagal', 'message'=>'');
+	            $result = array('status'=>'gagal', 'message'=>'Sudah ada jadwal peminjaman yang disetujui pada waktu tersebut', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
 	            echo CJSON::encode($result);
 	        }
         }
@@ -127,11 +127,11 @@ class RuanganController extends Controller
         $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
         $model->status_id = 2;
         if($model->saveAttributes(array('status_id'))) {
-            $result = array('status'=>'berhasil','id'=>$_POST['id']);
+            $result = array('status'=>'berhasil','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username, 'message'=>'berhasil menolak permohonan');
             echo CJSON::encode($result);
         }
         else {
-            $result = array('status'=>'gagal','id'=>$_POST['id']);
+            $result = array('status'=>'gagal','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username, 'message'=>'gagal menolak permohonan');
             echo CJSON::encode($result);
         }
     }
@@ -370,6 +370,15 @@ class RuanganController extends Controller
 		$data['dropdownRuangan'] = $dropdownRuangan;
 		$data['model'] = $model;
 		$this->render('UbahPermohonan', $data);
+	}
+
+	public function actionDetailPermohonan()
+	{
+		$data = array();
+		$id = $_GET['id'];
+		$model = TranPeminjamanRuangan::model()->findByPk($id);
+		$data['model'] = $model;
+		$this->render('DetailPermohonan', $data);
 	}
 
 	

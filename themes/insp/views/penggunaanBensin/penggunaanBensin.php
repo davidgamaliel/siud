@@ -15,7 +15,7 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
 
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>laporan Penggunaan Bensin</h2>
+        <h2>Form Penggunaan Bensin</h2>
     </div>
     <?php
     $this->breadcrumbs=array(
@@ -70,9 +70,9 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
                     <div class="hr-line-dashed"></div>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Struk Bensin</label>
+                            <label class="col-sm-2 control-label">Scan Kwitansi bensin (bermaterai)</label>
                             <div class="col-sm-10">
-                                <?php echo $form->fileField($model,'file_struk',array('class'=>'form-control')); ?>
+                                <?php echo $form->fileField($model,'file_struk'); ?><i>Upload file dalam format JPG</i>
                                 <?php echo $form->error($model, 'file_struk', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
@@ -81,7 +81,7 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
                     <div class="form-horizontal">
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <button class="btn btn-white" type="submit">Cancel</button>
+                                <?php echo CHtml::link('Kembali',array('penggunaanBensin/riwayatPenggunaan'), array('class'=>'btn btn-white')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class' => 'btn btn-primary', 'name' => 'submit', 'id' => 'submit')); ?>
                             </div>
                         </div>

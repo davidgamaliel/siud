@@ -40,7 +40,7 @@ class TranPeminjamanRuangan extends CActiveRecord
 			array('id_ruangan, waktu_awal_peminjaman, waktu_akhir_peminjaman, kegiatan, status_id', 'required', 'message'=>'{attribute} tidak boleh kosong'),
 			array('id_ruangan, id_user_peminjam', 'numerical', 'integerOnly'=>true),
 			array('kegiatan', 'length', 'max'=>100),
-			array('nodin', 'file', 'types'=>'jpg, png, pdf', 'safe'=>false, 'allowEmpty'=>false),
+			array('nodin', 'file', 'types'=>'jpg, png, pdf', 'safe'=>false, 'allowEmpty'=>false, 'message'=>'{attribute} tidak boleh kosong'),
 			array('tanggal_peminjaman', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -174,5 +174,23 @@ class TranPeminjamanRuangan extends CActiveRecord
         else {
             return '';
         }
+	}
+
+	public function getNamaRuangan()
+	{
+		if(!is_null($this->id_ruangan)) {
+			return $this->idRuangan->nama;
+		} else {
+			return '';
+		}
+	}
+
+	public function getNamaStatus()
+	{
+		if(!is_null($this->status_id)) {
+			return $this->status->nama;
+		} else {
+			return '';
+		}
 	}
 }

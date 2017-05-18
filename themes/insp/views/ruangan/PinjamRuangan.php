@@ -86,9 +86,10 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e)
                         <div class="hr-line-dashed"></div>
 
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Upload Nodin</label>
+                            <label class="col-sm-2 control-label"><?php echo $form->label($model, 'nodin'); ?></label>
                             <div class="col-sm-10">
-                                <?php echo $form->fileField($model, 'nodin', array('size'=>20, 'class'=>'form-control'));?>&nbsp;<i>Upload file dalam format JPG</i>
+                                <?php echo $form->fileField($model, 'nodin', array('size'=>20));?>&nbsp;<i>Upload file dalam format JPG</i>
+                                <?php echo $form->error($model, 'nodin', array('class' => 'text-danger')); ?>
                             </div>
                         </div>
 
@@ -98,7 +99,7 @@ $('#TranPeminjamanRuangan_waktu_akhir_peminjaman').on(\"dp.change\",function (e)
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <!-- <button class="btn btn-white" type="submit">Cancel</button> -->
-                                <?php echo CHtml::link('Batal',array('ruangan/kelolaPermohonan'), array('class'=>'btn btn-white')); ?>
+                                <?php echo CHtml::link('Kembali',array('ruangan/kelolaPermohonan'), array('class'=>'btn btn-white')); ?>
                                 <?php echo CHtml::submitButton('Kirim', array('class'=>'btn btn-primary')); ?> 
                                 <!-- <button class="btn btn-primary" type="submit">Kirim</button> -->
                             </div>

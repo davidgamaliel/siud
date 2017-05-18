@@ -60,7 +60,7 @@ class TrxPenggunaanBensin extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'jabatan' => 'Jabatan',
-			'file_struk' => 'File Struk',
+			'file_struk' => 'Scan Kwitansi Bensin (bermaterai)',
 			'jumlah_bensin' => 'Jumlah Bensin',
 			'id_pemohon' => 'Id Pemohon',
 			'tanggal' => 'Tanggal',

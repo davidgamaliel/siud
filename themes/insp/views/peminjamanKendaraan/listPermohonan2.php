@@ -22,12 +22,6 @@
         <p id="pesan_peringatan2"></p>
     </div>
 </div>
-<br/>
-<div class="col-md-1">
-    <?php echo CHtml::button('Refresh Halaman', array('class' => 'btn btn-warning','onclick'=>"myFunction()")); ?>
-</div>
-<br/>
-<br/>
 
 <div class="wrapper wrapper-content animate fadeInRight">
     <div class="row">
@@ -68,7 +62,11 @@
                                 'header'=>'Waktu Akhir Peminjaman',
                                 'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
                             ),
-                             array(
+                            array(
+                                'header'=>'Supir',
+                                'value'=>'$data->supir',
+                            ),
+                            array(
                                 'header'=>'File Nodin',
                                 'value'=>'CHtml::link(
                                             $data->nodin,
@@ -85,7 +83,7 @@
                             array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',
-                                'template'=>'{detail} {setujui} {tolak} {aksi_aksi}',
+                                'template'=>'{detail} {setujui} {tolak}',
                                 'buttons'=>array(
                                     'detail'=>array(
                                         'label'=>'<i class="fa fa-file-text-o"></i>',
@@ -96,20 +94,6 @@
                                         ),
                                         'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
                                         'visible'=>'true'
-                                    ),
-                                    'aksi_aksi'=>array(
-                                        'label'=>'<i class="fa fa-pencil-square-o"></i>',
-                                        'options'=>array(
-                                            'title'=>'Setujui/Tolak',
-                                            'class'=>'btn btn-sm btn-primary',
-                                            'data-toggle' => 'tooltip',
-                                        ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
-                                        'visible'=>'true',
-                                        'click'=> "js:function(event) {
-                                                    event.preventDefault();
-                                                    $('#modalLaporan').modal('show');
-                                        }"
                                     ),
                                     'setujui'=>array(
                                         'label'=>'<i class="fa fa-check-square"></i>',
@@ -167,11 +151,11 @@
 												$('#modalCardNominative').modal('show');
 											
 												".CHtml::ajax(array(
-                                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
-                                                                'type'=>'POST',
-                                                                'data'=>'js:{id: id_permintaan}',
-                                                                'dataType'=>'JSON',
-                                                                'success'=>"function(data){
+                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
+                                                'type'=>'POST',
+                                                'data'=>'js:{id: id_permintaan}',
+                                                'dataType'=>'JSON',
+                                                'success'=>"function(data){
                                                                     console.log('data terkirim');
                                                                     if(data['status']=='berhasil'){
                                                              
@@ -222,52 +206,6 @@
         </div>
     </div>
 </div>
-<div class="modal inmodal" id="modalLaporan" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content animated bounceInRight">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Close</span></button>
-                <h4 class="modal-title">Cetak Form Permintaan Kartu ATM Reguler Nomor Khusus</h4>
-
-            </div>
-            <div class="wrapper wrapper-content animated fadeIn">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="col-lg-12 form-horizontal white-bg">
-                            <br>
-
-                            <?php $form = $this->beginWidget('CActiveForm', array(
-                                'id' => 'card-special-approve-form',
-                                'action'=>Yii::app()->createUrl('cardOrder/printRegularSpecialOrderReport'),
-                                // Please note: When you enable ajax validation, make sure the corresponding
-                                // controller action is handling ajax validation correctly.
-                                // There is a call to performAjaxValidation() commented in generated controller code.
-                                // See class documentation of CActiveForm for details on this.
-                                'enableAjaxValidation' => false,
-                            )); ?>
-                            <div class="form-group">
-                                <label class="col-sm-5" for="TrxCardOrderCustom_PENERIMA">Petugas Card Center<span class="required">*</span></label>
-                                <div class="input-group">
-                                    <input type="text" name="TrxCardOrderCustom_PENERIMA" class="form-control" required="required">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <?php echo CHtml::submitButton('Cetak', array('class' => 'btn btn-success col-md-4', 'name' => 'print','id'=>'print')); ?>
-                                <?php //echo CHtml::button('Batal', array('class' => 'modalBack btn btn-warning col-md-4',)); ?>
-                                <?php echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4')); ?>
-                            </div>
-
-                            <?php $this->endWidget(); ?>
-
-                        </div><!-- form -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script>
     function myFunction() {
         location.reload();
@@ -276,21 +214,21 @@
         $('.data_table_kendaraan').DataTable({
             'bInfo': false,
             dom: '<"html5buttons"B>lTfgitp',
-            buttons: [/*
+            buttons: [
                 {extend: 'excel', title: 'Permohonan Peminjaman Kendaraan'},
                 {extend: 'pdf', title: 'Permohonan Peminjaman Kendaraan'},
 
                 {extend: 'print',
-                 customize: function (win){
+                    customize: function (win){
                         $(win.document.body).addClass('white-bg');
                         $(win.document.body).css('font-size', '10px');
 
                         $(win.document.body).find('table')
-                                .addClass('compact')
-                                .css('font-size', 'inherit');
+                            .addClass('compact')
+                            .css('font-size', 'inherit');
+                    }
                 }
-                }
-            */]
+            ]
 
         });
 
@@ -299,31 +237,31 @@
 
         /* Apply the jEditable handlers to the table */
         /*oTable.$('td').editable( '../example_ajax.php', {
-            "callback": function( sValue, y ) {
-                var aPos = oTable.fnGetPosition( this );
-                oTable.fnUpdate( sValue, aPos[0], aPos[1] );
-            },
-            "submitdata": function ( value, settings ) {
-                return {
-                    "row_id": this.parentNode.getAttribute('id'),
-                    "column": oTable.fnGetPosition( this )[2]
-                };
-            },
+         "callback": function( sValue, y ) {
+         var aPos = oTable.fnGetPosition( this );
+         oTable.fnUpdate( sValue, aPos[0], aPos[1] );
+         },
+         "submitdata": function ( value, settings ) {
+         return {
+         "row_id": this.parentNode.getAttribute('id'),
+         "column": oTable.fnGetPosition( this )[2]
+         };
+         },
 
-            "width": "90%",
-            "height": "100%"
-        } );*/
+         "width": "90%",
+         "height": "100%"
+         } );*/
 
 
     });
 
     /*function fnClickAddRow() {
-        $('#editable').dataTable().fnAddData( [
-            "Custom row",
-            "New row",
-            "New row",
-            "New row",
-            "New row" ] );
+     $('#editable').dataTable().fnAddData( [
+     "Custom row",
+     "New row",
+     "New row",
+     "New row",
+     "New row" ] );
 
-    }*/
+     }*/
 </script>

@@ -1,17 +1,3 @@
-<div class="row">
-    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan1" style="display: none;">
-        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-        <b>Perhatian! </b>
-        <p id="pesan_peringatan"></p>
-    </div>
-</div>
-<div class="row">
-    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
-        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-        <b>Perhatian! </b>
-        <p id="pesan_peringatan"></p>
-    </div>
-</div>
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
         <h2>Daftar Permohonan Peminjaman Ruangan</h2>
@@ -22,6 +8,27 @@
     );
     ?>
 </div>
+<div class="row">
+    <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan1" style="display: none;">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <b>Perhatian! </b>
+        <p id="pesan_peringatan"></p>
+    </div>
+</div>
+<div class="row">
+    <div class="alert alert-danger alert-dismissable col-lg-12" id="peringatan2" style="display: none;">
+        <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+        <b>Perhatian! </b>
+        <p id="pesan_peringatan2"></p>
+    </div>
+</div>
+<br />
+<div class="col-md-1">
+    <?php echo CHtml::button('Refresh Halaman', array('class' => 'btn btn-warning','onclick'=>"myFunction()")); ?>
+</div>
+<br/>
+<br/>
+
 <div class="wrapper wrapper-content animate fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -113,16 +120,16 @@
                                                 'success'=>"function(data){
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil disetujui'
+                                                                        document.getElementById('pesan_peringatan').innerHTML = data['message']
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
                                                                     }else{
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal disetujui' + data['message'] + ''
-                                                                        $('#peringatan1').show();
-                                                                        $('#peringatan2').hide();
+                                                                         document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                                                                        $('#peringatan2').show();
+                                                                        $('#peringatan1').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
                                                                             data: $(this).serialize()
                                                                         });
@@ -156,7 +163,7 @@
                                                                     console.log('data terkirim', data);
                                                                     if(data['status']=='berhasil'){
                                                              
-                                                                        document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , berhasil ditolak'
+                                                                        document.getElementById('pesan_peringatan').innerHTML = data['message']
                                                                         $('#peringatan1').show();
                                                                         $('#peringatan2').hide();
                                                                         $('#list-permohonan-ruangan').yiiGridView('update', {
@@ -164,7 +171,7 @@
                                                                         });
                                                                     }else{
                                                                       
-                                                                         document.getElementById('pesan_peringatan').innerHTML = 'Permintaan dengan id = ' + data['id'] + ' , gagal ditolak'
+                                                                         document.getElementById('pesan_peringatan').innerHTML = data['message']
                                                                          $('#peringatan2').show();
                                                                          $('#peringatan1').hide();
                                                                          $('#list-permohonan-ruangan').yiiGridView('update', {
@@ -205,11 +212,14 @@
 </div>
 
 <script>
+    function myFunction() {
+        location.reload();
+    }
     $(document).ready(function(){
         $('.data_table_ruangan').DataTable({
             'info': false,
             dom: '<"html5buttons"Br>lTfgitp',
-            buttons: [
+            buttons: [/*
                 {extend: 'excel', title: 'Permohonan Peminjaman Ruangan'},
                 {extend: 'pdf', title: 'Permohonan Peminjaman Ruangan'},
 
@@ -223,7 +233,7 @@
                                 .css('font-size', 'inherit');
                 }
                 }
-            ]
+            */]
 
         });
 

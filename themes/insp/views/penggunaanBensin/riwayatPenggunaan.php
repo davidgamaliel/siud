@@ -18,6 +18,24 @@
 </div>
 <div class="wrapper wrapper-content animate fadeInRight">
     <div class="row">
+        <?php if (Yii::app()->user->hasFlash('success')) : ?>
+            <div class="form-group">
+                <div class="alert alert-success alert-dismissable col-md-12">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <b>Success! </b><?php echo Yii::app()->user->getFlash('success'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (Yii::app()->user->hasFlash('errors')) : ?>
+            <div class="form-group">
+                <div class="alert alert-danger alert-dismissable col-md-12">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <b>Error! </b><?php echo Yii::app()->user->getFlash('errors'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -35,10 +53,20 @@
                             ),
                             array(
                                 'header'=>'Pemohon',
-                                'name'=>'id_pemohon',
                                 'value'=>'$data->id_pemohon == null ? "" : $data->idPemohon->username',
                             ),
+<<<<<<< HEAD
                             'jabatan',
+=======
+                            array(
+                                'header'=>'Unit Kerja',
+                                'value'=>'$data->unit_kerja'
+                            ),
+                            array(
+                                'header'=>'Keperluan',
+                                'value'=>'$data->keperluan'
+                            ),
+>>>>>>> b0b0591df4a7acbb534e790ae62e953ee70b7fff
                             array(
                                 'header'=>'Jumlah Bensin (liter)',
                                 'value'=>'$data->jumlah_bensin'
@@ -49,7 +77,6 @@
                             ),
                             array(
                                 'header'=>'File Struk',
-                                'name'=>'file_struk',
                                 'value'=>'CHtml::link(
                                             $data->file_struk,
                                             Yii::app()->createUrl(\'/penggunaanBensin/viewStrukBensin\', array(\'id\' => $data->id)) ,
@@ -73,7 +100,7 @@
                             ),
                         ),
                         'pagerCssClass' => 'blank',
-                        'itemsCssClass' => 'table table-striped table-hover',
+                        'itemsCssClass' => 'table table-striped table-hover data_table_ruangan',
                         'cssFile' => false,
                         'summaryCssClass' => 'dataTables_info',
                         'summaryText' => Yii::t('form','Showing {start} to {end} of {count} entries'),
@@ -85,4 +112,15 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.data_table_ruangan').DataTable({
+            'info': false,
+            dom: '<"html5buttons"Br>lTfgitp',
+            buttons: [
 
+            ]
+
+        });
+    });
+</script>
