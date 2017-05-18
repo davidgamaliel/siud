@@ -77,8 +77,7 @@
                                 'name'=>'id_pemohon',
                                 'value'=>'$data->id_pemohon == null ? "" : $data->idPemohon->username',
                             ),
-                            'unit_kerja',
-                            'keperluan',
+                            'jabatan',
                             array(
                                 'header'=>'Total Harga Penggunaan Bensin (*rupiah)',
                                 'value'=>'$data->jumlah_bensin'

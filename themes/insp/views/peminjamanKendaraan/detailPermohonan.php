@@ -62,13 +62,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Dukungan Supir</label>
-                            <div class="col-sm-10">
-                                <label class="form-control"><?php echo $model->supir ; ?></label>
-                                <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label class="col-sm-2 control-label">Nodin yang Diunggah</label>
                             <div class="col-sm-10">
                                 <label class="form-control"><?php echo CHtml::link(
@@ -78,6 +71,23 @@
                                 <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
                             </div>
                         </div>
+                        <?php if($model->status == StatusPeminjaman::DISETUJUI) {?>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Alasan Disetujui</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control"><?php echo $model->alasan ; ?></label>
+                                    <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
+                                </div>
+                            </div>
+                        <?php } else if ($model->status == StatusPeminjaman::DITOLAK){?>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Alasan Ditolak</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control"><?php echo $model->alasan ; ?></label>
+                                    <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
+                                </div>
+                            </div>
+                        <?php } ?>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
                                 <?php echo CHtml::link('Kembali',array('peminjamanKendaraan/listPermohonan'),array('class'=>'btn btn-primary')); ?>

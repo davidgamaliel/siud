@@ -8,14 +8,12 @@
  * @property integer $kendaraan_id
  * @property string $peminjam
  * @property string $kegiatan
- * @property string $supir
- * @property string $tanggal_peminjaman
- * @property string $waktu_peminjaman
  * @property string $nodin
  * @property integer $status
  * @property string $waktu_mulai
  * @property string $waktu_selesai
  * @property integer $id_peminjam
+ * @property string $alasan
  *
  * The followings are the available model relations:
  * @property MstKendaraan $kendaraan
@@ -39,12 +37,11 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('kendaraan_id, status, id_peminjam', 'numerical', 'integerOnly'=>true),
-			array('peminjam, kegiatan, supir', 'length', 'max'=>50),
-			array('waktu_peminjaman', 'length', 'max'=>20),
-			array('tanggal_peminjaman, nodin, waktu_mulai, waktu_selesai', 'safe'),
+			array('peminjam, kegiatan', 'length', 'max'=>50),
+			array('nodin, waktu_mulai, waktu_selesai, alasan', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, kendaraan_id, peminjam, kegiatan, supir, tanggal_peminjaman, waktu_peminjaman, nodin, status, waktu_mulai, waktu_selesai, id_peminjam', 'safe', 'on'=>'search'),
+			array('id, kendaraan_id, peminjam, kegiatan, nodin, status, waktu_mulai, waktu_selesai, id_peminjam, alasan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,14 +67,12 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 			'kendaraan_id' => 'Kendaraan',
 			'peminjam' => 'Peminjam',
 			'kegiatan' => 'Kegiatan',
-			'supir' => 'Supir',
-			'tanggal_peminjaman' => 'Tanggal Peminjaman',
-			'waktu_peminjaman' => 'Waktu Peminjaman',
 			'nodin' => 'Nodin',
 			'status' => 'Status',
 			'waktu_mulai' => 'Waktu Mulai',
 			'waktu_selesai' => 'Waktu Selesai',
 			'id_peminjam' => 'Id Peminjam',
+			'alasan' => 'Alasan',
 		);
 	}
 
@@ -103,14 +98,12 @@ class TrxPeminjamanKendaraan extends CActiveRecord
 		$criteria->compare('kendaraan_id',$this->kendaraan_id);
 		$criteria->compare('peminjam',$this->peminjam,true);
 		$criteria->compare('kegiatan',$this->kegiatan,true);
-		$criteria->compare('supir',$this->supir,true);
-		$criteria->compare('tanggal_peminjaman',$this->tanggal_peminjaman,true);
-		$criteria->compare('waktu_peminjaman',$this->waktu_peminjaman,true);
 		$criteria->compare('nodin',$this->nodin,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('waktu_mulai',$this->waktu_mulai,true);
 		$criteria->compare('waktu_selesai',$this->waktu_selesai,true);
 		$criteria->compare('id_peminjam',$this->id_peminjam);
+		$criteria->compare('alasan',$this->alasan,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

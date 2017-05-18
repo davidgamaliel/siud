@@ -5,8 +5,7 @@
  *
  * The followings are the available columns in table 'trx_penggunaan_bensin':
  * @property integer $id
- * @property string $unit_kerja
- * @property string $keperluan
+ * @property string $jabatan
  * @property string $file_struk
  * @property string $jumlah_bensin
  * @property integer $id_pemohon
@@ -34,10 +33,10 @@ class TrxPenggunaanBensin extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_pemohon', 'numerical', 'integerOnly'=>true),
-			array('unit_kerja, keperluan, file_struk, jumlah_bensin, tanggal', 'safe'),
+			array('jabatan, file_struk, jumlah_bensin, tanggal', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, unit_kerja, keperluan, file_struk, jumlah_bensin, id_pemohon, tanggal', 'safe', 'on'=>'search'),
+			array('id, jabatan, file_struk, jumlah_bensin, id_pemohon, tanggal', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,8 +59,7 @@ class TrxPenggunaanBensin extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'unit_kerja' => 'Unit Kerja',
-			'keperluan' => 'Keperluan',
+			'jabatan' => 'Jabatan',
 			'file_struk' => 'File Struk',
 			'jumlah_bensin' => 'Jumlah Bensin',
 			'id_pemohon' => 'Id Pemohon',
@@ -88,8 +86,7 @@ class TrxPenggunaanBensin extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('unit_kerja',$this->unit_kerja,true);
-		$criteria->compare('keperluan',$this->keperluan,true);
+		$criteria->compare('jabatan',$this->jabatan,true);
 		$criteria->compare('file_struk',$this->file_struk,true);
 		$criteria->compare('jumlah_bensin',$this->jumlah_bensin,true);
 		$criteria->compare('id_pemohon',$this->id_pemohon);

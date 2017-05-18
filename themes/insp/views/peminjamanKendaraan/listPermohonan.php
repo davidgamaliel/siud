@@ -61,10 +61,6 @@
                                 'header'=>'Waktu Akhir Peminjaman',
                                 'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
                             ),
-                            array(
-                                'header'=>'Supir',
-                                'value'=>'$data->supir',
-                            ),
                              array(
                                 'header'=>'File Nodin',
                                 'value'=>'CHtml::link(
@@ -82,7 +78,7 @@
                             array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',
-                                'template'=>'{detail} {setujui} {tolak}',
+                                'template'=>'{detail} {setujui} {tolak} {aksi_aksi}',
                                 'buttons'=>array(
                                     'detail'=>array(
                                         'label'=>'<i class="fa fa-file-text-o"></i>',
@@ -93,6 +89,20 @@
                                         ),
                                         'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
                                         'visible'=>'true'
+                                    ),
+                                    'aksi_aksi'=>array(
+                                        'label'=>'<i class="fa fa-pencil-square-o"></i>',
+                                        'options'=>array(
+                                            'title'=>'Setujui/Tolak',
+                                            'class'=>'btn btn-sm btn-primary',
+                                            'data-toggle' => 'tooltip',
+                                        ),
+                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
+                                        'visible'=>'true',
+                                        'click'=> "js:function(event) {
+                                                    event.preventDefault();
+                                                    $('#modalLaporan').modal('show');
+                                        }"
                                     ),
                                     'setujui'=>array(
                                         'label'=>'<i class="fa fa-check-square"></i>',
@@ -200,6 +210,52 @@
                         'cssFile' => false,
                     ));
                     ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal inmodal" id="modalLaporan" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Cetak Form Permintaan Kartu ATM Reguler Nomor Khusus</h4>
+
+            </div>
+            <div class="wrapper wrapper-content animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12 form-horizontal white-bg">
+                            <br>
+
+                            <?php $form = $this->beginWidget('CActiveForm', array(
+                                'id' => 'card-special-approve-form',
+                                'action'=>Yii::app()->createUrl('cardOrder/printRegularSpecialOrderReport'),
+                                // Please note: When you enable ajax validation, make sure the corresponding
+                                // controller action is handling ajax validation correctly.
+                                // There is a call to performAjaxValidation() commented in generated controller code.
+                                // See class documentation of CActiveForm for details on this.
+                                'enableAjaxValidation' => false,
+                            )); ?>
+                            <div class="form-group">
+                                <label class="col-sm-5" for="TrxCardOrderCustom_PENERIMA">Petugas Card Center<span class="required">*</span></label>
+                                <div class="input-group">
+                                    <input type="text" name="TrxCardOrderCustom_PENERIMA" class="form-control" required="required">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <?php echo CHtml::submitButton('Cetak', array('class' => 'btn btn-success col-md-4', 'name' => 'print','id'=>'print')); ?>
+                                <?php //echo CHtml::button('Batal', array('class' => 'modalBack btn btn-warning col-md-4',)); ?>
+                                <?php echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4')); ?>
+                            </div>
+
+                            <?php $this->endWidget(); ?>
+
+                        </div><!-- form -->
+
+                    </div>
                 </div>
             </div>
         </div>

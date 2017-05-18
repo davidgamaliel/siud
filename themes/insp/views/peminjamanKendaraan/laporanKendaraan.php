@@ -133,10 +133,6 @@ $form=$this->beginWidget('CActiveForm', array(
                                 'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data["waktu_selesai"])'
                             ),
                             array(
-                                'header'=>'Supir',
-                                'value'=>'$data["supir"]',
-                            ),
-                            array(
                                 'header'=>'File Nodin',
                                 'value'=>'CHtml::link(
                                             $data["nodin"],

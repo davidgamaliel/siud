@@ -50,20 +50,10 @@ $('#TrxPenggunaanBensinCustom_tanggal').datetimepicker({
                     </div>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">Unit Kerja</label>
+                            <label class="col-sm-2 control-label">Jabatan</label>
                             <div class="col-sm-10">
-                                <?php echo $form->textField($model,'unit_kerja', array('class'=>'form-control')); ?>
-                                <?php echo $form->error($model,'unit_kerja', array('class'=>'text-daanger')); ?>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="hr-line-dashed"></div>
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Keperluan</label>
-                            <div class="col-sm-10">
-                                <?php echo $form->textArea($model,'keperluan', array('class'=>'form-control')); ?>
-                                <?php echo $form->error($model,'keperluan', array('class'=>'text-daanger')); ?>
+                                <?php echo $form->textField($model,'jabatan', array('class'=>'form-control')); ?>
+                                <?php echo $form->error($model,'jabatan', array('class'=>'text-daanger')); ?>
                             </div>
                         </div>
                     </div>

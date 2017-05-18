@@ -38,8 +38,7 @@
                                 'name'=>'id_pemohon',
                                 'value'=>'$data->id_pemohon == null ? "" : $data->idPemohon->username',
                             ),
-                            'unit_kerja',
-                            'keperluan',
+                            'jabatan',
                             array(
                                 'header'=>'Jumlah Bensin (liter)',
                                 'value'=>'$data->jumlah_bensin'
