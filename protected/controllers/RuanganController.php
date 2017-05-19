@@ -48,7 +48,7 @@ class RuanganController extends Controller
 
 				if($model->validate()) {
 					$model->save();
-					$this->redirect(array('site/index'));
+					$this->redirect(array('ruangan/detailPermohonan', 'id'=>$model->id));
 				}
 				else {
 					/*echo '<pre>' ; var_dump($model->getErrors());
@@ -73,7 +73,7 @@ class RuanganController extends Controller
 		        'condition'=>'waktu_awal_peminjaman > '. '\'' . $today->format('Y-m-d H:i') . '\'',
 		    ),
 			'sort'=>array(
-				'defaultOrder'=>'waktu_awal_peminjaman'
+				'defaultOrder'=>'waktu_awal_peminjaman DESC'
 			),
 			'pagination'=>array(
 		        'pageSize'=>20,
@@ -112,7 +112,8 @@ class RuanganController extends Controller
         }
         else {
         	$model->status_id = 1;
-	        if($model->saveAttributes(array('status_id'))) {
+        	$model->alasan = $_POST['alasan'];
+	        if($model->saveAttributes(array('status_id', 'alasan'))) {
 	            $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
 	            echo CJSON::encode($result);
 	        }
@@ -212,7 +213,7 @@ class RuanganController extends Controller
 		$userId = Yii::app()->user->getState('user_id');
 		$provider = $logic->getAllPeminjamanByUserId($userId);
 
-		$data['status'] = '';
+		$data['status'] = TrefStatusPermohonan::model()->findByAttributes(array('nama'=>'Diproses'));
 		$data['provider'] = $provider;
 		$this->render('KelolaPermohonan', $data);
 	}

@@ -65,8 +65,18 @@
                             array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',
-                                'template'=>'{ubah}',
+                                'template'=>'{detail} {ubah}',
                                 'buttons'=>array(
+                                    'detail'=>array(
+                                        'label'=>'<i class="fa fa-file-text-o"></i>',
+                                        'options'=>array(
+                                            'title'=>'Detail',
+                                            'class'=>'btn btn-sm btn-primary',
+                                            'data-toggle' => 'tooltip',
+                                        ),
+                                        'url'=>'Yii::app()->createUrl("ruangan/DetailPermohonan", array("id"=>$data->id))',
+                                        'visible'=>'true'
+                                    ),
                                     'ubah'=>array(
                                         'label'=>'<i class="fa fa-pencil-square-o"></i>',
                                         'options'=>array(
@@ -74,7 +84,7 @@
                                             'class'=>'btn btn-sm btn-success',
                                         ),
                                         'url'=>'Yii::app()->createUrl("ruangan/ubahPermohonan", array("id"=>$data->id))',
-                                        'visible'=>'true'
+                                        'visible'=>'$data->status_id ==' . $status->id
                                     ), 
                                 )
                             )

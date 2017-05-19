@@ -1,3 +1,82 @@
+<?php
+Yii::app()->clientScript->registerScript('apaaja', "
+$('.modalBack').click(function(event){
+    event.preventDefault();
+    $('#modalLaporan').modal('hide');
+    $('#persetujuan').val('1')
+    $('#alasan').val('')
+});
+$('.modalSubmit').click(function(event){
+    event.preventDefault();
+    var persetujuan = $('#persetujuan').val();
+    var idPersetujuan = $('#idPeminjaman').val();
+    var alasanPersetujuan = $('#alasan').val();
+    if(persetujuan == '1') {
+    console.log(idPersetujuan);
+     ".CHtml::ajax(array(
+        'url'=>Yii::app()->createUrl('ruangan/setujuiPeminjaman'),
+        'type'=>'POST',
+        'data'=>'js:{id: idPersetujuan, alasan: alasanPersetujuan}',
+        'dataType'=>'JSON',
+        'success'=>"function(data){
+            console.log('data terkirim', data);
+            $('#modalLaporan').modal('hide')
+            $('#persetujuan').val('1')
+            $('#alasan').val('')
+            if(data['status']=='berhasil'){
+                document.getElementById('pesan_peringatan1').innerHTML =data['message']
+                $('#peringatan1').show();
+                $('#peringatan2').hide();
+                $('#list-permohonan-ruangan').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }else{
+                 document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                $('#peringatan2').show();
+                $('#peringatan1').hide();
+                $('#list-permohonan-ruangan').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }
+        }"
+    ))
+    ."
+    }
+    else if (persetujuan == '2') {
+    ".CHtml::ajax(array(
+        'url'=>Yii::app()->createUrl('ruangan/tolakPeminjaman'),
+        'type'=>'POST',
+        'data'=>'js:{id: idPersetujuan, alasan: alasanPersetujuan}',
+        'dataType'=>'JSON',
+        'success'=>"function(data){
+            console.log('data terkirim', data);
+            $('#modalLaporan').modal('hide')
+            $('#persetujuan').val('1')
+            $('#alasan').val('')
+            if(data['status']=='berhasil'){             
+                document.getElementById('pesan_peringatan1').innerHTML = data['message']
+                $('#peringatan1').show();
+                $('#peringatan2').hide();
+                $('#list-permohonan-ruangan').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }else{
+              
+                 document.getElementById('pesan_peringatan2').innerHTML = data['message']
+                 $('#peringatan2').show();
+                 $('#peringatan1').hide();
+                 $('#list-permohonan-ruangan').yiiGridView('update', {
+                    data: $(this).serialize()
+                });
+            }
+        }"
+    ))
+    ."
+    }
+});
+");
+?>
+
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
         <h2>Daftar Permohonan Peminjaman Ruangan</h2>
@@ -12,7 +91,7 @@
     <div class="alert alert-success alert-dismissable col-lg-12" id="peringatan1" style="display: none;">
         <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
         <b>Perhatian! </b>
-        <p id="pesan_peringatan"></p>
+        <p id="pesan_peringatan1"></p>
     </div>
 </div>
 <div class="row">
@@ -87,7 +166,7 @@
                             array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',
-                                'template'=>'{detail} {setujui} {tolak}',
+                                'template'=>'{detail} {setujui} {tolak} {aksi_aksi}',
                                 'buttons'=>array(
                                     'detail'=>array(
                                         'label'=>'<i class="fa fa-file-text-o"></i>',
@@ -99,6 +178,30 @@
                                         'url'=>'Yii::app()->createUrl("ruangan/detailPermohonan", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ),
+                                    'aksi_aksi'=>array(
+                                        'label'=>'<i class="fa fa-pencil-square-o"></i>',
+                                        'options'=>array(
+                                            'title'=>'Setujui/Tolak',
+                                            'class'=>'btn btn-sm btn-primary aksi_aksi',
+                                            'data-toggle' => 'tooltip',
+                                        ),
+                                        'visible'=>'true',
+                                        'click'=> "js:function(event) {
+                                                    event.preventDefault();
+//                                                    $('#modalLaporan').attr('action',$(this).attr('href'));
+                                                    $('#idPeminjaman').val($(this).parent().parent().children(':nth-child(2)').html());
+                                                    if ($(this).parent().parent().children(':nth-child(3)').html() == '&nbsp;') {
+                                                        $('#nama').val();
+                                                    }
+                                                    else {
+                                                        $('#nama').val($(this).parent().parent().children(':nth-child(3)').html());
+                                                    }
+                                                    $('#ruangan').val($(this).parent().parent().children(':nth-child(4)').html());
+                                                    $('#mulai').val($(this).parent().parent().children(':nth-child(5)').html());
+                                                    $('#selesai').val($(this).parent().parent().children(':nth-child(6)').html());
+                                                    $('#modalLaporan').modal('show');
+                                        }"
+                                    ),
                                     'setujui'=>array(
                                         'label'=>'<i class="fa fa-check-square"></i>',
                                         'options'=>array(
@@ -107,7 +210,7 @@
                                             'data-toggle' => 'tooltip',
                                         ),
                                         //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
-                                        'visible'=>'true',
+                                        'visible'=>'false',
                                         'click' => "js:function(event){  
                                                 event.preventDefault();
                                                 var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
@@ -147,7 +250,7 @@
                                             'data-toggle' => 'tooltip',
                                         ),
                                         //'url'=>'Yii::app()->createUrl("cardOrder/cardInstantAllocation", array("id"=>$data->ID))',
-                                        'visible'=>'true',
+                                        'visible'=>'false',
                                         'click' => "js:function(event){  
                                                 event.preventDefault();
                                                 var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
@@ -205,6 +308,86 @@
                         'cssFile' => false,
                     ));
                     ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal inmodal" id="modalLaporan" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                <h4 class="modal-title">Persetujuan Peminjaman</h4>
+
+            </div>
+            <div class="wrapper wrapper-content animated fadeIn">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-12 form-horizontal white-bg">
+                            <br>
+                            <input type="hidden" id="idPeminjaman" name="idPeminjaman">
+                            <div class="form-group">
+                                <label class="col-sm-3">Nama Pemohon</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="nama" id="nama" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Ruangan</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="ruangan" id="ruangan" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Waktu Awal</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="mulai" id="mulai" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Waktu Akhir</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="selesai" id="selesai" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Persetujuan</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <select class="form-control" id="persetujuan" name="persetujuan">
+                                            <option value="1">Disetujui</option>
+                                            <option value="2">Ditolak</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Alasan</span></label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <textarea name="alasan" id="alasan" rows="5" cols="50"required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success col-md-4 modalSubmit')); ?>
+                                <?php //echo CHtml::button('Batal', array('class' => 'modalBack btn btn-warning col-md-4',)); ?>
+                                <?php echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4 modalBack')); ?>
+                            </div>
+                        </div><!-- form -->
+
+                    </div>
                 </div>
             </div>
         </div>

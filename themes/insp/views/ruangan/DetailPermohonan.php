@@ -78,9 +78,28 @@
                                 <?php //echo $form->textField($model,'supir',array('class'=>'form-control')); ?>
                             </div>
                         </div>
+                        <?php if(BLAuthorization::isPegawai() && $model->namaStatus == 'Disetujui'): ?>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Alasan Disetujui</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control"><?php echo $model->alasan ; ?></label>
+                                </div>
+                            </div>
+                        <?php elseif(BLAuthorization::isPegawai() && $model->namaStatus == 'Ditolak'): ?>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Alasan Ditolak</label>
+                                <div class="col-sm-10">
+                                    <label class="form-control"><?php echo $model->alasan ; ?></label>
+                                </div>
+                            </div>
+                        <?php endif; ?>
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <?php echo CHtml::link('Kembali',array('ruangan/listPermohonan'),array('class'=>'btn btn-primary')); ?>
+                                <?php if(BLAuthorization::isPegawai()): ?>
+                                    <?php echo CHtml::link('Kembali',array('ruangan/kelolaPermohonan'),array('class'=>'btn btn-primary')); ?>
+                                <?php else: ?>
+                                    <?php echo CHtml::link('Kembali',array('ruangan/listPermohonan'),array('class'=>'btn btn-primary')); ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
