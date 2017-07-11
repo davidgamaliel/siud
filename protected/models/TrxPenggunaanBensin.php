@@ -5,11 +5,13 @@
  *
  * The followings are the available columns in table 'trx_penggunaan_bensin':
  * @property integer $id
- * @property string $jabatan
+ * @property string $unit_kerja
+ * @property string $keperluan
  * @property string $file_struk
  * @property string $jumlah_bensin
  * @property integer $id_pemohon
  * @property string $tanggal
+ * @property string $jabatan
  *
  * The followings are the available model relations:
  * @property TmstUser $idPemohon
@@ -33,10 +35,10 @@ class TrxPenggunaanBensin extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_pemohon', 'numerical', 'integerOnly'=>true),
-			array('jabatan, file_struk, jumlah_bensin, tanggal', 'safe'),
+			array('unit_kerja, keperluan, file_struk, jumlah_bensin, tanggal, jabatan', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, jabatan, file_struk, jumlah_bensin, id_pemohon, tanggal', 'safe', 'on'=>'search'),
+			array('id, unit_kerja, keperluan, file_struk, jumlah_bensin, id_pemohon, tanggal, jabatan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,11 +61,13 @@ class TrxPenggunaanBensin extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'jabatan' => 'Jabatan',
-			'file_struk' => 'Scan Kwitansi Bensin (bermaterai)',
+			'unit_kerja' => 'Unit Kerja',
+			'keperluan' => 'Keperluan',
+			'file_struk' => 'File Struk',
 			'jumlah_bensin' => 'Jumlah Bensin',
 			'id_pemohon' => 'Id Pemohon',
 			'tanggal' => 'Tanggal',
+			'jabatan' => 'Jabatan',
 		);
 	}
 
@@ -86,11 +90,13 @@ class TrxPenggunaanBensin extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('jabatan',$this->jabatan,true);
+		$criteria->compare('unit_kerja',$this->unit_kerja,true);
+		$criteria->compare('keperluan',$this->keperluan,true);
 		$criteria->compare('file_struk',$this->file_struk,true);
 		$criteria->compare('jumlah_bensin',$this->jumlah_bensin,true);
 		$criteria->compare('id_pemohon',$this->id_pemohon);
 		$criteria->compare('tanggal',$this->tanggal,true);
+		$criteria->compare('jabatan',$this->jabatan,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
