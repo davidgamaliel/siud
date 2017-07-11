@@ -19,6 +19,34 @@
 </head>
 <?php $logoimg = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/siud-logo.png'); ?>
 <?php $logoimg80 = CHtml::image( Yii::app()->request->baseUrl.'/images/logo/siud-logo.png'); ?>
+<?php
+$orderinfo = '';
+if(BLAuthorization::isPegawai()) {
+    $mobilSetuju = TrxPeminjamanKendaraanCustom::TotalPeminjamanKendaraanByUser(intval(Yii::app()->user->getState('user_id')),1);
+    $mobilTolak = TrxPeminjamanKendaraanCustom::TotalPeminjamanKendaraanByUser(intval(Yii::app()->user->getState('user_id')),2);
+    $ruanganSetuju= TranPeminjamanRuanganCustom::TotalPeminjamanRuanganByUser(intval(Yii::app()->user->getState('user_id')),1);
+    $ruanganTolak=TranPeminjamanRuanganCustom::TotalPeminjamanRuanganByUser(intval(Yii::app()->user->getState('user_id')),2);
+    $iconmobil = '<i class="fa fa-car " aria-hidden="true"></i> &nbsp';
+    $iconruangan = '<i class="fa fa-building " aria-hidden="true"></i> &nbsp';
+    $iconmobilGagal ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/listpinjamKendaraan').'">'.'<span class="label label-danger" title="Jumlah peminjaman kendaraan yang ditolak" id="JumlahKendaraanDitolak">'.$mobilTolak.'</span> </a>  &nbsp';
+    $iconmobilSetuju ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/listpinjamKendaraan').'">'.'<span class="label label-info" title="Jumlah peminjaman kendaraan yang disetujui" id="JumlahKendaraanDisetujui">'.$mobilSetuju.' </span> </a>&nbsp';
+    $iconruanganGagal ='<a href="'.Yii::app()->createUrl('ruangan/kelolaPermohonan').'">'.'<span class="label label-danger" title="Jumlah peminjaman ruangan yang ditolak" id="JumlahRuanganDitolak">'.$ruanganTolak.' </span> </a>&nbsp';
+    $iconruanganSetuju ='<a href="'.Yii::app()->createUrl('ruangan/kelolaPermohonan').'">'.'<span class="label label-info" title="Jumlah peminjaman ruangan yang disetujui" id="JumlahRuanganDisetujui">'.$ruanganSetuju.' </span> </a>&nbsp';
+
+    $orderinfo = $iconruangan.$iconruanganSetuju.$iconruanganGagal.$iconmobil.$iconmobilSetuju.$iconmobilGagal;
+}
+if(BLAuthorization::isAdmin()) {
+    $mobilPeminjaman = TrxPeminjamanKendaraanCustom::TotalPeminjamanKendaraanForAdmin(3);
+    $ruanganPeminjaman = TranPeminjamanRuanganCustom::TotalPeminjamanRuanganForAdmin(3);
+    $iconmobil = '<i class="fa fa-car " aria-hidden="true"></i> &nbsp';
+    $iconruangan = '<i class="fa fa-building " aria-hidden="true"></i> &nbsp';
+    $iconmobilPeminjaman ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/kelolaKendaraan').'">'. '<span class="label label-info" title="Jumlah peminjaman kendaraan yang menunggu persetujuan" id="JumlahKendaraanmenungguPersetujuan">'.$mobilPeminjaman.' </span></a> &nbsp';
+    $iconruanganPeminjaman = '<a href="'.Yii::app()->createUrl('ruangan/listPermohonan').'">'.'<span class="label label-info" title="Jumlah peminjaman ruangan yang menunggu persetujuan" id="JumlahRuanganmenungguPersetujuan">'.$ruanganPeminjaman.' </span></a> &nbsp';
+
+    $orderinfo = $iconruangan.$iconruanganPeminjaman.$iconmobil.$iconmobilPeminjaman;
+}
+//
+?>
 <body>
 	<div id="wrapper">
 		<!--sidebar start-->
@@ -127,6 +155,7 @@
 					</div>
 					<?php $this->widget('zii.widgets.CMenu',array(
 						'items'=>array(
+                            array('label'=>$orderinfo, 'visible'=>!Yii::app()->user->isGuest),
 							array('label'=>''.Yii::app()->user->name.' ', 'visible'=>!Yii::app()->user->isGuest),
 							array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 							array('label'=>'<i class="fa fa-sign-out"></i> Logout', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
@@ -157,5 +186,57 @@
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/datetimepicker/datetimepicker.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/dataTables/datatables.min.js"></script>
 	<script src="<?php echo Yii::app()->theme->baseUrl; ?>/sources/js/plugins/dataTables/jquery.dataTables.js"></script>
+
+    <?php $check = BLAuthorization::isPegawai();
+    if($check){
+        Yii::app()->clientScript->registerScript('beepBeep',"
+			function getNotificationPegawai() {
+				$.ajax({
+					url : '".Yii::app()->createUrl('Notification/getNotificationPegawai')."',
+					type : 'post',
+					data : {'val1' : '123'},
+					success : function(response) {
+						var obj = jQuery.parseJSON(response);
+						$('#JumlahKendaraanDitolak').html(obj['mobilTolak']);
+						$('#JumlahKendaraanDisetujui').html(obj['mobilSetujui']);
+						$('#JumlahRuanganDitolak').html(obj['ruanganTolak']);
+						$('#JumlahRuanganDisetujui').html(obj['ruanganSetujui']);
+					}
+				});
+			}
+			getNotificationPegawai();
+			setInterval(function(){getNotificationPegawai()},60000);
+			
+		");
+    }
+    else{
+
+    }?>
+
+    <?php $check = BLAuthorization::isAdmin();
+    if($check){
+        Yii::app()->clientScript->registerScript('beepBeep',"
+			function getNotificationAdmin() {
+				$.ajax({
+					url : '".Yii::app()->createUrl('Notification/getNotificationAdmin')."',
+					type : 'post',
+					data : {'val1' : '123'},
+					success : function(response) {
+						var obj = jQuery.parseJSON(response);
+						$('#JumlahKendaraanmenungguPersetujuan').html(obj['mobilPersetujuan']);
+						$('#JumlahRuanganmenungguPersetujuan').html(obj['ruanganPersetujuan']);
+					}
+				});
+			}
+			getNotificationAdmin();
+			setInterval(function(){getNotificationAdmin()},60000);
+			
+		");
+    }
+    else{
+
+    }?>
+
+
 </body>
 </html>

@@ -97,6 +97,7 @@ class PeminjamanKendaraanController extends Controller
         $waktuSelesai = TrxPeminjamanKendaraanCustom::validasiWaktuSelesai(intval($_POST['id']));
         if($waktuMulai && $waktuSelesai) {
             if($model->saveAttributes(array('status', 'alasan'))) {
+                NotifikasiCustom::insertKendaraan($model);
                 $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'waktuMulai'=>$waktuMulai, 'waktuSelesai'=>$waktuSelesai);
                 echo CJSON::encode($result);
             }
@@ -112,6 +113,7 @@ class PeminjamanKendaraanController extends Controller
         $model->status = StatusPeminjaman::DITOLAK;
         $model->alasan = $_POST['alasan'];
         if($model->saveAttributes(array('status', 'alasan'))) {
+            NotifikasiCustom::insertKendaraan($model);
             $result = array('status'=>'berhasil','id'=>$_POST['id'],'message'=>'berhasil menolak permohonan');
             echo CJSON::encode($result);
         }
@@ -187,6 +189,7 @@ class PeminjamanKendaraanController extends Controller
     }
 
      public function actionListPinjamKendaraan() {
+        NotifikasiCustom::deleteNotifikasi(Yii::app()->user->getState('user_id'),'trx_peminjaman_kendaraan');
         $model = new TrxPeminjamanKendaraanCustom();
         $this->render('listpinjamKendaraan', array(
             'model'=>$model

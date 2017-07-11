@@ -349,4 +349,24 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
             return true;
         }
     }
+
+    public static function TotalPeminjamanKendaraanByUser($userid, $status) {
+        $sql="
+        select count(*) total from notifikasi
+        where table_name = 'trx_peminjaman_kendaraan' and status_id = ".$status." and user_id = ".$userid;
+        $data = Yii::app()->db->createCommand($sql);
+        $rawData = $data->queryAll();
+        $count = $rawData[0]['total'];
+        return $count;
+    }
+
+    public static function TotalPeminjamanKendaraanForAdmin($status) {
+        $sql="
+        select count(*) total from trx_peminjaman_kendaraan
+        where status = ".$status;
+        $data = Yii::app()->db->createCommand($sql);
+        $rawData = $data->queryAll();
+        $count = $rawData[0]['total'];
+        return $count;
+    }
 }

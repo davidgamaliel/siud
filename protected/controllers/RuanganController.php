@@ -90,7 +90,7 @@ class RuanganController extends Controller
 		$data = array();
 		$idPinjam = $_GET['id'];
 		$ruanganPinjam = TranPeminjamanRuangan::model()->findByPk($idPinjam);
-
+        $logic = new BLRuangan();
 		$dropdownStatus = $logic->getStatusPermohonanDropdown();
 
 		$pesan['pesan'] = $ruanganPinjam->keterangan;
@@ -114,6 +114,7 @@ class RuanganController extends Controller
         	$model->status_id = 1;
         	$model->alasan = $_POST['alasan'];
 	        if($model->saveAttributes(array('status_id', 'alasan'))) {
+	            NotifikasiCustom::insertRuangan($model);
 	            $result = array('status'=>'berhasil','id'=>$model->id, 'message'=>'berhasil menyetujui permohonan', 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username);
 	            echo CJSON::encode($result);
 	        }
@@ -128,6 +129,7 @@ class RuanganController extends Controller
         $model = TranPeminjamanRuangan::model()->findByPk(intval($_POST['id']));
         $model->status_id = 2;
         if($model->saveAttributes(array('status_id'))) {
+            NotifikasiCustom::insertRuangan($model);
             $result = array('status'=>'berhasil','id'=>$_POST['id'], 'nama'=>$model->idRuangan->nama, 'user'=>$model->idUserPeminjam->username, 'message'=>'berhasil menolak permohonan');
             echo CJSON::encode($result);
         }
@@ -207,6 +209,7 @@ class RuanganController extends Controller
     }
 
     public function actionKelolaPermohonan() {
+        NotifikasiCustom::deleteNotifikasi(Yii::app()->user->getState('user_id'),'tran_peminjaman_ruangan');
 		$data = array();
 		$model = new TranPeminjamanRuangan();
 		$logic = new BLRuangan();
