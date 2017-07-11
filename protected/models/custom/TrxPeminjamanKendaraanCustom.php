@@ -35,7 +35,7 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             'sort'=>array(
-                'defaultOrder'=>'id asc'
+                'defaultOrder'=>'waktu_mulai desc'
             )
         ));
     }

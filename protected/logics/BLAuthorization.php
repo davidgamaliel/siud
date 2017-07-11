@@ -19,7 +19,8 @@ class BLAuthorization {
      * @param string the password to be authorized
      */
     public function authorize($username, $password) {
-        $user = TmstUser::model()->findByAttributes(array('username'=>$username, 'password'=>$password));
+        $ecrPass = $password;
+        $user = TmstUser::model()->findByAttributes(array('username'=>$username, 'password'=>$ecrPass));
         //$roleUser = TrefRole::model()->findByPk($user->id_role);
         if($user) {
             $roleUser = TrefRole::model()->findByPk($user->id_role);
@@ -48,6 +49,27 @@ class BLAuthorization {
             return true;
         else
             return false;
+    }
+
+    public static function checkUser($username) {
+        $rolePegawai = TrefRole::model()->findByAttributes(array('nama'=>'pegawai'));
+        $exist = TmstUser::model()->findByAttributes(array('username'=>$username));
+        if(!$exist) {
+            $user = new TmstUser();
+            $user->username = $username;
+            $user->password = md5('!!!!!!!!!!!');
+            $user->id_role = $rolePegawai->id;
+            $user->email = 'tes@email.com';
+
+            if($user->validate()) {
+                $user->save();
+            }
+            $exist = $user;
+        }
+        Yii::app()->user->setState('user_name', $exist->username);
+        Yii::app()->user->setState('user_id', $exist->id);
+        Yii::app()->user->setState('role_id', $rolePegawai->id);
+        Yii::app()->user->setState('role_name', $rolePegawai->nama);
     }
 }
 
