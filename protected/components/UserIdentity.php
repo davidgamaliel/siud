@@ -51,7 +51,7 @@ class UserIdentity extends CUserIdentity
 			
 			if($testinfo) {
 				$nuUser = $testinfo[0]["samaccountname"][0];
-				BLAuthorization::checkUser($nuUser);
+				$this->errorCode = BLAuthorization::checkUser($nuuser);
 			}
 			
 			// $groups = Yii::app()->ldap->user()->groups($this->username);

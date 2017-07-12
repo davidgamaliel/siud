@@ -57,19 +57,27 @@ class BLAuthorization {
         if(!$exist) {
             $user = new TmstUser();
             $user->username = $username;
-            $user->password = md5('!!!!!!!!!!!');
+            $user->password = '!!!!!!!!!!!';
             $user->id_role = $rolePegawai->id;
             $user->email = 'tes@email.com';
 
             if($user->validate()) {
                 $user->save();
+                Yii::app()->user->setState('user_name', $user->username);
+                Yii::app()->user->setState('user_id', $user->id);
+                Yii::app()->user->setState('role_id', $rolePegawai->id);
+                Yii::app()->user->setState('role_name', $rolePegawai->nama);
+                return CUserIdentity::ERROR_NONE;
             }
-            $exist = $user;
+            
+        } else {
+            Yii::app()->user->setState('user_name', $exist->username);
+            Yii::app()->user->setState('user_id', $exist->id);
+            Yii::app()->user->setState('role_id', $rolePegawai->id);
+            Yii::app()->user->setState('role_name', $rolePegawai->nama);
+            return CUserIdentity::ERROR_NONE;
         }
-        Yii::app()->user->setState('user_name', $exist->username);
-        Yii::app()->user->setState('user_id', $exist->id);
-        Yii::app()->user->setState('role_id', $rolePegawai->id);
-        Yii::app()->user->setState('role_name', $rolePegawai->nama);
+        
     }
 }
 

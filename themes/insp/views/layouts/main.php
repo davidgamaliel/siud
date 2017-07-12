@@ -101,6 +101,15 @@ if(BLAuthorization::isAdmin()) {
                             ),
                             'visible'=>!Yii::app()->user->isGuest
                         ),
+                        array('label'=>'<i class="fa fa-wrench"></i> <span class="nav-label">Perbaikan Inventaris</span> <span class="fa arrow"></span>', 'url'=>'',
+                            'items'=>array(
+                                array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Perbaikan Barang</span>', 'url'=>array('/inventaris/laporPerbaikan'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamanKendaraan/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Riwayat Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/riwayatPenggunaan'), 'visible'=> BLAuthorization::isPegawai()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Rekap</span>', 'url'=>array('/penggunaanBensin/laporanBensin'), 'visible'=> BLAuthorization::isAdmin()),
+                            ),
+                            'visible'=>!Yii::app()->user->isGuest
+                        ),
 						/*array('label'=>'<i class="fa fa-black-tie"></i> <span class="nav-label">Peran</span> <span class="fa arrow"></span>', 'url'=>array('#'),
 							'items'=>array(
 								array('label'=>'<i class="fa fa-eye"></i> <span class="nav-label">Lihat Peran</span>', 'url'=>array('#')),
