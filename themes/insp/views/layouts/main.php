@@ -40,7 +40,7 @@ if(BLAuthorization::isAdmin()) {
     $ruanganPeminjaman = TranPeminjamanRuanganCustom::TotalPeminjamanRuanganForAdmin(3);
     $iconmobil = '<i class="fa fa-car " aria-hidden="true"></i> &nbsp';
     $iconruangan = '<i class="fa fa-building " aria-hidden="true"></i> &nbsp';
-    $iconmobilPeminjaman ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/kelolaKendaraan').'">'. '<span class="label label-info" title="Jumlah peminjaman kendaraan yang menunggu persetujuan" id="JumlahKendaraanmenungguPersetujuan">'.$mobilPeminjaman.' </span></a> &nbsp';
+    $iconmobilPeminjaman ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/listPermohonan').'">'. '<span class="label label-info" title="Jumlah peminjaman kendaraan yang menunggu persetujuan" id="JumlahKendaraanmenungguPersetujuan">'.$mobilPeminjaman.' </span></a> &nbsp';
     $iconruanganPeminjaman = '<a href="'.Yii::app()->createUrl('ruangan/listPermohonan').'">'.'<span class="label label-info" title="Jumlah peminjaman ruangan yang menunggu persetujuan" id="JumlahRuanganmenungguPersetujuan">'.$ruanganPeminjaman.' </span></a> &nbsp';
 
     $orderinfo = $iconruangan.$iconruanganPeminjaman.$iconmobil.$iconmobilPeminjaman;

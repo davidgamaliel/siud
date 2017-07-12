@@ -31,7 +31,9 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
 
     public function listPermohonan()
     {
+        $today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
         $criteria = new CDbCriteria;
+        $criteria->condition = "waktu_mulai > ". "'" . $today->format('Y-m-d H:i') . "'";
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
             'sort'=>array(
@@ -361,9 +363,10 @@ class TrxPeminjamanKendaraanCustom extends TrxPeminjamanKendaraan
     }
 
     public static function TotalPeminjamanKendaraanForAdmin($status) {
+        $today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
         $sql="
         select count(*) total from trx_peminjaman_kendaraan
-        where status = ".$status;
+        where status = ".$status . " and waktu_mulai > ". "'" . $today->format('Y-m-d H:i') . "'";
         $data = Yii::app()->db->createCommand($sql);
         $rawData = $data->queryAll();
         $count = $rawData[0]['total'];

@@ -32,9 +32,10 @@ class TranPeminjamanRuanganCustom extends TranPeminjamanRuangan
     }
 
     public static function TotalPeminjamanRuanganForAdmin($status) {
+        $today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
         $sql="
         select count(*) total from tran_peminjaman_ruangan
-        where status_id = ".$status;
+        where status_id = ".$status . " and waktu_awal_peminjaman > ". "'" . $today->format('Y-m-d H:i') . "'";
         $data = Yii::app()->db->createCommand($sql);
         $rawData = $data->queryAll();
         $count = $rawData[0]['total'];

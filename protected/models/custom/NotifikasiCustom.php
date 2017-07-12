@@ -48,7 +48,7 @@ class NotifikasiCustom extends Notifikasi
     }
 
     public static function insertKendaraan($model) {
-        $modelNotif = TrxPeminjamanKendaraanCustom::model()->findByAttributes(array(
+        $modelNotif = NotifikasiCustom::model()->findByAttributes(array(
             'table_name'=>'trx_peminjaman_kendaraan',
             'user_id'=> $model->id_peminjam,
             'table_pk'=>$model->id
