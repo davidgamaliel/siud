@@ -1,10 +1,10 @@
 <div class="row  border-bottom white-bg dashboard-header">
     <div class="col-sm-8">
-        <h2>Kelola Permohonan Peminjaman Kendaraan</h2>
+        <h2>Kelola Permohonan Perbaikan Inventaris</h2>
     </div>
     <?php
     $this->breadcrumbs=array(
-        'daftar permohonan peminjaman kendaraan',
+        'daftar permohonan perbaikan inventaris',
     );
     ?>
 </div>
@@ -40,42 +40,39 @@
                                 'value'=>'$this->grid->dataProvider->pagination->currentPage*$this->grid->dataProvider->pagination->pageSize+$row+1'
                             ),
                             array(
-                                'name'=>'ID permohonan',
+                                'header'=>'ID permohonan',
                                 'value'=>'$data->id',
                                 'headerHtmlOptions'=>array('style'=>'display:none'),
                                 'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
-                                'name'=>'Kendaraan',
-                                'value'=>'MstKendaraanCustom::getNamaKendaraan($data->kendaraan_id)',
+                                'name'=>'Nama Pemohon',
+                                'value'=>'$data->user->username',
                             ),
                             array(
-                                'name'=>'Tanggal Awal Peminjaman',
-                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_mulai)'
+                                'header'=>'inventaris_id',
+                                'value'=>'$data->inventaris->nama',
                             ),
                             array(
-                                'name'=>'Tanggal Akhir Peminjaman',
-                                'value'=>'TrxPeminjamanKendaraanCustom::tampilanTanggal($data->waktu_selesai)'
+                                'header'=>'tanggal_laporan',
+                                'value'=>'TranPerbaikanInventarisCustom::tampilanTanggal($data->tanggal_laporan)'
                             ),
-                            array(
-                                'name'=>'Supir',
-                                'value'=>'$data->supir',
-                            ),
-                            array(
-                                'name'=>'Nodin',
-                                'value'=>'CHtml::link(
-                                            $data->nodin,
-                                            Yii::app()->createUrl(\'/peminjamankendaraan/viewNodin\', array(\'id\' => $data->id)) ,
-                                            array(\'class\'=>\'button\',\'target\'=>\'_blank\'))',
-                                'type'=>'raw',
-
-                            ),
-
                             //'nodin',
-
                             array(
-                                'name'=>'Status',
-                                'value'=>'StatusPeminjaman::getStatusPeminjaman($data->status)'
+                                'header'=>'status',
+                                'value'=>'$data->status0->nama'
+                            ),
+                            array(
+                                'header'=>'jumlah',
+                                'value'=>'$data->jumlah',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
+                            ),
+                            array(
+                                'header'=>'deskripsi',
+                                'value'=>'$data->deskripsi',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
                             ),
                             array(
                                 'header'=>'aksi',
@@ -89,7 +86,7 @@
                                             'class'=>'btn btn-sm btn-primary',
                                             'data-toggle' => 'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonanPegawai", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("inventaris/detailLaporan", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ),
 
@@ -100,7 +97,7 @@
                                             'class'=>'btn btn-sm btn-success',
                                             'data-toggle'=>'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/editPermohonan", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("inventaris/editLaporan", array("id"=>$data->id))',
                                         'visible'=>'$data->status == StatusPeminjaman::MENUNGGU_PERSETUJUAN'
                                     ),
 
@@ -122,7 +119,7 @@
                             ),
                         ),
                         'pagerCssClass' => 'blank',
-                        'itemsCssClass' => 'table table-striped table-hover data_pinjam_kendaraan',
+                        'itemsCssClass' => 'table table-striped table-hover data_permohonan_pegawai',
                         'cssFile' => false,
                         'summaryCssClass' => 'dataTables_info',
                         'summaryText' => Yii::t('form','Showing {start} to {end} of {count} entries'),
@@ -140,7 +137,7 @@
         location.reload();
     }
     $(document).ready(function(){
-        $('.data_pinjam_kendaraan').DataTable({
+        $('.data_permohonan_pegawai').DataTable({
             'bInfo': false,
             dom: '<"html5buttons"B>lTfgitp',
             buttons: [/*

@@ -26,24 +26,32 @@ if(BLAuthorization::isPegawai()) {
     $mobilTolak = TrxPeminjamanKendaraanCustom::TotalPeminjamanKendaraanByUser(intval(Yii::app()->user->getState('user_id')),2);
     $ruanganSetuju= TranPeminjamanRuanganCustom::TotalPeminjamanRuanganByUser(intval(Yii::app()->user->getState('user_id')),1);
     $ruanganTolak=TranPeminjamanRuanganCustom::TotalPeminjamanRuanganByUser(intval(Yii::app()->user->getState('user_id')),2);
+    $inventarisSetuju= TranPerbaikanInventarisCustom::TotalPelaporanPerbaikanInventarisByUser(intval(Yii::app()->user->getState('user_id')),1);
+    $inventarisTolak=TranPerbaikanInventarisCustom::TotalPelaporanPerbaikanInventarisByUser(intval(Yii::app()->user->getState('user_id')),2);
     $iconmobil = '<i class="fa fa-car " aria-hidden="true"></i> &nbsp';
     $iconruangan = '<i class="fa fa-building " aria-hidden="true"></i> &nbsp';
+    $iconinventaris = '<i class="fa fa-wrench " aria-hidden="true"></i> &nbsp';
     $iconmobilGagal ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/listpinjamKendaraan').'">'.'<span class="label label-danger" title="Jumlah peminjaman kendaraan yang ditolak" id="JumlahKendaraanDitolak">'.$mobilTolak.'</span> </a>  &nbsp';
     $iconmobilSetuju ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/listpinjamKendaraan').'">'.'<span class="label label-info" title="Jumlah peminjaman kendaraan yang disetujui" id="JumlahKendaraanDisetujui">'.$mobilSetuju.' </span> </a>&nbsp';
     $iconruanganGagal ='<a href="'.Yii::app()->createUrl('ruangan/kelolaPermohonan').'">'.'<span class="label label-danger" title="Jumlah peminjaman ruangan yang ditolak" id="JumlahRuanganDitolak">'.$ruanganTolak.' </span> </a>&nbsp';
     $iconruanganSetuju ='<a href="'.Yii::app()->createUrl('ruangan/kelolaPermohonan').'">'.'<span class="label label-info" title="Jumlah peminjaman ruangan yang disetujui" id="JumlahRuanganDisetujui">'.$ruanganSetuju.' </span> </a>&nbsp';
+    $iconinventarisGagal = '<a href="'.Yii::app()->createUrl('inventaris/listPermohonanPegawai').'">'.'<span class="label label-danger" title="Jumlah pelaporan perbaikan inventaris yang ditolak" id="JumlahInventarisDitolak">'.$inventarisTolak.' </span> </a>&nbsp';
+    $iconinventarisSetuju = '<a href="'.Yii::app()->createUrl('inventaris/listPermohonanPegawai').'">'.'<span class="label label-info" title="Jumlah pelaporan perbaikan inventaris yang disetujui" id="JumlahInventarisDisetujui">'.$inventarisSetuju.' </span> </a>&nbsp';
 
-    $orderinfo = $iconruangan.$iconruanganSetuju.$iconruanganGagal.$iconmobil.$iconmobilSetuju.$iconmobilGagal;
+    $orderinfo = $iconruangan.$iconruanganSetuju.$iconruanganGagal.$iconmobil.$iconmobilSetuju.$iconmobilGagal.$iconinventaris.$iconinventarisGagal.$iconinventarisSetuju;
 }
 if(BLAuthorization::isAdmin()) {
     $mobilPeminjaman = TrxPeminjamanKendaraanCustom::TotalPeminjamanKendaraanForAdmin(3);
     $ruanganPeminjaman = TranPeminjamanRuanganCustom::TotalPeminjamanRuanganForAdmin(3);
+    $inventarisPelaporan = TranPerbaikanInventarisCustom::TotalPelaporanPerbaikanInventarisForAdmin(3);
     $iconmobil = '<i class="fa fa-car " aria-hidden="true"></i> &nbsp';
     $iconruangan = '<i class="fa fa-building " aria-hidden="true"></i> &nbsp';
+    $iconinventaris = '<i class="fa fa-wrench " aria-hidden="true"></i> &nbsp';
     $iconmobilPeminjaman ='<a href="'.Yii::app()->createUrl('peminjamanKendaraan/listPermohonan').'">'. '<span class="label label-info" title="Jumlah peminjaman kendaraan yang menunggu persetujuan" id="JumlahKendaraanmenungguPersetujuan">'.$mobilPeminjaman.' </span></a> &nbsp';
     $iconruanganPeminjaman = '<a href="'.Yii::app()->createUrl('ruangan/listPermohonan').'">'.'<span class="label label-info" title="Jumlah peminjaman ruangan yang menunggu persetujuan" id="JumlahRuanganmenungguPersetujuan">'.$ruanganPeminjaman.' </span></a> &nbsp';
+    $iconinventarisPelaporan = '<a href="'.Yii::app()->createUrl('inventaris/listPermohonan').'">'.'<span class="label label-info" title="Jumlah pelaporan perbaikan inventaris yang menunggu persetujuan" id="JumlahPerbaikiInventarismenungguPersetujuan">'.$inventarisPelaporan.' </span></a> &nbsp';
 
-    $orderinfo = $iconruangan.$iconruanganPeminjaman.$iconmobil.$iconmobilPeminjaman;
+    $orderinfo = $iconruangan.$iconruanganPeminjaman.$iconmobil.$iconmobilPeminjaman.$iconinventaris.$iconinventarisPelaporan;
 }
 //
 ?>
@@ -104,9 +112,9 @@ if(BLAuthorization::isAdmin()) {
                         array('label'=>'<i class="fa fa-wrench"></i> <span class="nav-label">Perbaikan Inventaris</span> <span class="fa arrow"></span>', 'url'=>'',
                             'items'=>array(
                                 array('label'=>'<i class="fa fa-plus"></i> <span class="nav-label">Form Perbaikan Barang</span>', 'url'=>array('/inventaris/laporPerbaikan'),'visible'=>BLAuthorization::isPegawai() || BLAuthorization::isAdmin()),
-                                array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/peminjamanKendaraan/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
-                                array('label'=>'<i class="fa fa-list"></i> <span class="nav-label">Riwayat Penggunaan Bensin</span>', 'url'=>array('/penggunaanBensin/riwayatPenggunaan'), 'visible'=> BLAuthorization::isPegawai()),
-                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Rekap</span>', 'url'=>array('/penggunaanBensin/laporanBensin'), 'visible'=> BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-ul"></i> <span class="nav-label">Daftar Permohonan</span>', 'url'=>array('/inventaris/listPermohonan'),'visible'=>BLAuthorization::isAdmin()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Status Permohonan</span>', 'url'=>array('/inventaris/listPermohonanPegawai'), 'visible'=> BLAuthorization::isPegawai()),
+                                array('label'=>'<i class="fa fa-list-alt"></i> <span class="nav-label">Rekap</span>', 'url'=>array('/inventaris/laporanPerbaikanInventaris'), 'visible'=> BLAuthorization::isAdmin()),
                             ),
                             'visible'=>!Yii::app()->user->isGuest
                         ),

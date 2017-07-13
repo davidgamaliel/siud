@@ -36,4 +36,11 @@ class TmstInventarisCustom extends TmstInventaris
     {
         # code...
     }
+
+    public static function getNamaInventaris($id)
+    {
+        $invent = TmstInventaris::model()->findByPk($id);
+        if($invent) return $invent->nama;
+        else return '';
+    }
 }

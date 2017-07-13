@@ -14,7 +14,7 @@ $('.modalSubmit').click(function(event){
     if(persetujuan == '1') {
     console.log(idPersetujuan);
      ".CHtml::ajax(array(
-        'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
+        'url'=>Yii::app()->createUrl('inventaris/setujuiPermohonan'),
         'type'=>'POST',
         'data'=>'js:{id: idPersetujuan, alasan: alasanPersetujuan}',
         'dataType'=>'JSON',
@@ -44,7 +44,7 @@ $('.modalSubmit').click(function(event){
     }
     else if (persetujuan == '2') {
     ".CHtml::ajax(array(
-        'url'=>Yii::app()->createUrl('peminjamanKendaraan/tolakPeminjaman'),
+        'url'=>Yii::app()->createUrl('inventaris/tolakPermohonan'),
         'type'=>'POST',
         'data'=>'js:{id: idPersetujuan, alasan: alasanPersetujuan}',
         'dataType'=>'JSON',
@@ -148,6 +148,18 @@ $('.modalSubmit').click(function(event){
                                 'value'=>'$data->status0->nama'
                             ),
                             array(
+                                'header'=>'jumlah',
+                                'value'=>'$data->jumlah',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
+                            ),
+                            array(
+                                'header'=>'deskripsi',
+                                'value'=>'$data->deskripsi',
+                                'headerHtmlOptions'=>array('style'=>'display:none'),
+                                'htmlOptions'=>array('style'=>'display:none'),
+                            ),
+                            array(
                                 'header'=>'aksi',
                                 'class'=>'CButtonColumn',
                                 'template'=>'{detail} {setujui} {tolak} {aksi_aksi}',
@@ -159,7 +171,7 @@ $('.modalSubmit').click(function(event){
                                             'class'=>'btn btn-sm btn-primary',
                                             'data-toggle' => 'tooltip',
                                         ),
-                                        'url'=>'Yii::app()->createUrl("peminjamanKendaraan/detailPermohonan", array("id"=>$data->id))',
+                                        'url'=>'Yii::app()->createUrl("inventaris/detailLaporan", array("id"=>$data->id))',
                                         'visible'=>'true'
                                     ),
                                     'aksi_aksi'=>array(
@@ -180,9 +192,11 @@ $('.modalSubmit').click(function(event){
                                                     else {
                                                         $('#nama').val($(this).parent().parent().children(':nth-child(3)').html());
                                                     }
-                                                    $('#kendaraan').val($(this).parent().parent().children(':nth-child(4)').html());
-                                                    $('#mulai').val($(this).parent().parent().children(':nth-child(5)').html());
-                                                    $('#selesai').val($(this).parent().parent().children(':nth-child(6)').html());
+                                                    $('#inventaris').val($(this).parent().parent().children(':nth-child(4)').html());
+                                                    $('#tanggal').val($(this).parent().parent().children(':nth-child(5)').html());
+                                                    $('#status').val($(this).parent().parent().children(':nth-child(6)').html());
+                                                    $('#jumlah').val($(this).parent().parent().children(':nth-child(7)').html());
+                                                    $('#deskripsi').val($(this).parent().parent().children(':nth-child(8)').html());
                                                     $('#modalLaporan').modal('show');
                                         }"
                                     ),
@@ -200,7 +214,7 @@ $('.modalSubmit').click(function(event){
                                                 var id_permintaan = $(this).parent().parent().children(':nth-child(2)').html()
                                                 $('#modalCardNominative').modal('show');
                                                 ".CHtml::ajax(array(
-                                                'url'=>Yii::app()->createUrl('peminjamanKendaraan/setujuiPeminjaman'),
+                                                'url'=>Yii::app()->createUrl('inventaris/setujuiPermohonan'),
                                                 'type'=>'POST',
                                                 'data'=>'js:{id: id_permintaan}',
                                                 'dataType'=>'JSON',
@@ -321,26 +335,43 @@ $('.modalSubmit').click(function(event){
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3">Kendaraan</label>
+                                <label class="col-sm-3">Inventaris</label>
                                 <div class="row">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="kendaraan" id="kendaraan" readonly>
+                                        <input type="text" class="form-control" name="inventaris" id="inventaris" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3">Waktu Awal</label>
+                                <label class="col-sm-3">Tanggal Laporan</label>
                                 <div class="row">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="mulai" id="mulai" readonly>
+                                        <input type="text" class="form-control" name="tanggal" id="tanggal" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3">Waktu Akhir</label>
+                                <label class="col-sm-3">Status</label>
                                 <div class="row">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="selesai" id="selesai" readonly>
+                                        <input type="text" class="form-control" name="status" id="status" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Jumlah</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="jumlah" id="jumlah" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3">Deskripsi</label>
+                                <div class="row">
+                                    <div class="input-group">
+                                        <!-- <input type="text" class="form-control" name="selesai" id="selesai" readonly> -->
+                                        <textarea name="deskripsi" id="deskripsi" rows="5" cols="50" readonly></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -364,9 +395,11 @@ $('.modalSubmit').click(function(event){
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success col-md-4 modalSubmit')); ?>
+                                <!-- <?php //echo CHtml::submitButton('Simpan', array('class' => 'btn btn-success col-md-4 modalSubmit')); ?>
                                 <?php //echo CHtml::button('Batal', array('class' => 'modalBack btn btn-warning col-md-4',)); ?>
-                                <?php echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4 modalBack')); ?>
+                                <?php //echo CHtml::link('Batal', Yii::app()->createUrl('cardOrder/cardOrderAdmin'), array('class' => 'btn btn-warning col-md-4 modalBack')); ?> -->
+                                <?php echo CHtml::submitButton('Simpan', array('class' => 'btn btn-primary col-md-4 modalSubmit')); ?>
+                                <?php echo CHtml::link('Batal',array('inventaris/listPermohonan'),array('class'=>'btn btn-white')); ?>
                             </div>
                         </div><!-- form -->
 

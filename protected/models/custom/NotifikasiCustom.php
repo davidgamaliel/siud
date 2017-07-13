@@ -73,4 +73,24 @@ class NotifikasiCustom extends Notifikasi
             'table_name'=>$tabel
         ));
     }
+
+    public static function insertInventaris($model) {
+        $modelNotif = NotifikasiCustom::model()->findByAttributes(array(
+            'table_name'=>'tran_perbaikan_inventaris',
+            'user_id'=> $model->user_id,
+            'table_pk'=>$model->id
+        ));
+        if ($modelNotif) {
+            $modelNotif->status_id = $model->status;
+            $modelNotif->save();
+        }
+        else {
+            $newModel = new NotifikasiCustom();
+            $newModel->user_id = $model->user_id;
+            $newModel->table_name = 'tran_perbaikan_inventaris';
+            $newModel->status_id = $model->status;
+            $newModel->table_pk = $model->id;
+            $newModel->save();
+        }
+    }
 }

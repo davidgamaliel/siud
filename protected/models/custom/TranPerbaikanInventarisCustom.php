@@ -87,4 +87,125 @@ class TranPerbaikanInventarisCustom extends TranPerbaikanInventaris
             return '';
         }
     }
+
+    public function listPermohonanUser()
+    {
+        $criteria = new CDbCriteria;
+        $criteria->condition = 'user_id = ' . Yii::app()->user->getState('user_id');
+        //$criteria -> compare('"t".user_id',Yii::app()->user->getState('user_id'));
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'sort'=>array(
+                'defaultOrder'=>'id asc'
+            )
+        ));
+    }
+
+    public function getAllTahunPeminjaman() {
+        $result = array();
+        $sql = "select distinct to_char(tanggal_laporan, 'YYYY') as tahun
+                from tran_perbaikan_inventaris";
+        $command = Yii::app()->db->createCommand($sql);
+        $tahun = $command->queryAll();
+        if($tahun) {
+            foreach ($tahun as $value) {
+                $result[$value['tahun']] = $value['tahun'];
+            }
+        }
+        return $result;
+    }
+
+    public function getArrayAllInventaris() {
+        $sql = 'select nama from tmst_inventaris order by nama';
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getJumlahPerbaikanInventarisSetuju($inventaris,$begin = null, $end=null) {
+        $sql = 'select count(tpi.id) as jumlah
+                from tmst_inventaris ti left join tran_perbaikan_inventaris tpi on tpi.inventaris_id = ti.id
+                where tpi.status = 1
+                and ti.nama = \''.$inventaris.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpi.tanggal_laporan BETWEEN  to_date(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_date(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getJumlahPerbaikanInventarisDitolak($inventaris,$begin = null, $end=null) {
+        $sql = 'select count(tpi.id) as jumlah
+                from tmst_inventaris ti left join tran_perbaikan_inventaris tpi on tpi.inventaris_id = ti.id
+                where tpi.status = 2
+                and ti.nama = \''.$inventaris.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpi.tanggal_laporan BETWEEN  to_date(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_date(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+    public function getJumlahPerbaikanInventarisDiproses($inventaris,$begin = null, $end=null) {
+        $sql = 'select count(tpi.id) as jumlah
+                from tmst_inventaris ti left join tran_perbaikan_inventaris tpi on tpi.inventaris_id = ti.id
+                where tpi.status = 3
+                and ti.nama = \''.$inventaris.'\'';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpi.tanggal_laporan BETWEEN  to_date(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_date(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+        $command = Yii::app()->db->createCommand($sql);
+        return $command->queryAll();
+    }
+
+    public function getDetailAllApprovedDisapprovedInventarisUntukLaporan($begin=null, $end=null) {
+        $sql = 'select *
+                from tran_perbaikan_inventaris tpi 
+                     left join tref_status_permohonan tsp on tsp.id = tpi.status
+                where (tsp.nama = \'Disetujui\' OR tsp.nama = \'Ditolak\') ';
+        if($begin != null && $end != null) {
+            $sql .= ' AND tpi.tanggal_laporan BETWEEN  to_date(\'' . $begin . '\', \'YYYY-MM-DD\') AND to_date(\'' . $end . '\', \'YYYY-MM-DD\')';
+        }
+
+        $command = Yii::app()->db->createCommand($sql);
+        $result = $command->queryAll();
+        $command = Yii::app()->db->createCommand('SELECT COUNT(*) from (' . $sql .') as foo');
+        $count = $command->queryScalar();
+
+        $model = new CArrayDataProvider($result, array( //or $model=new CArrayDataProvider($rawData, array(... //using with querAll...
+            'keyField' => 'id',
+            'totalItemCount' => $count,
+
+            'sort' => array(
+                'defaultOrder' => array(
+                    'id' => CSort::SORT_DESC, //default sort value
+                ),
+            ),
+            'pagination' => array(
+                'pageSize' => 10,
+            ),
+        ));
+        return $model;
+    }
+
+    public static function TotalPelaporanPerbaikanInventarisByUser($userid, $status) {
+        $sql="
+        select count(*) total from notifikasi
+        where table_name = 'tran_perbaikan_inventaris' and status_id = ".$status." and user_id = ".$userid;
+        $data = Yii::app()->db->createCommand($sql);
+        $rawData = $data->queryAll();
+        $count = $rawData[0]['total'];
+        return $count;
+    }
+
+    public static function TotalPelaporanPerbaikanInventarisForAdmin($status) {
+        $today = (new DateTime())->setTimeZone(new DateTimeZone('Asia/Jakarta'));
+        $sql="
+        select count(*) total from tran_perbaikan_inventaris
+        where status = ".$status . " and tanggal_laporan > ". "'" . $today->format('Y-m-d') . "'";
+        $data = Yii::app()->db->createCommand($sql);
+        $rawData = $data->queryAll();
+        $count = $rawData[0]['total'];
+        return $count;
+    }
+
 }

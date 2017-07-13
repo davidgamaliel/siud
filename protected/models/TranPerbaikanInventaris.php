@@ -12,6 +12,7 @@
  * @property string $divisi
  * @property integer $jumlah
  * @property integer $status
+ * @property string $alasan
  *
  * The followings are the available model relations:
  * @property TmstUser $user
@@ -37,10 +38,10 @@ class TranPerbaikanInventaris extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id, inventaris_id, jumlah, status', 'numerical', 'integerOnly'=>true),
-			array('tanggal_laporan, deskripsi, divisi', 'safe'),
+			array('tanggal_laporan, deskripsi, divisi, alasan', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, inventaris_id, tanggal_laporan, deskripsi, divisi, jumlah, status', 'safe', 'on'=>'search'),
+			array('id, user_id, inventaris_id, tanggal_laporan, deskripsi, divisi, jumlah, status, alasan', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +73,7 @@ class TranPerbaikanInventaris extends CActiveRecord
 			'divisi' => 'Divisi',
 			'jumlah' => 'Jumlah',
 			'status' => 'Status',
+			'alasan' => 'Alasan',
 		);
 	}
 
@@ -101,6 +103,7 @@ class TranPerbaikanInventaris extends CActiveRecord
 		$criteria->compare('divisi',$this->divisi,true);
 		$criteria->compare('jumlah',$this->jumlah);
 		$criteria->compare('status',$this->status);
+		$criteria->compare('alasan',$this->alasan,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
